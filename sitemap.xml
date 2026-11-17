@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://thethreatdesk.com/</loc><lastmod>2026-11-10</lastmod></url>
-  <url><loc>https://thethreatdesk.com/archive.html</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://thethreatdesk.com/</loc><lastmod>2026-11-15</lastmod></url>
+  <url><loc>https://thethreatdesk.com/archive.html</loc><lastmod>2026-11-15</lastmod></url>
   <url><loc>https://thethreatdesk.com/microsoft-november-2026-patch-tuesday-outlook-zero-day.html</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://thethreatdesk.com/chrome-eighth-zero-day-2026-cve-2026-125350.html</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://thethreatdesk.com/firefox-160-fixes-99-security-flaws.html</loc><lastmod>2026-11-10</lastmod></url>
@@ -40,4 +40,29 @@
   <url><loc>https://thethreatdesk.com/google-android-tv-box-botnet-disrupted.html</loc><lastmod>2026-11-02</lastmod></url>
   <url><loc>https://thethreatdesk.com/fbi-seizes-virtualine-bulletproof-hosting.html</loc><lastmod>2026-10-28</lastmod></url>
   <url><loc>https://thethreatdesk.com/ex-ibm-executive-sues-ibm-att-hack-coverups.html</loc><lastmod>2026-11-06</lastmod></url>
+  <url><loc>https://thethreatdesk.com/citrix-netscaler-critical-flaws-november-2026.html</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://thethreatdesk.com/signdrop-windows-clfs-zero-day-exploit.html</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://thethreatdesk.com/postgresql-security-update-52-flaws-november-2026.html</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://thethreatdesk.com/unrealircd-label-injection-flaw-exploited.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thethreatdesk.com/red-hat-quay-critical-flaws-private-container-images.html</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://thethreatdesk.com/n-central-flaws-exploited-cryptominer-21-servers.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thethreatdesk.com/php2shell-check-point-tsga-backdoor-esxi-wiper.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thethreatdesk.com/silentair-telecom-hijack-sms-interception-taiwan.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thethreatdesk.com/north-korea-facestealer-deepfake-video-calls-400-million.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thethreatdesk.com/wfx-loot-github-actions-secret-stealer-campaign.html</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://thethreatdesk.com/cairn-ai-pentest-framework-china-nexus-intrusions.html</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://thethreatdesk.com/teams-meeting-booking-device-code-phishing.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thethreatdesk.com/trezor-safe-5-hidden-implant-cryptobilis.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thethreatdesk.com/maersk-whitearmor-ransomware-5-million-demand.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://thethreatdesk.com/ut-arlington-qilin-ransomware-data-stolen.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thethreatdesk.com/blacknevas-ransomware-wipes-vmware-esxi-backups.html</loc><lastmod>2026-11-14</lastmod></url>
+  <url><loc>https://thethreatdesk.com/activecloud-belarus-ransomware-outage.html</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://thethreatdesk.com/cursor-breach-fireworks-ai-key-trojanized-extension.html</loc><lastmod>2026-11-15</lastmod></url>
+  <url><loc>https://thethreatdesk.com/expedia-breach-qubole-n0n-extortion-claims.html</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://thethreatdesk.com/maileva-la-poste-data-breach-22-million.html</loc><lastmod>2026-11-15</lastmod></url>
+  <url><loc>https://thethreatdesk.com/apify-breach-customer-data-tokens.html</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://thethreatdesk.com/nitori-breach-37-million-customer-records.html</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://thethreatdesk.com/operation-endgame-gootloader-castlerat-stealc-takedown.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thethreatdesk.com/operation-tornado-354-dark-web-arrests.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thethreatdesk.com/doj-seizes-1-2-billion-binance-hack-crypto.html</loc><lastmod>2026-11-12</lastmod></url>
 </urlset>
