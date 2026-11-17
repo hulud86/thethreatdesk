@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DreamHost confirms attackers stole FTP logins and webmail sessions | The Threat Desk</title>
+<meta name="description" content="Web host DreamHost says attackers exploited its File Manager from August to October 23, stealing FTP/SFTP passwords and some webmail sessions.">
+<meta property="og:site_name" content="The Threat Desk">
+<meta property="og:title" content="DreamHost confirms attackers stole FTP logins and webmail sessions | The Threat Desk">
+<meta property="og:description" content="Web host DreamHost says attackers exploited its File Manager from August to October 23, stealing FTP/SFTP passwords and some webmail sessions.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132 132'%3E%3Crect width='132' height='132' rx='26' fill='%230f131b'/%3E%3Cpath d='M26 40H70M48 40V100' stroke='%23e8eaf0' stroke-width='15' stroke-linecap='round' fill='none'/%3E%3Cpath d='M70 58H82A20 20 0 0 1 82 98H70Z' stroke='%237d93ff' stroke-width='13' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='104' cy='28' r='14' fill='%23ff5a52'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-11-04">
+<meta property="article:section" content="Breaches">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"DreamHost confirms attackers stole FTP logins and webmail sessions","description":"Web host DreamHost says attackers exploited its File Manager from August to October 23, stealing FTP/SFTP passwords and some webmail sessions.","datePublished":"2026-11-04","dateModified":"2026-11-04","articleSection":"Breaches","author":{"@type":"Organization","name":"The Threat Desk"},"publisher":{"@type":"Organization","name":"The Threat Desk"}}</script>
+<style>
+:root{--bg:#0f131b;--surface:#171c26;--raised:#1d2330;--ink:#e8eaf0;--muted:#9aa2b2;--rule:#2a3140;--accent:#7d93ff;--alert:#ff5a52;--high:#f5a524;--info:#4cc490;--body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65}
+a{color:var(--accent)}:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.top{border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:14px;padding-bottom:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand b{font-size:24px;letter-spacing:-.03em;font-weight:700;line-height:1}.brand b span{font-weight:400}.brand b em{font-style:normal;color:var(--accent)}
+.brand small{display:block;font:500 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.topnav{display:flex;gap:6px;flex-wrap:wrap}
+.topnav a{font:600 14px var(--body);text-decoration:none;color:var(--muted);padding:9px 12px;border-radius:8px;border:1px solid var(--rule);background:var(--surface);min-height:40px;display:inline-flex;align-items:center}
+.topnav a:hover,.topnav a[aria-current="page"]{color:var(--ink);border-color:var(--accent)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.tag{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.sev{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:1px 7px;border-radius:3px;color:var(--bg)}
+.sev.critical{background:var(--alert)}.sev.high{background:var(--high)}.sev.info{background:var(--info)}
+.cve{font-family:var(--mono);font-size:12.5px;background:var(--surface);border:1px solid var(--rule);padding:1px 7px;border-radius:4px;color:var(--ink)}
+.crumbs{font-size:13.5px;color:var(--muted);padding:22px 0 0}.crumbs a{color:var(--muted)}
+footer{border-top:1px solid var(--rule);margin-top:56px;padding:24px 0 44px;font-size:13.5px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}footer p{margin:0 0 6px;max-width:70ch}
+
+.post{max-width:720px}
+.post h1{font-size:clamp(30px,4.6vw,44px);line-height:1.12;letter-spacing:-.025em;margin:14px 0 14px;text-wrap:balance}
+.dek{font-size:19.5px;color:#cdd2dc;margin:0 0 18px;line-height:1.5}
+.byline{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:10px 0;margin-bottom:26px;font-size:13.5px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.post h2{font-size:23px;letter-spacing:-.015em;margin:32px 0 10px}
+.post p{margin:0 0 18px;color:#d9dde5}
+.post ul{margin:0 0 18px;padding-left:22px;color:#d9dde5}.post li{margin-bottom:8px}
+.box{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:18px 20px;margin:28px 0}
+.box h3{font:500 12.5px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 8px}
+.box p{margin:0;color:var(--ink)}
+.box.todo{background:rgba(125,147,255,.08);border-color:rgba(125,147,255,.3)}
+.sources{margin:30px 0 0;padding:18px 20px;border:1px dashed var(--rule);border-radius:12px}
+.sources h3{font:500 12.5px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 10px}
+.sources ul{margin:0;padding-left:20px}.sources li{margin-bottom:6px;font-size:15px}
+.related{margin-top:44px}
+.related h2{font:500 13px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 12px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.rcard{display:block;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px}
+.rcard:hover{border-color:var(--accent)}.rcard b{display:block;font-size:16.5px;line-height:1.3;margin-top:6px;letter-spacing:-.01em}
+.share{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 0}
+.share button,.share a{font:600 13.5px var(--body);padding:9px 14px;min-height:40px;border-radius:999px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.share button:hover,.share a:hover{border-color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><svg width="44" height="44" viewBox="0 0 132 132" aria-hidden="true"><rect x="6" y="6" width="120" height="120" rx="18" fill="none" stroke="#e8eaf0" stroke-width="8"/><path d="M28 40 H70 M49 40 V96" stroke="#e8eaf0" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M70 58 H82 A19 19 0 0 1 82 96 H70 Z" stroke="#7d93ff" stroke-width="10" stroke-linejoin="round" fill="none"/><circle cx="104" cy="28" r="10" fill="#ff5a52"/></svg><span><b><span>the</span>threat<em>desk</em></b><small>Filed from the front lines of cybersecurity</small></span></a>
+  <nav class="topnav" aria-label="Site"><a href="index.html">Latest news</a><a href="archive.html">Archive</a></nav>
+</div></header>
+<main class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="archive.html#breaches">Breaches</a></nav>
+  <article class="post">
+    <div class="row" style="margin-top:14px"><span class="tag">Breaches</span><span class="sev high">High</span></div>
+    <h1>DreamHost confirms attackers stole FTP logins and webmail sessions</h1>
+    <p class="dek">Web host DreamHost says attackers exploited its File Manager from August to October 23, stealing FTP/SFTP passwords and some webmail sessions.</p>
+    <div class="byline"><span>By The Threat Desk</span><time datetime="2026-11-04">November 4, 2026</time></div>
+    <p>DreamHost, a long-running web hosting company, has confirmed a breach of the server behind its browser-based File Manager. An attacker exploited a vulnerability there and captured the FTP and SFTP usernames and passwords of customers who logged in to it between about August 2026 and October 23, when the intrusion was found.</p>
+<p>The attacker also reached some webmail systems and obtained session information for a limited number of users. A live session can let someone read a mailbox without the password or a second login factor. DreamHost says email contents and files on FTP/SFTP servers may also have been accessed.</p>
+<h2>DreamHost&#39;s response</h2>
+<p>DreamHost says well under 10% of customers were affected and found no evidence that control panel logins or billing details were accessed. It reset affected passwords, ended active sessions, rebuilt File Manager with extra security and is offering a year of identity protection. Its notice was filed with California&#39;s attorney general on November 2.</p>
+<h2>Why site owners should check their files</h2>
+<p>An FTP login controls the files that make up a website. Even after a password reset, owners should look for files or pages they didn&#39;t add.</p>
+    <div class="box"><h3>Who's affected</h3><p>DreamHost customers who used its web File Manager or webmail between August and Oct 23.</p></div>
+    <div class="box todo"><h3>What to do</h3><p>Change your FTP, SFTP and email passwords, and check your website files for changes you didn&#39;t make.</p></div>
+    
+    <div class="sources"><h3>Sources</h3><ul><li><a href="https://www.bleepingcomputer.com/news/security/dreamhost-confirms-data-breach-exposed-ftp-logins-and-webmail-sessions/" target="_blank" rel="noopener">BleepingComputer ↗</a></li><li><a href="https://www.esecurityplanet.com/news/news-dreamhost-breach-ftp-sftp-webmail-credentials/" target="_blank" rel="noopener">eSecurity Planet ↗</a></li><li><a href="https://www.dreamhost.com/news/announcements/october-security-incident/" target="_blank" rel="noopener">DreamHost ↗</a></li></ul></div>
+    <div class="share" aria-label="Share this story">
+      <button type="button" id="copy-link">Copy link</button>
+      <a id="share-x" href="#" target="_blank" rel="noopener">Share on X</a>
+      <a id="share-li" href="#" target="_blank" rel="noopener">Share on LinkedIn</a>
+    </div>
+  </article>
+  <section class="related" aria-label="More stories">
+    <h2>More from The Threat Desk</h2>
+    <div class="rgrid"><a class="rcard" href="cirrus-aircraft-data-breach-2026.html"><span class="row"><span class="tag">Breaches</span><span>November 10, 2026</span></span><b>Cirrus Aircraft discloses breach after a social engineering attack</b></a><a class="rcard" href="iris-ohyama-breach-7-7-million-customers.html"><span class="row"><span class="tag">Breaches</span><span>November 8, 2026</span></span><b>Iris Ohyama cloud breach exposes data on 7.7 million customers</b></a><a class="rcard" href="amplifon-breach-1-3-million.html"><span class="row"><span class="tag">Breaches</span><span>November 6, 2026</span></span><b>Amplifon breach may affect 1.3 million U.S. hearing care customers</b></a><a class="rcard" href="chrome-eighth-zero-day-2026-cve-2026-125350.html"><span class="row"><span class="tag">Vulnerabilities</span><span>November 10, 2026</span></span><b>Chrome patches its eighth actively exploited zero-day of the year</b></a></div>
+    <p style="margin-top:18px"><a href="archive.html">Browse every story in the archive →</a></p>
+  </section>
+</main>
+<footer><div class="wrap">
+  <div><p><b style="color:var(--ink)">The Threat Desk</b>: cybersecurity news in plain language.</p><p><a href="index.html">Latest news</a> · <a href="archive.html">Archive</a></p></div>
+  <div><p>Our posts are written independently from public reporting and link to the original sources.</p></div>
+</div></footer>
+<script>
+(function(){
+  var u = location.href.split("#")[0], t = document.title;
+  var x = document.getElementById("share-x"), li = document.getElementById("share-li"), c = document.getElementById("copy-link");
+  x.href = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(u) + "&text=" + encodeURIComponent(t);
+  li.href = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(u);
+  c.addEventListener("click", function(){
+    try { navigator.clipboard.writeText(u).then(function(){ c.textContent = "Link copied"; }, function(){ c.textContent = u; }); }
+    catch(e) { c.textContent = u; }
+  });
+})();
+</script>
+</body>
+</html>

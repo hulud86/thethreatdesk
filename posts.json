@@ -1,0 +1,811 @@
+[
+{
+"slug": "microsoft-november-2026-patch-tuesday-outlook-zero-day",
+"date": "2026-11-10",
+"title": "Microsoft's November Patch Tuesday ships 1,094 fixes, including an Outlook zero-day",
+"dek": "Microsoft's November 2026 update fixes more than 1,000 flaws. One Outlook bug was already being used to steal Windows login hashes. Here's what to patch first.",
+"sources": [
+{
+"name": "SOCRadar",
+"url": "https://socradar.io/blog/november-2026-patch-tuesday-zero-day/"
+},
+{
+"name": "Dark Reading",
+"url": "https://darkreading.com/vulnerabilities-threats/november-patch-tuesday-cornucopia-cves"
+},
+{
+"name": "CSO Online",
+"url": "https://www.csoonline.com/article/4247015/november-2026-patch-tuesday-63-critical-microsoft-fixes-plus-an-outlook-zero-day-that-allows-theft-of-hashed-credentials.html"
+}
+],
+"body": "Microsoft released its November security updates on November 10, and for the second month in a row the total topped 1,000. Counts differ slightly between trackers depending on what they include, but most put the figure near 1,094, with 63 flaws rated critical.\n## The one already under attack\nOnly one bug, CVE-2026-124194, was being exploited before the fix arrived. It is an Outlook spoofing flaw that Microsoft rates only \"Moderate\" (CVSS 6.5), but it matters because it can leak a user's NTLMv2 password hash. Attackers can try to crack that hash or relay it to sign in elsewhere as the victim. The root cause is that Outlook failed to warn the user about an unsafe action.\nCISA added the flaw to its Known Exploited Vulnerabilities list the same day and gave federal agencies until November 24 to patch.\n## Other fixes worth noticing\nResearchers flagged several critical remote code execution bugs, including a Windows LDAP flaw that can hit domain controllers and a Windows Search bug that is reachable through Exchange Server. That means Exchange servers need the Windows update as well as their Exchange patches.\n## Watch out for this\nThe Outlook fix ships through Microsoft 365 Apps and Office updates, not the Windows cumulative update. Installing Windows updates alone does not close the hole.",
+"cat": "Vulnerabilities",
+"sev": "critical",
+"who": "Windows and Office users, especially anyone using Outlook, plus IT teams running Exchange, SharePoint and Windows servers.",
+"todo": "Run Windows Update and Office updates now. IT teams should patch Outlook first, then domain controllers and internet-facing servers.",
+"cves": [
+"CVE-2026-124194"
+]
+},
+{
+"slug": "chrome-eighth-zero-day-2026-cve-2026-125350",
+"date": "2026-11-10",
+"title": "Chrome patches its eighth actively exploited zero-day of the year",
+"dek": "Google fixed CVE-2026-125350, an XML memory bug attackers were already exploiting. It is Chrome's eighth zero-day of 2026. Restart your browser to apply it.",
+"sources": [
+{
+"name": "BleepingComputer",
+"url": "https://bleepingcomputer.com/news/security/google-patches-eighth-chrome-zero-day-exploited-in-attacks-this-year"
+},
+{
+"name": "SOCRadar",
+"url": "https://socradar.io/blog/cve-2026-125350-google-chrome-xml-0day/"
+},
+{
+"name": "SecurityOnline",
+"url": "https://securityonline.info/chrome-zero-day-cve-2026-125350/"
+}
+],
+"body": "Google released Chrome 157.0.8103.50/.51 for Windows and macOS, and 157.0.8103.50 for Linux, fixing nine security bugs. One of them, CVE-2026-125350, is a use-after-free flaw in Chrome's XML handling, and Google says an exploit for it exists in the wild.\nThat makes it the eighth Chrome zero-day patched in 2026. CISA added it to its Known Exploited Vulnerabilities catalog on November 10.\n## What we know about the attacks\nAs usual with Chrome zero-days, Google has not said who is using the bug or against whom. Researchers note the flaw could allow code to run inside Chrome's sandbox. No public report has confirmed that the exploit also escapes the sandbox to take over the computer.\n## Why restarting matters\nChrome downloads updates on its own, but a fix doesn't take effect until the browser restarts. Many people leave Chrome open for days, so their browser stays vulnerable even after the patch has downloaded.",
+"cat": "Vulnerabilities",
+"sev": "critical",
+"who": "Anyone using Google Chrome on Windows, Mac or Linux.",
+"todo": "Open Chrome's menu, go to Help > About Google Chrome to fetch the update, then restart the browser.",
+"cves": [
+"CVE-2026-125350"
+]
+},
+{
+"slug": "firefox-160-fixes-99-security-flaws",
+"date": "2026-11-10",
+"title": "Firefox 160 fixes 99 security flaws",
+"dek": "Mozilla's November 10 releases patch 99 vulnerabilities in Firefox 160, with matching fixes for the extended support release and Thunderbird.",
+"sources": [
+{
+"name": "CSO Online",
+"url": "https://www.csoonline.com/article/4247015/november-2026-patch-tuesday-63-critical-microsoft-fixes-plus-an-outlook-zero-day-that-allows-theft-of-hashed-credentials.html"
+}
+],
+"body": "Mozilla shipped Firefox 160 on November 10, the same day as Microsoft's Patch Tuesday. The release fixes 99 security vulnerabilities, 57 of them rated high.\nFirefox ESR 153.7, the extended support release that many businesses use, fixes 81 vulnerabilities. Thunderbird 160 and Thunderbird 153.7 carry the shared fixes as well, including a flaw involving privilege escalation and sandbox escape.\nNo Firefox flaw in this batch was reported as exploited. Browser bugs of this kind are a favorite target once details become public, though, so it's worth installing the update rather than waiting for the next restart.",
+"cat": "Vulnerabilities",
+"sev": "high",
+"who": "Firefox and Thunderbird users, including organizations on the extended support release.",
+"todo": "Update to Firefox 160 (or ESR 153.7) and Thunderbird 160 or 153.7, then restart them.",
+"cves": []
+},
+{
+"slug": "n-able-n-central-offline-33-zero-days",
+"date": "2026-11-10",
+"title": "N-able pulls N-central cloud offline after 33 zero-days go public",
+"dek": "A researcher published exploit code for 33 alleged flaws in N-able's N-central remote management tool. N-able took its hosted service offline and shipped hotfixes.",
+"sources": [
+{
+"name": "BleepingComputer",
+"url": "https://bleepingcomputer.com/news/security/n-able-releases-security-hotfixes-for-zero-day-vulnerabilities"
+},
+{
+"name": "CSO Online",
+"url": "https://www.csoonline.com/article/4247028/n-able-n-central-gets-emergency-fix-two-days-after-33-exploits-published.html"
+},
+{
+"name": "Cybernews",
+"url": "https://cybernews.com/security/n-central-offline-after-33-zero-day-vulnerabilities-disclosed/"
+}
+],
+"body": "Late on Sunday, November 8, a researcher posted details and proof-of-concept code for 33 alleged vulnerabilities in N-central to a GitHub repository called \"Able2Shell.\" N-central is a remote monitoring and management (RMM) platform that IT service providers use to run their customers' computers and servers.\nThe researcher says the flaws chain into attacks that can steal credentials, create an administrator account and run commands as root, some without logging in. He told reporters he went public without warning N-able because the company had allegedly failed to fix bugs he reported earlier.\n## N-able's response\nOn November 9, N-able took its hosted N-central environments offline across the Americas, Europe and Asia-Pacific. It told customers who run N-central on their own servers to shut them down too. It then released N-central 2026.4 HF2, which patches what it called the most critical issues. The hotfix lists seven CVEs.\nN-able initially said it had seen no exploitation. Security firms soon reported probing of N-central servers for the newly published flaws.\n## Why it matters\nA compromised RMM server can be a master key to every customer it manages, which is why attackers prize these tools.",
+"cat": "Vulnerabilities",
+"sev": "critical",
+"who": "Managed service providers and IT teams that use N-able N-central to run their clients' computers.",
+"todo": "Apply N-able's hotfixes as they arrive, and watch the vendor's status page before turning cloud access back on.",
+"cves": []
+},
+{
+"slug": "cisa-kev-openssh-freeswitch-gpustack-ibm-aspera",
+"date": "2026-11-09",
+"title": "CISA flags four exploited flaws in OpenSSH, FreeSWITCH, GPUStack and IBM Aspera",
+"dek": "CISA added four actively exploited flaws to its must-patch list on November 9 and gave federal agencies three days to fix them.",
+"sources": [
+{
+"name": "eSecurity Planet",
+"url": "https://www.esecurityplanet.com/vulnerabilities/news-cisa-kev-gpustack-freeswitch-openssh-ibm-november-2026/"
+},
+{
+"name": "SecurityOnline",
+"url": "https://securityonline.info/cisa-kev-catalog-cve-2026-123158-exploited/"
+},
+{
+"name": "Security Affairs",
+"url": "https://securityaffairs.com/?p=202813"
+}
+],
+"body": "On Monday, November 9, the U.S. Cybersecurity and Infrastructure Security Agency added four vulnerabilities to its Known Exploited Vulnerabilities catalog. That listing means CISA has evidence attackers are using them. Federal civilian agencies had until November 12 to patch.\n## The four flaws\n- GPUStack (CVE-2026-102895): an authentication flaw in a tool for managing GPU clusters and serving AI models. Fixed in version 2.2.0. Recorded attacks included creating malicious backends.\n- FreeSWITCH (CVE-2026-116779): a code injection bug, CVSS 9.8, in the open-source phone switch behind many VoIP systems. A crafted SIP message could run FreeSWITCH commands. Fixed in 1.11.3.\n- OpenSSH (CVE-2026-123158): a login bypass nicknamed \"SSHole\" that affects only certain musl-based Linux builds without PAM, such as older Alpine Linux. Fixed in OpenSSH 10.6p2.\n- IBM Aspera Faspex (CVE-2026-123218): an authorization bypass, CVSS 9.8, that can lead to full administrator access on the file-transfer platform. Fixed in 5.0.19 PL1.\n## Patching isn't the end\nCISA asked agencies to do forensic checks too. An attacker who got in before the patch may have created accounts or credentials that keep working afterward.",
+"cat": "Vulnerabilities",
+"sev": "critical",
+"who": "Organizations running GPUStack, FreeSWITCH phone systems, IBM Aspera Faspex or some Linux builds of OpenSSH.",
+"todo": "Patch to the fixed versions, then look for new admin accounts or credentials an attacker may have added.",
+"cves": [
+"CVE-2026-123158",
+"CVE-2026-116779",
+"CVE-2026-102895",
+"CVE-2026-123218"
+]
+},
+{
+"slug": "openssh-sshole-login-bypass-exploited",
+"date": "2026-11-09",
+"title": "Attackers probe an OpenSSH login bypass on some Linux builds",
+"dek": "Exploitation attempts have begun against \"SSHole,\" an OpenSSH login bypass that affects certain musl-based Linux builds without PAM. OpenSSH 10.6p2 fixes it.",
+"sources": [
+{
+"name": "The Hacker News",
+"url": "https://thehackernews.com/2026/11/weekly-recap-sshole-exploited-apt-root.html"
+},
+{
+"name": "SecurityOnline",
+"url": "https://securityonline.info/cisa-kev-catalog-cve-2026-123158-exploited/"
+},
+{
+"name": "eSecurity Planet",
+"url": "https://www.esecurityplanet.com/vulnerabilities/news-cisa-kev-gpustack-freeswitch-openssh-ibm-november-2026/"
+}
+],
+"body": "OpenSSH runs on millions of servers, so any login flaw in it gets attention fast. This one, tracked as CVE-2026-123158 and nicknamed \"SSHole,\" is narrower than it sounds. It affects OpenSSH builds before 10.6p2 on Linux systems that use the musl C library and don't use PAM for authentication. Alpine Linux before 3.24.4, popular in containers, is the main example.\nResearchers have recorded exploitation attempts from 13 IP addresses in nine countries. That is an early sign of scanning that often comes before wider attacks. CISA added the flaw to its Known Exploited Vulnerabilities list on November 9.\n## Am I affected?\nMost mainstream Linux servers, which use glibc and PAM, are not affected. Security teams are advised to check their distribution, OpenSSH version and authentication setup instead of assuming every OpenSSH install is exposed.",
+"cat": "Vulnerabilities",
+"sev": "high",
+"who": "Servers running certain musl-based Linux builds of OpenSSH without PAM, common in Alpine-style containers.",
+"todo": "Update to OpenSSH 10.6p2 or your distribution's patched package, and limit SSH access to trusted networks.",
+"cves": [
+"CVE-2026-123158"
+]
+},
+{
+"slug": "sonicwall-sonicos-mfa-bypass-exploited",
+"date": "2026-11-06",
+"title": "SonicWall fixes seven SonicOS flaws, one already under attack",
+"dek": "SonicWall patched seven SonicOS firewall flaws. One, CVE-2026-19868, can skip SAML sign-in and multi-factor login on the SSL VPN and is already being exploited.",
+"sources": [
+{
+"name": "BleepingComputer",
+"url": "https://bleepingcomputer.com/news/security/sonicwall-warns-of-new-ssl-vpn-mfa-bypass-flaw-exploited-in-attacks"
+},
+{
+"name": "SecurityWeek",
+"url": "https://securityweek.com/sonicwall-patches-exploited-sonicos-bug-that-weakens-vpn-logins"
+},
+{
+"name": "Help Net Security",
+"url": "https://www.helpnetsecurity.com/?p=390676"
+}
+],
+"body": "On Friday, November 6, SonicWall published an advisory covering seven vulnerabilities in SonicOS, the operating system on its firewalls and virtual NSv appliances.\n## The exploited one\nCVE-2026-19868 is rated 7.1, lower than two of the other bugs. It is the dangerous one anyway. It lets an attacker who holds valid credentials for an alternate login method get around SAML authentication on the SSL VPN, and with it any multi-factor authentication enforced through SAML. SonicWall said it had investigated a report of exploitation. CISA added the flaw to its must-patch list the same day and set a November 20 deadline for federal agencies.\nThere is no workaround. Fixed releases are SonicOS 7.3.4-7013 or later for Gen7 devices and 8.2.3-8015 or later for Gen8.\n## The other six\nThe rest include two management-interface flaws rated 8.8 and a pre-authentication memory bug. None were reported as exploited, but they're fixed in the same update.",
+"cat": "Vulnerabilities",
+"sev": "critical",
+"who": "Businesses with SonicWall firewalls that use SSL VPN or multi-factor login.",
+"todo": "Install SonicWall's SonicOS update and review VPN logins for anything unusual. U.S. federal agencies must patch by Nov 20.",
+"cves": []
+},
+{
+"slug": "zyxel-gs1900-zero-day-1000-switches",
+"date": "2026-11-03",
+"title": "Zyxel switch hacks turn out to be a zero-day, not an old bug",
+"dek": "Attacks that compromised about 1,000 Zyxel GS1900 switches used a previously unknown flaw, not the one Zyxel patched in June. New firmware fixes it.",
+"sources": [
+{
+"name": "BleepingComputer",
+"url": "https://bleepingcomputer.com/news/security/zyxel-fixes-zero-day-exploited-to-hack-nearly-1-000-network-switches"
+},
+{
+"name": "SecurityWeek",
+"url": "https://www.securityweek.com/zyxel-switch-hacks-blamed-on-patched-flaw-actually-exploited-a-zero-day/amp/"
+},
+{
+"name": "CSO Online",
+"url": "https://www.csoonline.com/article/4245028/zyxel-patches-a-zero-day-hiding-behind-an-old-fix.html"
+}
+],
+"body": "In September, threat intelligence firm GreyNoise reported that a suspected Chinese-speaking hacker had compromised close to 1,000 Zyxel GS1900 network switches, and blamed CVE-2026-7273. Zyxel had already patched that bug in June, so the attacks looked like a case of slow patching.\nFirmware security firm Binarly found something different. The exploit used in the intrusions still worked on switches that had the June fix, because it abused a separate, unknown flaw in the same code. That flaw is now tracked as CVE-2026-107441, an out-of-bounds write that lets an attacker run operating system commands without logging in.\nBinarly says 996 switches in 48 countries were compromised, with configuration files, network details and hashed root credentials exposed. Zyxel has not confirmed that count.\n## The fix\nBinarly reported the flaw to Zyxel on September 29. Zyxel released \"Patch 3\" firmware for ten GS1900 models in October and published its advisory on November 3. Switches that were patched in June and marked as done still need this update.",
+"cat": "Vulnerabilities",
+"sev": "critical",
+"who": "Owners of Zyxel GS1900 network switches, often found in small offices.",
+"todo": "Install Zyxel's latest firmware and keep the switch's admin page off the internet.",
+"cves": [
+"CVE-2026-107441"
+]
+},
+{
+"slug": "quest-foglight-databases-critical-bugs",
+"date": "2026-11-03",
+"title": "Quest Foglight for Databases hit with eight critical bugs",
+"dek": "The Zero Day Initiative disclosed eight serious flaws in Quest Foglight for Databases, six allowing remote code execution and two privilege escalation.",
+"sources": [
+{
+"name": "ThreatCluster",
+"url": "https://threatcluster.io/cluster/cisa-adds-multiple-vulnerabilities-to-kev-catalog-97d4ec9c"
+}
+],
+"body": "On November 3, Trend Micro's Zero Day Initiative published advisories for eight vulnerabilities in Quest Foglight for Databases, a tool companies use to monitor database performance.\nSix of the flaws could let an attacker run code on the Foglight server remotely. The other two allow privilege escalation, giving an attacker who already has a foothold more control.\nNo exploitation was reported at the time of disclosure. Monitoring servers are attractive targets, though, because they usually hold credentials and connections to the databases they watch. Quest customers should apply the vendor's updates and keep Foglight reachable only from inside their network.",
+"cat": "Vulnerabilities",
+"sev": "high",
+"who": "Companies that use Quest Foglight to monitor their databases.",
+"todo": "Apply Quest's updates and make sure the Foglight server is only reachable from inside your network.",
+"cves": []
+},
+{
+"slug": "android-november-2026-security-update",
+"date": "2026-11-03",
+"title": "Android's November update patches 216 vulnerabilities",
+"dek": "Google's November 2026 Android security bulletin fixes 216 flaws, 23 of them critical. None were marked as exploited. Look for patch level 2026-11-05.",
+"sources": [
+{
+"name": "CSO Online",
+"url": "https://www.csoonline.com/article/4247015/november-2026-patch-tuesday-63-critical-microsoft-fixes-plus-an-outlook-zero-day-that-allows-theft-of-hashed-credentials.html"
+},
+{
+"name": "eSecurity Planet",
+"url": "https://www.esecurityplanet.com/weekly-roundup/active-exploits-ai-attacks-and-massive-breaches-define-the-week/"
+}
+],
+"body": "Google's Android security bulletin for November 2026 fixes 216 vulnerabilities, one of the largest monthly bulletins in recent memory. Twenty-three are rated critical. Google did not mark any of them as exploited in the wild.\nThe fixes reach phones as security patch level 2026-11-05 or later. Pixel phones usually get them first. Samsung, Motorola and other makers roll them out on their own schedules, sometimes weeks later.\n## How to check\nOpen Settings and look for the security update or security patch level, usually under About phone or Security. If your device no longer gets monthly patches, it may be time to plan a replacement.",
+"cat": "Vulnerabilities",
+"sev": "high",
+"who": "Android phone and tablet owners.",
+"todo": "Go to Settings > Security and install the update. Look for patch level 2026-11-05 or later once your phone maker releases it.",
+"cves": []
+},
+{
+"slug": "turla-cereal-malware-exchange-email",
+"date": "2026-11-10",
+"title": "Russia's Turla uses new Cereal malware to steal government email",
+"dek": "ESET found Cereal, a stealthy new Turla toolkit, inside government Exchange servers in Kazakhstan and Romania, copying emails tied to NATO and the EU.",
+"sources": [
+{
+"name": "Help Net Security",
+"url": "https://www.helpnetsecurity.com/?p=390766"
+},
+{
+"name": "ESET WeLiveSecurity",
+"url": "https://www.welivesecurity.com/en/eset-research/exchange-for-breakfast-turlas-cereal-tricks-are-not-for-kids/"
+},
+{
+"name": "BleepingComputer",
+"url": "https://bleepingcomputer.com/news/security/turla-hackers-use-new-ceral-malware-to-spy-on-govt-exchange-servers"
+}
+],
+"body": "Researchers at ESET have documented a new espionage toolkit they call Cereal, named for its heavy use of serialization. They attribute it with high confidence to Turla, the Russia-aligned group also known as Snake and widely linked to Russia's FSB.\n## Where it was found\nESET found Cereal on Microsoft Exchange servers at two national government organizations, one in Kazakhstan and one in Romania. In the Romanian case, the malware was set to pick out emails sent to or from NATO and European Union addresses.\n## How it hides\nCereal is a modular .NET toolkit with eight connected parts. Its email-collecting component, CerealBox, works inside Exchange's own mail transport process and copies messages that have Word or PDF attachments and match chosen senders, recipients or subjects. Mail keeps flowing normally. Another component takes commands through web requests that look like ordinary Exchange traffic, so the server never calls out to an attacker's machine. That defeats a common way of spotting infections.\nESET's research doesn't say how Turla first got onto the servers. Turla has targeted Exchange since at least 2014.",
+"cat": "Threat actors",
+"sev": "high",
+"who": "Government agencies and organizations running their own Microsoft Exchange email servers.",
+"todo": "Keep Exchange fully patched and watch for unusual mailbox access or new server-side tools.",
+"cves": []
+},
+{
+"slug": "bitter-paprat-backdoor-south-asia",
+"date": "2026-11-09",
+"title": "Bitter hackers deploy a new PapRAT backdoor across South Asia",
+"dek": "The Bitter espionage group is using a newly documented remote access tool, PapRAT, in a campaign aimed at targets in South Asia.",
+"sources": [
+{
+"name": "The Hacker News",
+"url": "https://thehackernews.com/search/label/cyber%20espionage?m=0"
+}
+],
+"body": "Security researchers have documented a new backdoor, PapRAT, being used by the long-running espionage group known as Bitter in a campaign aimed at South Asia.\nBitter, also tracked as T-APT-17, has historically gone after government, military and energy organizations in the region. Its campaigns usually start with spear-phishing emails carrying malicious attachments.\nA remote access trojan like PapRAT lets the operators control an infected computer, steal files and run further tools. Organizations in the region should treat unexpected attachments with suspicion and keep endpoint protection up to date.",
+"cat": "Threat actors",
+"sev": "high",
+"who": "Government, military and other organizations in South Asia.",
+"todo": "Be wary of unexpected email attachments, and keep endpoint security tools up to date.",
+"cves": []
+},
+{
+"slug": "sogou-input-method-updates-darkvigil",
+"date": "2026-11-05",
+"title": "China-aligned spies hijack Sogou keyboard updates to plant DarkVigil",
+"dek": "A China-aligned espionage group abused the update traffic of Sogou Input Method, a popular Chinese typing app, to install DarkVigil spyware.",
+"sources": [
+{
+"name": "GBHackers",
+"url": "https://gbhackers.com/post-quantum-encryption/amp/"
+}
+],
+"body": "Researchers report that a China-aligned espionage group hijacked the update process of Sogou Input Method, one of China's most widely used keyboard apps, to install spyware called DarkVigil.\nSoftware updates are a powerful way in for attackers. Users and security tools tend to trust them, and an app like an input method editor sees everything the user types.\nAnyone who uses Sogou should make sure it's updated through official channels and run a security scan. Organizations should watch for unusual update traffic from endpoint software.",
+"cat": "Threat actors",
+"sev": "high",
+"who": "People using the Sogou Input Method keyboard app.",
+"todo": "Make sure Sogou is updated from its official source, and run a security scan if you use it.",
+"cves": []
+},
+{
+"slug": "apt29-plerdy-watering-hole-iphone-android",
+"date": "2026-11-04",
+"title": "APT29-linked group hijacks an analytics script to hit iPhones and Androids",
+"dek": "Sekoia links APT29 to a campaign that hijacked the Plerdy analytics script and fake sites to push exploits for already-patched iPhone and Android flaws.",
+"sources": [
+{
+"name": "Help Net Security",
+"url": "https://www.helpnetsecurity.com/?p=390317"
+},
+{
+"name": "Security Affairs",
+"url": "https://securityaffairs.com/?p=202473"
+},
+{
+"name": "Infosecurity Magazine",
+"url": "https://www.infosecurity-magazine.com/news/apt29-watering-holes-iphones/"
+}
+],
+"body": "French security firm Sekoia published a report on November 4 that ties a mobile espionage campaign, with moderate to high confidence, to APT29. That is the group associated with Russia's foreign intelligence service, the SVR.\n## How the attack worked\nThe attackers used three routes. They injected code into hacked websites, built lookalike copies of real sites, and compromised Plerdy, a Ukrainian web analytics service. From August 27 to September 3, 2026, Plerdy's tracking script, used by thousands of mostly Ukrainian websites, also delivered the attackers' profiling code to visitors.\nThat code checked each visitor's phone and browser version. If the device was vulnerable, it served a matching exploit chain. No tap or download was needed beyond loading the page. The payloads were built to steal browser cookies, messages and saved Wi-Fi passwords.\n## The good news\nThe exploits targeted flaws that Apple and Google had already fixed, so they only worked against phones that hadn't been updated. Current iOS releases and up-to-date Chrome on Android postdate every version the campaign targeted.",
+"cat": "Threat actors",
+"sev": "critical",
+"who": "iPhone and Android users who visited websites carrying the tampered analytics script, mainly espionage targets.",
+"todo": "Install the latest iOS and Android updates. People at higher risk can turn on Apple's Lockdown Mode.",
+"cves": []
+},
+{
+"slug": "php2shell-palo-alto-firewalls-china-linked",
+"date": "2026-10-29",
+"title": "China-linked hackers chain PHP2Shell bugs to take over Palo Alto firewalls",
+"dek": "A suspected China-nexus group chained PHP2Shell with a Linux kernel bug to root 25 Palo Alto Networks systems, including firewalls tied to a U.S. government-affiliated network.",
+"sources": [
+{
+"name": "SecurityWeek",
+"url": "https://www.securityweek.com/china-linked-hackers-exploit-php2shell-to-root-firewalls/amp/"
+},
+{
+"name": "The Register",
+"url": "https://www.theregister.com/a/5306456"
+},
+{
+"name": "Cybersecurity Dive",
+"url": "https://www.cybersecuritydive.com/news/palo-alto-networks-firewalls-compromised-chained-attacks-php2shell/873323/"
+}
+],
+"body": "PHP2Shell is the nickname for two critical PHP flaws (CVE-2026-109618 and CVE-2026-109619) that the PHP project fixed on October 21. Within days, attackers were using them.\nOn October 28, Palo Alto Networks confirmed active exploitation against PAN-OS firewalls whose management interface is exposed to the internet. The company says only about 0.02% of customers expose that interface.\n## The campaign\nSecurity firm Dream described a suspected China-nexus operation that used the FOFA search engine to find about 19,000 internet-facing Palo Alto firewalls. It then chained PHP2Shell with Fragnesia (CVE-2026-46300), a Linux kernel privilege-escalation bug, to gain root access. The group rooted 25 systems, 24 perimeter firewalls and one internal management server, some belonging to a U.S. government-affiliated organization.\nAt that organization, the attackers set up a reverse SSH tunnel and moved to the internal server that manages every firewall, gaining access to all of their configurations and credentials. Researchers found traces of AI tools in the attack workflow. Palo Alto's Unit 42 independently verified the tooling.\n## What to do\nApply Palo Alto's hotfixes. Where none exist yet, use its mitigations, and keep management interfaces off the internet.",
+"cat": "Threat actors",
+"sev": "critical",
+"who": "Organizations with Palo Alto Networks firewalls whose management page is reachable from the internet.",
+"todo": "Patch the firewall, and never expose its management interface to the internet.",
+"cves": []
+},
+{
+"slug": "cisco-sd-wan-key-stealing-malware",
+"date": "2026-10-29",
+"title": "Cisco SD-WAN flaw used to plant malware that steals encryption keys",
+"dek": "Attackers exploited a Cisco SD-WAN flaw to plant malware that steals encryption keys. Cisco Talos linked the infrastructure to a known China-linked network.",
+"sources": [
+{
+"name": "MaxwellCTI digest",
+"url": "https://buttondown.com/WiseGuru/archive/maxwellcti-weekly-october-27-to-november-2-2026/"
+},
+{
+"name": "SecurityWeek",
+"url": "https://www.securityweek.com/php2shell-attacks-root-palo-alto-firewalls-but-fail-against-wordpress/amp/"
+}
+],
+"body": "Attackers exploited a vulnerability in Cisco SD-WAN, the software many companies use to connect branch offices, to install malware designed to steal encryption keys.\nCisco Talos linked the malware's infrastructure to the \"Silent Train\" network that Lumen has tied to Volt Typhoon, a China-linked group known for targeting critical infrastructure.\nStolen keys can let attackers read or tamper with traffic between a company's sites. This incident adds to a run of exploited Cisco SD-WAN bugs this year. Administrators should apply Cisco's fixes and check SD-WAN management systems for configuration changes or software they don't recognize.",
+"cat": "Threat actors",
+"sev": "high",
+"who": "Companies that run Cisco SD-WAN to connect their offices.",
+"todo": "Apply Cisco's fixes and check SD-WAN management systems for changes you didn't make.",
+"cves": []
+},
+{
+"slug": "vanderbilt-university-byod-ransomware",
+"date": "2026-11-09",
+"title": "Vanderbilt University hit by the new BYOD ransomware gang",
+"dek": "Vanderbilt University was listed by BYOD, a ransomware gang that launched in 2026 and claims it stole university data.",
+"sources": [
+{
+"name": "BleepingComputer",
+"url": "https://bleepingcomputer.com/news/security/vanderbilt-university-hit-in-byod-ransomware-attack-data-theft-claimed"
+}
+],
+"body": "Vanderbilt University in Nashville has been named as a victim by BYOD, a ransomware group that first appeared in 2026. The gang claims it stole data from the university.\nBYOD is a small operation so far. At the time of the report, its leak site listed five other organizations. Gangs like this typically steal data before encrypting systems, then threaten to publish it unless a ransom is paid.\nClaims on leak sites aren't always accurate, and the scope of any data theft wasn't confirmed at the time of the report. Students, staff and others whose information Vanderbilt holds should watch for official notices. They should also be wary of phishing emails that mention the attack, a common follow-up tactic.",
+"cat": "Ransomware",
+"sev": "high",
+"who": "Vanderbilt students, staff and others whose data the university holds.",
+"todo": "Watch for a notice from Vanderbilt and be extra careful with emails that mention the attack.",
+"cves": []
+},
+{
+"slug": "ransomware-germany-leak-sites-november-2026",
+"date": "2026-11-05",
+"title": "Ransomware tracker: 35 German organizations on leak sites in a month",
+"dek": "A German tally counted 35 organizations with ties to Germany posted on extortion leak sites in the 30 days to November 4, with Qilin and The Gentlemen most active.",
+"sources": [
+{
+"name": "Tech Insider (German)",
+"url": "https://tech-insider.org/de/ransomware-deutschland-leak-seiten-lagebild-november-2026/"
+}
+],
+"body": "A German situation report counted 35 organizations with ties to Germany that ransomware and extortion gangs posted on their leak sites in the 30 days up to November 4, 2026.\nQilin and The Gentlemen were among the most active groups. Both run \"ransomware as a service\" operations, renting their tools to affiliates who carry out the break-ins.\nA leak-site listing is a claim, not proof, and the real number of attacks is usually higher because victims who pay quietly are never posted. Still, the count shows how steadily mid-sized German companies are being hit. Offline backups, fast patching of internet-facing systems and multi-factor login for remote access remain the best defenses.",
+"cat": "Ransomware",
+"sev": "info",
+"who": "Companies with operations in Germany, which gangs like Qilin and The Gentlemen are targeting.",
+"todo": "Keep offline backups, patch internet-facing systems quickly and require multi-factor login for remote access.",
+"cves": []
+},
+{
+"slug": "unm-health-cyberattack-ambulances-diverted",
+"date": "2026-11-03",
+"title": "Cyberattack diverts ambulances at New Mexico's only Level 1 trauma center",
+"dek": "A cyberattack on UNM Health forced ambulances to be diverted from New Mexico's only Level 1 trauma center and disrupted classes at the University of New Mexico.",
+"sources": [
+{
+"name": "Breached.Company",
+"url": "https://breached.company/unm-health-attack-diverted-ambulances-new-mexicos-only-top-level/"
+},
+{
+"name": "GovInfoSecurity",
+"url": "https://www.govinfosecurity.com/hospital-cyberattacks-bring-disruptions-legal-fallout-a-33265"
+}
+],
+"body": "A cyberattack on the University of New Mexico's Health Sciences Center disrupted UNM Hospital, New Mexico's only Level 1 trauma center, and ambulances had to be diverted elsewhere. Classes at the medical school and other UNM programs were cancelled while systems were down.\nThe Health Sciences Center covers UNM Hospital and the university's schools of medicine, pharmacy, nursing and population health. University officials said they would make no concessions to the hackers.\nAccording to The Record, it is the second major cyberattack on a large state hospital system in 2026, after an attack shut down the University of Mississippi Medical Center's clinics in March. Patients should follow UNM Health's updates on appointments and watch for any notice about their data.",
+"cat": "Ransomware",
+"sev": "critical",
+"who": "Patients and staff of UNM Health in New Mexico.",
+"todo": "Patients should follow UNM Health's updates for appointments and watch for any data breach notice.",
+"cves": []
+},
+{
+"slug": "europe-supermarket-refrigeration-attacks",
+"date": "2026-11-03",
+"title": "Cyberattacks on supermarket refrigeration force European stores to pull food",
+"dek": "Overnight on November 1–2, attackers tampered with refrigeration controls at supermarkets in at least seven European countries, forcing stores to throw out food.",
+"sources": [
+{
+"name": "SentinelLabs",
+"url": "https://www.sentinelone.com/labs/defrost-and-disrupt-an-assessment-of-europe-s-refrigeration-attacks/"
+},
+{
+"name": "BleepingComputer",
+"url": "https://bleepingcomputer.com/news/security/hackers-disrupt-refrigeration-systems-at-european-supermarkets"
+},
+{
+"name": "Al Jazeera",
+"url": "https://aljazeera.com/news/2026/11/2/freezers-in-sweden-belgium-overheat-following-possible-cyberattacks"
+}
+],
+"body": "Overnight into Monday, November 2, refrigerators and freezers at supermarkets across Europe started warming up. Chains in Belgium, Luxembourg, the Netherlands, Sweden, Ireland, Estonia and Finland reported problems, with later reports from Germany, Italy and Portugal. In some stores, units were switched into defrost mode or pushed as high as 50°C (122°F), and staff had to pull chilled and frozen food from sale.\nAffected chains included Ahold Delhaize stores in Belgium and Luxembourg (around 40 locations), Coop and ICA in Sweden, and SuperValu in Ireland, which said 13 of its 223 stores were hit.\n## Not ransomware, but sabotage\nNobody demanded payment. Attackers got remote access to refrigeration controllers and changed their settings, in many cases reportedly using factory-default passwords. It was the second wave in a month. In mid-October, controllers at hundreds of French supermarkets were tampered with, and France's cyber agency named refrigeration controller lines from Danfoss and Copeland.\nSentinelLabs says Russian-aligned groups are credible suspects but that attribution remains open. The EU has said it will check supermarkets' readiness for such attacks.",
+"cat": "Ransomware",
+"sev": "critical",
+"who": "Grocery chains in Europe that use connected refrigeration systems, and their shoppers.",
+"todo": "Retailers should separate building and refrigeration controls from the main network and the internet.",
+"cves": []
+},
+{
+"slug": "abrigo-sageworks-shutdown-banks",
+"date": "2026-11-02",
+"title": "Abrigo shuts down Sageworks after suspicious activity, disrupting banks",
+"dek": "Abrigo took its Sageworks lending platform offline after detecting suspicious activity, disrupting U.S. banks and credit unions. Most services returned by November 2.",
+"sources": [
+{
+"name": "eSecurity Planet",
+"url": "https://www.esecurityplanet.com/weekly-roundup/active-exploits-ai-attacks-and-massive-breaches-define-the-week/"
+}
+],
+"body": "Abrigo, a software provider for community banks and credit unions, shut down its Sageworks platform after detecting suspicious activity. Many U.S. lenders use Sageworks for loan processing and credit analysis.\nThe shutdown left banks and credit unions without access to the platform. Abrigo said most services were back by November 2, but some borrower-facing features stayed offline longer while the investigation continued.\nThe incident shows how one software vendor can become a single point of failure for hundreds of financial institutions. Borrowers with questions about loans in progress should contact their bank or credit union directly.",
+"cat": "Ransomware",
+"sev": "high",
+"who": "U.S. banks and credit unions that use Sageworks, and borrowers whose loans run through it.",
+"todo": "Borrowers with questions should contact their bank or credit union directly.",
+"cves": []
+},
+{
+"slug": "ransomware-claims-up-23-percent-q3-2026",
+"date": "2026-11-02",
+"title": "Ransomware claims jump 23% in the third quarter",
+"dek": "NCC Group counted 2,865 ransomware victim claims in Q3 2026, up 23% from the previous quarter, with industrial companies hit hardest.",
+"sources": [
+{
+"name": "Campus Technology",
+"url": "https://campustechnology.com/articles/2026/11/02/global-ransomware-attacks-rise-23-in-q3.aspx"
+}
+],
+"body": "Ransomware activity climbed again in the third quarter of 2026. NCC Group's tracking counted 2,865 victims claimed on ransomware leak sites between July and September, up from 2,325 in the second quarter, a 23% rise.\nIndustrial companies were the most targeted sector. Attackers know that factory downtime is expensive, which raises the pressure to pay.\nLeak-site counts undercount the real total, since victims who pay quickly are often never listed. The trend still shows ransomware growing despite police takedowns earlier in the year. Testing that backups can actually be restored, and patching internet-facing systems first, remain the most effective steps.",
+"cat": "Ransomware",
+"sev": "info",
+"who": "Organizations everywhere, with industrial companies hit hardest.",
+"todo": "Test that your backups can actually be restored, and patch internet-facing systems first.",
+"cves": []
+},
+{
+"slug": "ransomware-fastest-pace-2026-killsec",
+"date": "2026-11-03",
+"title": "Ransomware hits its fastest pace of 2026 despite the KillSec arrests",
+"dek": "Security vendors report ransomware attacks rising to their fastest pace of 2026 and more use of AI agents, even after police arrested KillSec suspects in September.",
+"sources": [
+{
+"name": "Tech Insider",
+"url": "https://tech-insider.org/ransomware-attacks-surge-53-percent-killsec-arrest-2026/"
+}
+],
+"body": "Several security vendors report that ransomware attacks hit their fastest pace of the year this fall. The rise came even after police arrested suspected members of the KillSec group in late September.\nResearchers also describe ransomware affiliates making more use of AI agents to scout targets, write phishing lures and speed up intrusions. That shortens the time defenders have to react.\nArrests and takedowns disrupt individual gangs, but affiliates often move to other groups quickly. Multi-factor login on every remote access point, offline backups and a rehearsed response plan matter more than any single law enforcement win.",
+"cat": "Ransomware",
+"sev": "info",
+"who": "Businesses of every size.",
+"todo": "Turn on multi-factor login everywhere, keep offline backups and rehearse your response plan.",
+"cves": []
+},
+{
+"slug": "cirrus-aircraft-data-breach-2026",
+"date": "2026-11-10",
+"title": "Cirrus Aircraft discloses breach after a social engineering attack",
+"dek": "Cirrus Aircraft says a July social engineering attack exposed personal and health information. It notified Massachusetts and Texas regulators on November 10.",
+"sources": [
+{
+"name": "ClaimDepot",
+"url": "https://www.claimdepot.com/data-breach/cirrus-aircraft-2026"
+}
+],
+"body": "Cirrus Aircraft, the Duluth, Minnesota maker of small planes and the Vision Jet, has disclosed a data breach caused by a social engineering attack on July 17, 2026. Social engineering means tricking an employee, for example with a phone call or message, rather than breaking in through a technical flaw.\nThe company says personal information and some health information were exposed. It reported the breach to regulators in Massachusetts and Texas on November 10.\nPeople who receive a notice should read it closely and enroll in any credit or identity monitoring offered. Cases like this are a reminder that a convincing caller can do as much damage as malware.",
+"cat": "Breaches",
+"sev": "high",
+"who": "People whose personal or health details Cirrus Aircraft holds, mainly customers and employees.",
+"todo": "Read any notice you receive and enroll in the free monitoring it offers.",
+"cves": []
+},
+{
+"slug": "iris-ohyama-breach-7-7-million-customers",
+"date": "2026-11-08",
+"title": "Iris Ohyama cloud breach exposes data on 7.7 million customers",
+"dek": "A breach of a cloud service used by Japanese homeware maker Iris Ohyama exposed names, addresses and account passwords for about 7.7 million customers.",
+"sources": [
+{
+"name": "BleepingComputer",
+"url": "https://bleepingcomputer.com/news/security/iris-ohyama-data-cloud-breach-exposes-info-of-77-million-customers"
+}
+],
+"body": "Iris Ohyama, the Japanese maker of household goods and appliances, says a breach of a cloud service may have exposed the data of about 7.7 million customers of its online store, Iris Plaza.\nAccording to the company's notice, the exposed information may include full names, physical addresses, phone numbers, email addresses, gender, dates of birth and account passwords. Credit card details were not stored in the affected service.\nAs of November 5, Iris Plaza said it had received no reports of misuse or financial loss. The exposure of passwords is the biggest worry. Anyone who used the same password elsewhere should change it on those sites too.",
+"cat": "Breaches",
+"sev": "critical",
+"who": "Customers of Iris Ohyama's online store, Iris Plaza.",
+"todo": "Change your Iris Plaza password and any other site where you used the same one.",
+"cves": []
+},
+{
+"slug": "amplifon-breach-1-3-million",
+"date": "2026-11-06",
+"title": "Amplifon breach may affect 1.3 million U.S. hearing care customers",
+"dek": "A Texas filing shows the Amplifon hearing care data breach may affect about 1.33 million people, with health, insurance and ID details potentially exposed.",
+"sources": [
+{
+"name": "TechJournal",
+"url": "https://techjournal.org/amplifon-hearing-data-breach"
+}
+],
+"body": "Amplifon, one of the world's largest hearing aid and hearing care providers, has reported a data breach to the Texas attorney general that lists about 1.33 million affected people.\nThe files taken earlier this year may include health information, insurance details and government ID numbers, the kind of data that can be used for identity theft and insurance fraud.\nAffected customers should read the mailed notice, enroll in any protection the company offers and check insurance statements for claims they don't recognize.",
+"cat": "Breaches",
+"sev": "critical",
+"who": "Amplifon hearing care customers in the U.S.",
+"todo": "Read your mailed notice, enroll in any protection offered and watch insurance statements for claims you don't recognize.",
+"cves": []
+},
+{
+"slug": "chainalysis-breach-ai-agent-techniques",
+"date": "2026-11-05",
+"title": "Chainalysis breached by attackers using AI agent techniques",
+"dek": "Blockchain analytics firm Chainalysis says attackers used AI agent-driven methods to get into internal systems, exposing customer names.",
+"sources": [
+{
+"name": "Privacy Guides",
+"url": "https://www.privacyguides.org/news/2026/11/06/data-breach-roundup-oct-30-nov-5-2026/"
+}
+],
+"body": "Chainalysis, the blockchain analytics company used by governments and crypto firms to trace funds, says attackers got into its internal systems. Customer names were exposed.\nThe company says the intruders used AI agent-driven techniques, automated tools that can explore systems and chain steps together far faster than a person working by hand. Reports of attackers using AI agents this way have become more common this year.\nFor customers, the main risk is targeted phishing. Emails that use your name and mention Chainalysis deserve extra suspicion.",
+"cat": "Breaches",
+"sev": "high",
+"who": "Chainalysis customers.",
+"todo": "Watch for phishing emails that use your name or mention Chainalysis.",
+"cves": []
+},
+{
+"slug": "applebees-app-hardcoded-database-password",
+"date": "2026-11-05",
+"title": "Applebee's app leaked customer data through a hardcoded database password",
+"dek": "A database password left inside the Applebee's app could let anyone who found it reach customers' personal information.",
+"sources": [
+{
+"name": "Privacy Guides",
+"url": "https://www.privacyguides.org/news/2026/11/06/data-breach-roundup-oct-30-nov-5-2026/"
+}
+],
+"body": "The Applebee's app shipped with a database password written into its code. Anyone who pulled the app apart could find that password and use it to reach customers' personal information.\nHardcoded credentials are a well-known mistake. Apps are easy to download and inspect, so a secret placed inside one should be treated as public.\nPeople with Applebee's accounts should change their password and watch for scam emails or texts that pose as the restaurant. Offers of free food or account problems are common lures.",
+"cat": "Breaches",
+"sev": "high",
+"who": "People with accounts in the Applebee's app.",
+"todo": "Change your Applebee's password and watch for scam emails or texts posing as the restaurant.",
+"cves": []
+},
+{
+"slug": "dreamhost-breach-ftp-logins-webmail",
+"date": "2026-11-04",
+"title": "DreamHost confirms attackers stole FTP logins and webmail sessions",
+"dek": "Web host DreamHost says attackers exploited its File Manager from August to October 23, stealing FTP/SFTP passwords and some webmail sessions.",
+"sources": [
+{
+"name": "BleepingComputer",
+"url": "https://www.bleepingcomputer.com/news/security/dreamhost-confirms-data-breach-exposed-ftp-logins-and-webmail-sessions/"
+},
+{
+"name": "eSecurity Planet",
+"url": "https://www.esecurityplanet.com/news/news-dreamhost-breach-ftp-sftp-webmail-credentials/"
+},
+{
+"name": "DreamHost",
+"url": "https://www.dreamhost.com/news/announcements/october-security-incident/"
+}
+],
+"body": "DreamHost, a long-running web hosting company, has confirmed a breach of the server behind its browser-based File Manager. An attacker exploited a vulnerability there and captured the FTP and SFTP usernames and passwords of customers who logged in to it between about August 2026 and October 23, when the intrusion was found.\nThe attacker also reached some webmail systems and obtained session information for a limited number of users. A live session can let someone read a mailbox without the password or a second login factor. DreamHost says email contents and files on FTP/SFTP servers may also have been accessed.\n## DreamHost's response\nDreamHost says well under 10% of customers were affected and found no evidence that control panel logins or billing details were accessed. It reset affected passwords, ended active sessions, rebuilt File Manager with extra security and is offering a year of identity protection. Its notice was filed with California's attorney general on November 2.\n## Why site owners should check their files\nAn FTP login controls the files that make up a website. Even after a password reset, owners should look for files or pages they didn't add.",
+"cat": "Breaches",
+"sev": "high",
+"who": "DreamHost customers who used its web File Manager or webmail between August and Oct 23.",
+"todo": "Change your FTP, SFTP and email passwords, and check your website files for changes you didn't make.",
+"cves": []
+},
+{
+"slug": "alation-data-breach-social-security-numbers",
+"date": "2026-11-04",
+"title": "Alation discloses breach exposing Social Security numbers",
+"dek": "Enterprise data software company Alation reported a breach to Vermont's attorney general that exposed Social Security numbers and government ID numbers.",
+"sources": [
+{
+"name": "ClaimDepot",
+"url": "https://www.claimdepot.com/data-breach/alation-2026"
+}
+],
+"body": "Alation, an enterprise software company based in Redwood City, California, has reported a data breach to Vermont's attorney general. The exposed information includes Social Security numbers and government ID numbers.\nAlation makes data catalog software used by large companies to organize their data. Its filing doesn't say how many people were affected.\nBecause Social Security numbers were involved, anyone who gets a notice should consider freezing their credit with the three major bureaus. A freeze is free and blocks new accounts from being opened in your name.",
+"cat": "Breaches",
+"sev": "high",
+"who": "People whose records Alation holds, mainly employees and customers' staff.",
+"todo": "Watch for a notice and consider freezing your credit, since Social Security numbers were exposed.",
+"cves": []
+},
+{
+"slug": "isco-international-data-breach",
+"date": "2026-11-03",
+"title": "ISCO International breach exposes Social Security numbers",
+"dek": "ISCO International began mailing breach notices on November 2 and reported the incident to the Massachusetts and Vermont attorneys general. SSNs were involved.",
+"sources": [
+{
+"name": "ClaimDepot",
+"url": "https://www.claimdepot.com/data-breach/isco-international-2026"
+}
+],
+"body": "ISCO International has disclosed a data breach involving Social Security numbers. The company began mailing notices to affected people on November 2 and reported the incident to the attorneys general of Massachusetts and Vermont.\nState filings like these are often the first public sign of a breach. They typically give few details beyond the type of data involved.\nAnyone who receives a notice should read it, take up any monitoring it offers and consider a credit freeze, since a stolen Social Security number can be misused years later.",
+"cat": "Breaches",
+"sev": "high",
+"who": "People whose records ISCO International holds.",
+"todo": "Read your notice and consider a credit freeze, since Social Security numbers were involved.",
+"cves": []
+},
+{
+"slug": "harvard-alumni-breach-have-i-been-pwned",
+"date": "2026-11-06",
+"title": "Harvard alumni breach, 851,000 accounts, lands in Have I Been Pwned",
+"dek": "Data stolen from Harvard's alumni and donor systems in late 2025 has been added to Have I Been Pwned, so affected people can check their email.",
+"sources": [
+{
+"name": "Privacy Guides",
+"url": "https://www.privacyguides.org/news/2026/11/06/data-breach-roundup-oct-30-nov-5-2026/"
+}
+],
+"body": "Data from a late-2025 breach of Harvard University's alumni and donor systems has been added to Have I Been Pwned, the free breach-notification service. The dataset covers about 851,000 email addresses.\nAdding a breach to the service doesn't mean new data was stolen. It means affected people can now check whether their email address is included, by searching at haveibeenpwned.com.\nAlumni and donor records are valuable to scammers because they can support convincing fundraising or \"update your details\" phishing. Anyone included should change any reused passwords and be cautious with unexpected requests that claim to come from the university.",
+"cat": "Breaches",
+"sev": "info",
+"who": "Harvard alumni and donors.",
+"todo": "Check your email at haveibeenpwned.com and change any password you reused.",
+"cves": []
+},
+{
+"slug": "outlook-hotmail-dmarc-rejections",
+"date": "2026-11-08",
+"title": "Outlook.com and Hotmail start rejecting mail from domains without DMARC",
+"dek": "Since November 5, Microsoft's consumer mail services appear to be rejecting some messages from domains with no DMARC record. Small senders should check their DNS.",
+"sources": [
+{
+"name": "Hacker News digest",
+"url": "https://zeli.app/digest/2026-11-08"
+}
+],
+"body": "Email sent to Outlook.com, Hotmail, Live and MSN addresses has started bouncing for some senders. Since about November 5, 2026, Microsoft's consumer mail services appear to be rejecting some messages from domains that have no DMARC record. Microsoft hasn't made a public announcement.\nDMARC is a DNS setting that tells receiving mail servers how to handle messages that fail authentication checks. It helps stop scammers from sending mail that pretends to come from your domain. Big providers have been pushing senders to adopt it for years.\n## Who should check\nSmall businesses, clubs and anyone who sends email from their own domain should check that a DMARC record exists. Even a basic monitoring-only policy counts. Your domain or email provider can usually add one in a few minutes.",
+"cat": "Policy & takedowns",
+"sev": "info",
+"who": "Small businesses and anyone sending email from their own domain to Outlook, Hotmail, Live or MSN addresses.",
+"todo": "Ask your email or domain provider to add a DMARC record for your domain.",
+"cves": []
+},
+{
+"slug": "credit-card-fraud-crackdown-18-arrested",
+"date": "2026-11-04",
+"title": "18 arrested in nine-country crackdown on credit card fraud rings",
+"dek": "Police in nine countries, supported by Europol and Eurojust, arrested 18 suspects and carried out 60 house searches in a single day of action against card fraud rings.",
+"sources": [
+{
+"name": "SecurityWeek",
+"url": "https://www.securityweek.com/18-arrested-in-crackdown-on-credit-card-fraud-rings/amp/"
+}
+],
+"body": "Law enforcement agencies in nine countries carried out a coordinated day of action against credit card fraud networks, arresting 18 people and searching 60 homes. Police in Canada, several European countries, Singapore and the United States took part, with support from Europol and Eurojust.\nCard fraud rings typically buy stolen card data in bulk, test which cards still work and then cash them out through purchases or money mules.\nArrests like these disrupt the networks, but stolen card data keeps circulating. Checking statements regularly and turning on instant transaction alerts with your bank are still the quickest ways to catch fraud.",
+"cat": "Policy & takedowns",
+"sev": "info",
+"who": "Victims of credit card fraud and ATM attacks.",
+"todo": "Check card statements regularly and turn on transaction alerts with your bank.",
+"cves": []
+},
+{
+"slug": "europol-investment-scam-network-100-servers",
+"date": "2026-11-03",
+"title": "Europol busts an investment scam network spanning 50 countries",
+"dek": "Seven people were arrested and more than 100 servers seized in an action against an investment fraud network that targeted victims in about 50 countries.",
+"sources": [
+{
+"name": "Bitdefender",
+"url": "https://www.bitdefender.com/en-au/blog/hotforsecurity/europol-investment-scam-100-servers-seized"
+},
+{
+"name": "Lovguiden (Eurojust)",
+"url": "https://www.lovguiden.dk/en/det-offentlige/eurojust/2026-11-03-investment-fraud-seven-arrested-and-over-100-servers-seized-in-balkan-action"
+}
+],
+"body": "On November 3, authorities supported by Europol and Eurojust searched 17 locations, arrested seven people and seized more than 100 servers used by an investment fraud network. One of the raided sites was a call center in Kosovo.\nThe network targeted victims in around 50 countries. Operations like this usually lure people with fake trading platforms, show them invented profits to encourage bigger deposits, and then make withdrawals impossible.\nThe safest rule is simple: never invest through someone who contacts you out of the blue, however professional the website looks. Report suspected scams to the police and to your bank right away.",
+"cat": "Policy & takedowns",
+"sev": "info",
+"who": "People who were cold-called or messaged about online investment opportunities.",
+"todo": "Never invest through someone who contacts you out of the blue. Report suspected scams to the police.",
+"cves": []
+},
+{
+"slug": "google-android-tv-box-botnet-disrupted",
+"date": "2026-11-02",
+"title": "Google knocks out a 1.3 million-device Android TV box botnet",
+"dek": "Google disrupted a botnet of about 1.3 million infected Android TV boxes and says a device maker sold criminals access to them.",
+"sources": [
+{
+"name": "MaxwellCTI digest",
+"url": "https://buttondown.com/WiseGuru/archive/maxwellcti-digest-weekly-november-3-9-2026/"
+}
+],
+"body": "Google says it has disrupted a botnet made up of about 1.3 million infected Android TV streaming boxes. It also says a TV box maker sold criminals access to the compromised devices.\nBotnets like this are often used to commit ad fraud or to route criminal traffic through ordinary people's home internet connections, which can get their IP addresses flagged or blocked.\nCheap, no-name streaming boxes have been a repeat problem. The safest choice is a device that's Google Play Protect certified from a known brand.",
+"cat": "Policy & takedowns",
+"sev": "info",
+"who": "Owners of cheap, no-name Android TV streaming boxes.",
+"todo": "Replace off-brand streaming boxes with ones that are Google Play Protect certified.",
+"cves": []
+},
+{
+"slug": "fbi-seizes-virtualine-bulletproof-hosting",
+"date": "2026-10-28",
+"title": "FBI seizes the domain of bulletproof host Virtualine",
+"dek": "The FBI, working with European police and private partners, seized the domain of Virtualine, a \"bulletproof\" hosting service accused of serving criminals.",
+"sources": [
+{
+"name": "MaxwellCTI digest",
+"url": "https://buttondown.com/WiseGuru/archive/maxwellcti-weekly-october-27-to-november-2-2026/"
+}
+],
+"body": "The FBI has seized the website domain of Virtualine, a \"bulletproof\" hosting provider. Services like it advertise that they ignore abuse complaints and law enforcement requests, which makes them a favorite home for malware, phishing sites and other criminal infrastructure.\nVirtualine was also accused of helping launder bitcoin. The seizure was carried out with European police agencies and private-sector partners.\nTaking down hosting providers forces criminals to rebuild elsewhere, which costs them time and money. Regular internet users don't need to do anything.",
+"cat": "Policy & takedowns",
+"sev": "info",
+"who": "Mostly criminals who used the hosting service. Regular users aren't directly affected.",
+"todo": "No action needed for most people.",
+"cves": []
+},
+{
+"slug": "ex-ibm-executive-sues-ibm-att-hack-coverups",
+"date": "2026-11-06",
+"title": "Ex-IBM security executive sues IBM and AT&T over alleged hack cover-ups",
+"dek": "A former IBM security executive has sued IBM and AT&T, alleging they hid repeated intrusions linked to foreign governments.",
+"sources": [
+{
+"name": "SecurityWeek",
+"url": "https://www.securityweek.com/in-other-news-google-security-layoffs-audia6-takedown-400-million-coupang-fine/"
+}
+],
+"body": "A former IBM security executive has filed a lawsuit against IBM and AT&T. It claims the companies concealed repeated network intrusions linked to foreign governments.\nThe claims are allegations at this stage and haven't been tested in court. If they hold up, they would add to the debate over how and when companies must disclose breaches, an area where U.S. regulators have tightened rules in recent years.\nThe same news roundup also reported a $400 million fine against South Korean retailer Coupang over its data protection failures.",
+"cat": "Policy & takedowns",
+"sev": "info",
+"who": "IBM and AT&T customers, and anyone following how companies disclose hacks.",
+"todo": "No action needed. Watch for updates as the case moves forward.",
+"cves": []
+}
+]

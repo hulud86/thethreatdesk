@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Threat Desk | Filed from the front lines of cybersecurity</title>
+<meta name="description" content="The Threat Desk: the week's vulnerabilities, ransomware, breaches and policy news in plain language, with links to the original reporting.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132 132'%3E%3Crect width='132' height='132' rx='26' fill='%230f131b'/%3E%3Cpath d='M26 40H70M48 40V100' stroke='%23e8eaf0' stroke-width='15' stroke-linecap='round' fill='none'/%3E%3Cpath d='M70 58H82A20 20 0 0 1 82 98H70Z' stroke='%237d93ff' stroke-width='13' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='104' cy='28' r='14' fill='%23ff5a52'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Brand: "A in the style of C" — outlined TD monogram, radar pings, dark navy world. */
+:root{
+  --bg:#0f131b;
+  --surface:#171c26;
+  --raised:#1d2330;
+  --ink:#e8eaf0;
+  --muted:#9aa2b2;
+  --rule:#2a3140;
+  --accent:#7d93ff;
+  --alert:#ff5a52;
+  --high:#f5a524;
+  --info:#4cc490;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Header */
+.meta{border-bottom:1px solid var(--rule);font:500 12.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.meta .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.meta .live::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--alert);margin-right:8px;vertical-align:1px;box-shadow:0 0 0 0 rgba(255,90,82,.6)}
+@media (prefers-reduced-motion:no-preference){.meta .live::before{animation:ping 2.4s infinite}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,90,82,.55)}70%{box-shadow:0 0 0 9px rgba(255,90,82,0)}100%{box-shadow:0 0 0 0 rgba(255,90,82,0)}}
+.meta-link{color:var(--accent);text-decoration:none;font-weight:500}
+.meta-link:hover{text-decoration:underline}
+.brand .wrap{display:flex;flex-direction:column;align-items:stretch;gap:22px;padding-top:26px;padding-bottom:22px}
+.logo{display:flex;align-items:center;gap:20px;text-decoration:none;color:var(--ink)}
+.logo svg{flex:none}
+.wordmark{display:flex;flex-direction:column;gap:6px}
+.wordmark b{font-size:clamp(38px,6.4vw,64px);line-height:.95;letter-spacing:-.03em;font-weight:700}
+.wordmark b span{font-weight:400}
+.wordmark b em{font-style:normal;color:var(--accent)}
+.wordmark small{font:500 13px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.brand nav{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.brand nav button{font:600 14px/1.25 var(--body);background:var(--surface);border:1px solid var(--rule);color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;min-height:44px;text-align:center;display:flex;align-items:center;justify-content:center}
+.brand nav button:hover{color:var(--ink);border-color:#3a4356}
+.brand nav button[aria-pressed="true"]{color:var(--ink);background:var(--raised);border-color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
+@media (max-width:700px){.brand nav{grid-template-columns:repeat(3,minmax(0,1fr))}.brand nav button{font-size:13px;padding:8px 6px}}
+
+/* Patch-now strip */
+.strip{background:var(--surface);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.strip .wrap{display:flex;gap:18px;align-items:center;overflow-x:auto;padding-top:11px;padding-bottom:11px;font-size:14px;white-space:nowrap}
+.strip b{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--bg);background:var(--alert);padding:3px 9px;border-radius:3px}
+.strip span+span::before{content:"/";margin-right:18px;color:var(--rule)}
+
+/* Controls */
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:26px 0 8px}
+.controls h2{margin:0;font-size:14px;font-family:var(--mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* Main */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:32px;padding:14px 0 56px}
+@media (max-width:940px){.layout{grid-template-columns:1fr}}
+
+.lead{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;padding:28px;margin-bottom:24px;background:var(--surface);border:1px solid var(--rule);border-radius:12px;position:relative;overflow:hidden}
+.lead::after{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;border:2px solid rgba(125,147,255,.14);box-shadow:0 0 0 46px rgba(125,147,255,.04),0 0 0 92px rgba(125,147,255,.025);pointer-events:none}
+@media (max-width:660px){.lead{grid-template-columns:1fr}}
+.lead h3{font-size:clamp(28px,3.8vw,40px);line-height:1.08;letter-spacing:-.02em;margin:10px 0 12px;text-wrap:balance}
+.lead .dek{font-size:17px;margin:0 0 14px;color:#cdd2dc}
+.lead aside{display:grid;gap:16px;align-content:start;position:relative;z-index:1}
+.stat{border-left:3px solid var(--alert);padding-left:14px}
+.stat b{display:block;font-family:var(--mono);font-weight:500;font-size:40px;line-height:1.05;color:var(--ink);font-variant-numeric:tabular-nums}
+.stat:first-child b{font-size:52px;color:var(--alert)}
+.stat span{font-size:14px;color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:9px;position:relative}
+.card::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:var(--rule)}
+.card[data-sev="critical"]::before{background:var(--alert)}
+.card[data-sev="high"]::before{background:var(--high)}
+.card[data-sev="info"]::before{background:var(--info)}
+.card h4{font-size:18.5px;line-height:1.25;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.card p{margin:0;font-size:14.5px;color:#cdd2dc}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.tag{font:500 11.5px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.sev{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:1px 7px;border-radius:3px;color:var(--bg)}
+.sev.critical{background:var(--alert)} .sev.high{background:var(--high)} .sev.info{background:var(--info)}
+.cve{font-family:var(--mono);font-size:12px;background:var(--bg);border:1px solid var(--rule);padding:1px 6px;border-radius:4px;color:var(--ink)}
+.src{margin-top:auto;padding-top:10px;border-top:1px dashed var(--rule);font-size:13.5px}
+.src a{font-weight:600;text-decoration:none}
+.src a:hover{text-decoration:underline}
+.empty{padding:32px;border:1px dashed var(--rule);border-radius:10px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s, transform .15s}.card:hover{border-color:#3a4356;transform:translateY(-2px)}}
+
+/* Filter + sort controls */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.toggle{font:600 13px var(--body);display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid var(--rule);background:var(--surface);color:var(--muted);cursor:pointer}
+.toggle .dot{width:9px;height:9px;border-radius:50%;background:var(--alert);opacity:.45}
+.toggle[aria-pressed="true"]{color:var(--ink);border-color:var(--alert);background:rgba(255,90,82,.12)}
+.toggle[aria-pressed="true"] .dot{opacity:1;box-shadow:0 0 0 3px rgba(255,90,82,.25)}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;background:var(--surface);padding:3px}
+.seg button{font:600 13px var(--body);border:0;background:none;color:var(--muted);padding:7px 14px;border-radius:999px;cursor:pointer;min-height:34px}
+.seg button[aria-pressed="true"]{background:var(--raised);color:var(--ink);box-shadow:inset 0 0 0 1px var(--accent)}
+.toggle:hover,.seg button:hover{color:var(--ink)}
+
+/* Clickable cards */
+.card h4 button{all:unset;cursor:pointer;display:block}
+.card h4 button::after{content:"";position:absolute;inset:0;border-radius:10px}
+.card h4 button:focus-visible{outline:none}
+.card:has(h4 button:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
+.more{margin-top:auto;padding-top:10px;border-top:1px dashed var(--rule);display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted)}
+.more b{color:var(--accent);font-weight:600}
+.card:hover .more b{text-decoration:underline}
+
+/* Quiz */
+.quiz{margin-top:28px;background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:24px;position:relative;overflow:hidden}
+.quiz::after{content:"";position:absolute;right:-90px;bottom:-90px;width:240px;height:240px;border-radius:50%;border:2px solid rgba(125,147,255,.12);box-shadow:0 0 0 34px rgba(125,147,255,.035);pointer-events:none}
+.quiz .qhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:6px}
+.quiz h2{margin:0;font-size:22px;letter-spacing:-.02em}
+.quiz .qmeta{font:500 12.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.qbar{height:4px;border-radius:4px;background:var(--rule);margin:14px 0 18px;overflow:hidden}
+.qbar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.qtext{font-size:17.5px;font-weight:600;margin:0 0 14px;line-height:1.35;position:relative;z-index:1}
+.qopts{display:grid;gap:10px;position:relative;z-index:1}
+.qopt{font:500 15px var(--body);text-align:left;padding:12px 14px;min-height:48px;border-radius:10px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);cursor:pointer;display:flex;gap:12px;align-items:center}
+.qopt:hover:not(:disabled){border-color:var(--accent)}
+.qopt .k{font:600 12px var(--mono);width:26px;height:26px;border-radius:50%;border:1px solid var(--rule);display:inline-flex;align-items:center;justify-content:center;flex:none;color:var(--muted)}
+.qopt:disabled{cursor:default}
+.qopt.right{border-color:var(--info);background:rgba(76,196,144,.12)}
+.qopt.right .k{border-color:var(--info);color:var(--info)}
+.qopt.wrong{border-color:var(--alert);background:rgba(255,90,82,.10)}
+.qopt.wrong .k{border-color:var(--alert);color:var(--alert)}
+.qfeed{margin-top:14px;font-size:14.5px;color:#d6dae3;position:relative;z-index:1}
+.qfeed b{color:var(--ink)}
+.qnext{margin-top:16px;font:600 14px var(--body);padding:11px 18px;min-height:44px;border-radius:999px;border:0;background:var(--accent);color:var(--bg);cursor:pointer;position:relative;z-index:1}
+.qnext:hover{filter:brightness(1.08)}
+.qscore{font:500 56px/1 var(--mono);color:var(--accent);margin:6px 0 10px}
+.qscore small{font-size:24px;color:var(--muted)}
+
+/* Expandable story cards */
+.card.is-open{grid-column:1/-1;border-color:#3a4356}
+.card .td-info{position:relative;z-index:1;border-top:1px solid var(--rule);margin-top:4px;padding-top:6px;cursor:auto}
+.card .td-info h5{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:12px 0 5px}
+.card .td-info p{margin:0;font-size:15px;color:#d6dae3}
+.card .td-todo{background:rgba(125,147,255,.08);border:1px solid rgba(125,147,255,.25);border-radius:10px;padding:12px 14px}
+.card .td-todo p{color:var(--ink)}
+.card .td-src{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--muted)}
+.card .td-src a{font-weight:600;text-decoration:none}
+.card .td-src a:hover{text-decoration:underline}
+.card .td-read{display:inline-flex;align-items:center;margin-top:14px;min-height:44px;padding:10px 16px;border-radius:999px;background:var(--accent);color:var(--bg);font-weight:600;font-size:14.5px;text-decoration:none}
+.card .td-read:hover{filter:brightness(1.08)}
+.more b .chev{display:inline-block;transition:transform .2s}
+.card.is-open .more b .chev{transform:rotate(180deg)}
+.card.is-open:hover{transform:none}
+
+/* Sidebar */
+.side{display:grid;gap:20px;align-content:start}
+.box{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px}
+.box h3{font:500 13px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.dl{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.dl li{display:grid;grid-template-columns:54px 1fr;gap:12px;font-size:14px;align-items:start}
+.date{text-align:center;border:1px solid var(--rule);border-radius:6px;line-height:1.1;padding:5px 0;background:var(--bg)}
+.date small{display:block;font:500 10.5px var(--mono);text-transform:uppercase;color:var(--alert);letter-spacing:.08em}
+.date b{font-size:21px}
+.nums{display:grid;gap:10px;margin:0}
+.nums div{display:flex;justify-content:space-between;gap:10px;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:9px}
+.nums div:last-child{border-bottom:0;padding-bottom:0}
+.nums dt{font-size:13.5px;color:var(--muted)}
+.nums dd{margin:0;font:500 19px var(--mono);font-variant-numeric:tabular-nums}
+.about p{margin:0;font-size:14px;color:#cdd2dc}
+
+footer{border-top:1px solid var(--rule);padding:26px 0 44px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+footer p{margin:0 0 6px;max-width:72ch}
+.flogo{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700;font-size:18px;letter-spacing:-.02em}
+.flogo span{font-weight:400}
+.flogo em{font-style:normal;color:var(--accent)}
+</style>
+</head>
+<body>
+<header>
+  <div class="meta"><div class="wrap"><span class="live">Edition: Saturday, November 14, 2026</span><span>Covering Oct 28 – Nov 14</span><a class="meta-link" href="archive.html">Browse the archive →</a></div></div>
+  <div class="brand">
+    <div class="wrap">
+      <a class="logo" href="#top" id="top" aria-label="The Threat Desk home">
+        <svg width="92" height="92" viewBox="0 0 132 132" aria-hidden="true">
+          <rect x="6" y="6" width="120" height="120" rx="18" fill="none" stroke="#e8eaf0" stroke-width="7"/>
+          <path d="M28 40 H70 M49 40 V96" stroke="#e8eaf0" stroke-width="11" stroke-linecap="round" fill="none"/>
+          <path d="M70 58 H82 A19 19 0 0 1 82 96 H70 Z" stroke="#7d93ff" stroke-width="9" stroke-linejoin="round" fill="none"/>
+          <path d="M88 28 A16 16 0 0 0 104 44" stroke="#7d93ff" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.8"/>
+          <path d="M80 28 A24 24 0 0 0 104 52" stroke="#7d93ff" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.4"/>
+          <circle cx="104" cy="28" r="9" fill="#ff5a52"/>
+        </svg>
+        <span class="wordmark">
+          <b><span>the</span>threat<em>desk</em></b>
+          <small>Filed from the front lines of cybersecurity</small>
+        </span>
+      </a>
+      <nav aria-label="Topics" id="chips"></nav>
+    </div>
+  </div>
+  <div class="strip" role="region" aria-label="Patch now">
+    <div class="wrap">
+      <b>Patch now</b>
+      <span>Microsoft Outlook zero-day: CISA deadline Nov 24</span>
+      <span>Chrome: 8th exploited zero-day of 2026</span>
+      <span>SonicWall SonicOS: CISA deadline Nov 20</span>
+      <span>Zyxel GS1900 switches: exploited as zero-day</span>
+      <span>Android November bulletin: 216 fixes</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="controls">
+    <h2 id="count">Latest dispatches</h2>
+    <div class="tools" aria-label="Filter and sort stories">
+      <button type="button" class="toggle" id="crit" aria-pressed="false"><span class="dot" aria-hidden="true"></span>Critical only</button>
+      <div class="seg" role="group" aria-label="Sort stories">
+        <button type="button" id="sort-new" aria-pressed="true">Newest</button>
+        <button type="button" id="sort-sev" aria-pressed="false">Most severe</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <section aria-label="Stories">
+      <article class="lead" id="lead">
+        <div style="position:relative;z-index:1">
+          <div class="row"><span class="tag">Threat actors</span><span class="sev critical">Critical</span><span>Oct 30 – Nov 5</span></div>
+          <h3>North Korea tied to a record $6.4 billion crypto theft from Binance</h3>
+          <p class="dek">The FBI linked the TraderTraitor group to the largest cryptocurrency heist on record. Binance later said the attackers got in through fake job interviews and the abuse of AI tools, and investigators have flagged hundreds of wallet addresses tied to the stolen funds.</p>
+          <p class="src" style="border:0;padding:0"><a href="https://buttondown.com/WiseGuru/archive/maxwellcti-digest-weekly-november-3-9-2026/" target="_blank" rel="noopener">Read the coverage roundup →</a></p>
+          <p class="row" style="margin:6px 0 0">Reporting from The Hacker News, SecurityWeek and Cybersecurity Dive</p>
+        </div>
+        <aside>
+          <div class="stat"><b>$6.43B</b><span>Stolen, per the FBI's attribution</span></div>
+          <div class="stat"><b>~$3.2B</b><span>Still in theft-linked addresses across 11 blockchains as of Nov 5</span></div>
+          <div class="stat"><b>600+</b><span>Addresses the FBI has flagged</span></div>
+        </aside>
+      </article>
+      <div class="grid" id="grid" aria-live="polite"></div>
+      <section class="quiz" id="quiz" aria-labelledby="quiz-title">
+        <div class="qhead"><h2 id="quiz-title">This week's security quiz</h2><span class="qmeta" id="quiz-week"></span></div>
+        <div class="qbar" aria-hidden="true"><i id="quiz-bar" style="width:0"></i></div>
+        <div id="quiz-body" aria-live="polite"></div>
+      </section>
+    </section>
+
+    <aside class="side" aria-label="Deadlines and numbers">
+      <div class="box">
+        <h3>Deadlines</h3>
+        <ul class="dl">
+          <li><div class="date"><small>Nov</small><b>20</b></div><div>Federal agencies must fix the exploited SonicWall SonicOS flaw on CISA's must-patch list.</div></li>
+          <li><div class="date"><small>Nov</small><b>24</b></div><div>Federal deadline to patch the exploited Outlook zero-day from November's Patch Tuesday.</div></li>
+          <li><div class="date"><small>Nov</small><b>27</b></div><div>Black Friday. Watch for fake shipping, invoice and "payment failed" phishing.</div></li>
+          <li><div class="date"><small>Dec</small><b>8</b></div><div>Next Microsoft Patch Tuesday.</div></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>By the numbers</h3>
+        <dl class="nums">
+          <div><dt>Microsoft patches, November</dt><dd>1,094</dd></div>
+          <div><dt>Android flaws fixed, November</dt><dd>216</dd></div>
+          <div><dt>Ransomware victim claims, Q3</dt><dd>2,865</dd></div>
+          <div><dt>Rise over Q2</dt><dd>+23%</dd></div>
+          <div><dt>Zyxel switches hacked</dt><dd>~1,000</dd></div>
+          <div><dt>Android botnet devices disrupted</dt><dd>1.3M</dd></div>
+          <div><dt>Zero-days disclosed against N-able</dt><dd>33</dd></div>
+        </dl>
+      </div>
+      <div class="box about">
+        <h3>About the desk</h3>
+        <p>The Threat Desk tracks the week's vulnerabilities, ransomware, breaches and policy moves, and explains them in plain language. Every story links to the original reporting.</p>
+        <p style="margin-top:10px"><a href="archive.html">Browse every past story in the archive →</a></p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo">
+      <svg width="28" height="28" viewBox="0 0 132 132" aria-hidden="true"><rect width="132" height="132" rx="26" fill="#1d2330"/><path d="M26 40H70M48 40V100" stroke="#e8eaf0" stroke-width="15" stroke-linecap="round" fill="none"/><path d="M70 58H82A20 20 0 0 1 82 98H70Z" stroke="#7d93ff" stroke-width="13" stroke-linejoin="round" fill="none"/><circle cx="104" cy="28" r="14" fill="#ff5a52"/></svg>
+      <span>the</span>threat<em>desk</em>
+    </div>
+    <div>
+      <p>Edition compiled November 14, 2026. Summaries are written independently from public reporting; follow each link for the full story and the latest updates.</p>
+      <p>Severity markers: red for actively exploited or major-impact incidents, amber for serious but contained, green for research, policy and trend stories.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="stories.js"></script>
+<script src="quiz.js"></script>
+<script>
+const cats = ["All", ...new Set(stories.map(s => s.cat))];
+const sevRank = {critical: 0, high: 1, info: 2};
+const sevLabel = {critical:"Critical", high:"High", info:"Brief"};
+let activeCat = "All", critOnly = false, sortBy = "new", shown = [];
+const $ = id => document.getElementById(id);
+const chipsEl = $("chips"), gridEl = $("grid"), leadEl = $("lead"), countEl = $("count");
+const fmt = d => new Date(d + "T12:00:00").toLocaleDateString("en-US", {month:"short", day:"numeric"});
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+cats.forEach(c => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.id = "topic-" + c.replace(/\W+/g, "-").toLowerCase();
+  b.textContent = c;
+  b.setAttribute("aria-pressed", c === activeCat);
+  b.addEventListener("click", () => {
+    activeCat = c;
+    chipsEl.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x.textContent === c));
+    render();
+  });
+  chipsEl.appendChild(b);
+});
+$("crit").addEventListener("click", e => {
+  critOnly = !critOnly;
+  e.currentTarget.setAttribute("aria-pressed", critOnly);
+  render();
+});
+[["sort-new","new"],["sort-sev","sev"]].forEach(([id, val]) => {
+  $(id).addEventListener("click", () => {
+    sortBy = val;
+    $("sort-new").setAttribute("aria-pressed", val === "new");
+    $("sort-sev").setAttribute("aria-pressed", val === "sev");
+    render();
+  });
+});
+
+function render(){
+  shown = stories
+    .filter(s => activeCat === "All" || s.cat === activeCat)
+    .filter(s => !critOnly || s.sev === "critical")
+    .slice()
+    .sort((a,b) => sortBy === "sev"
+      ? (sevRank[a.sev] - sevRank[b.sev]) || b.date.localeCompare(a.date)
+      : b.date.localeCompare(a.date) || (sevRank[a.sev] - sevRank[b.sev]));
+  leadEl.style.display = (activeCat === "All" || activeCat === "Threat actors") ? "" : "none";
+  const filtered = activeCat !== "All" || critOnly;
+  countEl.textContent = !filtered ? "Latest dispatches"
+    : shown.length + (shown.length === 1 ? " dispatch" : " dispatches")
+      + (activeCat === "All" ? "" : " · " + activeCat) + (critOnly ? " · Critical" : "");
+  gridEl.innerHTML = shown.length ? shown.map((s, i) => `
+    <article class="card" data-sev="${s.sev}">
+      <div class="row"><span class="tag">${esc(s.cat)}</span><span class="sev ${s.sev}">${sevLabel[s.sev]}</span><span>${fmt(s.date)}</span></div>
+      <h4><button type="button" data-i="${i}" aria-expanded="false" aria-controls="td-info-${i}">${esc(s.title)}</button></h4>
+      <p>${esc(s.body)}</p>
+      ${s.cves.length ? `<div class="row">${s.cves.map(c => `<span class="cve">${esc(c)}</span>`).join("")}</div>` : ""}
+      <div class="more"><span>${esc(s.src)}</span><b><span class="lbl">What to do</span> <span class="chev" aria-hidden="true">▾</span></b></div>
+      <div class="td-info" id="td-info-${i}" hidden>
+        ${s.who ? `<h5>Who's affected</h5><p>${esc(s.who)}</p>` : ""}
+        ${s.todo ? `<h5>What to do</h5><div class="td-todo"><p>${esc(s.todo)}</p></div>` : ""}
+        ${s.slug ? `<a class="td-read" href="${esc(s.slug)}.html">Read our full story →</a>` : ""}
+        <div class="td-src"><span>Source: ${esc(s.src)}</span><a href="${esc(s.url)}" target="_blank" rel="noopener">Read the full report ↗</a></div>
+      </div>
+    </article>`).join("")
+    : `<div class="empty">No ${critOnly ? "critical " : ""}dispatches in this topic right now.</div>`;
+}
+gridEl.addEventListener("click", e => {
+  const b = e.target.closest("button[data-i]");
+  if (!b) return;
+  const card = b.closest(".card");
+  const info = card.querySelector(".td-info");
+  const open = !card.classList.contains("is-open");
+  card.classList.toggle("is-open", open);
+  b.setAttribute("aria-expanded", open);
+  info.hidden = !open;
+  card.querySelector(".more .lbl").textContent = open ? "Hide details" : "What to do";
+  if (open && card.getBoundingClientRect().top < 0) card.scrollIntoView({block: "start", behavior: "smooth"});
+});
+
+/* Weekly quiz */
+const Q = (typeof quiz !== "undefined" && quiz && quiz.questions && quiz.questions.length) ? quiz : null;
+let qi = 0, qScore = 0;
+function bestKey(){ return "td-quiz-best-" + (Q ? Q.week : ""); }
+function getBest(){ try { return +localStorage.getItem(bestKey()) || 0; } catch(e) { return 0; } }
+function setBest(n){ try { if (n > getBest()) localStorage.setItem(bestKey(), n); } catch(e) {} }
+function quizQuestion(){
+  const q = Q.questions[qi], n = Q.questions.length;
+  $("quiz-bar").style.width = (qi / n * 100) + "%";
+  $("quiz-week").textContent = "Question " + (qi + 1) + " of " + n;
+  $("quiz-body").innerHTML = `
+    <p class="qtext">${esc(q.q)}</p>
+    <div class="qopts">${q.options.map((o, k) => `<button type="button" class="qopt" data-k="${k}"><span class="k">${"ABCD"[k]}</span><span>${esc(o)}</span></button>`).join("")}</div>
+    <div class="qfeed" id="qfeed"></div>`;
+  $("quiz-body").querySelectorAll(".qopt").forEach(b => b.addEventListener("click", () => quizAnswer(+b.dataset.k)));
+}
+function quizAnswer(k){
+  const q = Q.questions[qi], right = k === q.answer;
+  if (right) qScore++;
+  $("quiz-body").querySelectorAll(".qopt").forEach(b => {
+    const bk = +b.dataset.k;
+    b.disabled = true;
+    if (bk === q.answer) b.classList.add("right");
+    else if (bk === k) b.classList.add("wrong");
+  });
+  const last = qi === Q.questions.length - 1;
+  $("qfeed").innerHTML = `<b>${right ? "Correct." : "Not quite."}</b> ${esc(q.explain)}
+    <div><button type="button" class="qnext" id="qnext">${last ? "See my score" : "Next question"}</button></div>`;
+  $("qnext").addEventListener("click", () => { qi++; last ? quizEnd() : quizQuestion(); });
+  $("qnext").focus();
+}
+function quizEnd(){
+  const n = Q.questions.length;
+  setBest(qScore);
+  $("quiz-bar").style.width = "100%";
+  $("quiz-week").textContent = Q.title;
+  const msg = qScore === n ? "Perfect score. You're on top of this week's threats."
+    : qScore >= n - 1 ? "Nearly perfect. You're well informed."
+    : qScore >= Math.ceil(n / 2) ? "Not bad. Skim this week's dispatches to fill the gaps."
+    : "This week's dispatches above will get you up to speed.";
+  $("quiz-body").innerHTML = `
+    <div class="qscore">${qScore}<small> / ${n}</small></div>
+    <p class="qtext" style="font-weight:500">${msg}</p>
+    <p class="row" style="margin:0">Your best this week: ${getBest()} / ${n}. A new quiz arrives every week.</p>
+    <button type="button" class="qnext" id="qagain">Try again</button>`;
+  $("qagain").addEventListener("click", quizStart);
+}
+function quizStart(){ qi = 0; qScore = 0; quizQuestion(); }
+if (Q) quizStart(); else $("quiz").hidden = true;
+
+render();
+</script>
+</body>
+</html>
