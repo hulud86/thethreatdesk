@@ -1325,5 +1325,249 @@
     "url": "https://securityaffairs.com/203012/cyber-crime/north-korea-crypto-theft-operations-doj-seizes-1-2-billion-and-disrupts-hacker-infrastructure.html"
    }
   ]
+ },
+ {
+  "slug": "nginx2root-http2-flaw-remote-code-execution",
+  "date": "2026-11-18",
+  "cat": "Vulnerabilities",
+  "sev": "critical",
+  "title": "NGINX2Root: a decade-old HTTP/2 bug lets attackers run code on NGINX servers",
+  "dek": "F5 patched five critical NGINX flaws, including an HTTP/2 bug present since 2015. Proof-of-concept exploits are public, though no attacks have been seen yet.",
+  "body": "F5 released fixes on Nov 18 for five critical NGINX vulnerabilities. The most serious, CVE-2026-123007 and nicknamed NGINX2Root, sits in NGINX's HTTP/2 code and has existed since version 1.9.5, released in 2015. An unauthenticated attacker who can reach an HTTP/2 port can run code with the privileges of the NGINX worker process.\n## How bad is it\nF5 says exploitation requires ASLR to be disabled or bypassed, but researchers at Wiz and Xint showed the bug can be used to defeat ASLR as well. Xint went further and paired it with a Linux kernel SCTP flaw to gain root, even from inside a Docker container. Rapid7 and Censys have published proof-of-concept code. Rapid7's version needs roughly 128 GB of HTTP/2 traffic, which limits it on slower links. Censys estimates about 9 million internet-facing services run an affected version with HTTP/2 on.\nF5, Wiz and Rapid7 say they have not seen attacks so far.\n## The other four flaws\n- CVE-2026-123633: HTTP/2 with backend proxying when worker connections run low.\n- CVE-2026-123634: proxied server names built from variables combined with SSI or mirror subrequests.\n- CVE-2026-121810: affects servers with HTTP/3 enabled.\n- CVE-2026-113425: affects NGINX used as a mail proxy.\n## Fixed versions\nNGINX Open Source 1.31.9 (mainline) and 1.30.7 (stable) fix all five. NGINX Plus is fixed in 37.3.0.1 and 37.0.8.1. A plain reload does not load the new binary, so restart NGINX fully or do a live binary upgrade. Linux distribution packages may lag behind, so check your distro's advisories.\n## If you can't patch today\nTurning off HTTP/2 blocks the two HTTP/2 bugs but not the other three. Disable HTTP/3 where it isn't needed, and limit mail proxy listeners to trusted networks.",
+  "who": "Anyone running NGINX Open Source 1.9.5 through 1.31.8 or NGINX Plus, especially with HTTP/2 enabled.",
+  "todo": "Upgrade to NGINX 1.31.9 or 1.30.7 (or the fixed NGINX Plus builds) and fully restart. Until then, disable HTTP/2 and HTTP/3 where possible and watch for worker crashes or core dumps.",
+  "cves": [
+   "CVE-2026-123007",
+   "CVE-2026-123633",
+   "CVE-2026-123634",
+   "CVE-2026-121810",
+   "CVE-2026-113425"
+  ],
+  "sources": [
+   {
+    "name": "The Hacker News",
+    "url": "https://thehackernews.com/2026/11/10-year-old-nginx-http2-flaw-lets.html"
+   },
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/f5-patches-critical-nginx2root-flaws-as-poc-exploits-go-public/"
+   }
+  ]
+ },
+ {
+  "slug": "java4shell-cve-2026-114938-java-base64-rce",
+  "date": "2026-11-18",
+  "cat": "Vulnerabilities",
+  "sev": "critical",
+  "title": "Java4Shell: a Java Base64 bug puts Jira, Jenkins and Keycloak at risk of takeover",
+  "dek": "Oracle and OpenJDK fixed a memory corruption flaw in Java's fast Base64 decoder. CISA urged immediate patching, and scanners are already probing for it.",
+  "body": "Oracle and the OpenJDK project have shipped fixes for CVE-2026-114938, a flaw researchers at Calif have named Java4Shell. CISA urged organizations to patch right away.\n## What's wrong\nThe bug is in an optimized Base64 decoder in the HotSpot JVM that only runs on x86-64 processors with the AVX-512 VBMI instruction set. That includes Intel Ice Lake and newer server chips and AMD Zen 4 and newer. A malformed Base64 string can make the decoder write dozens of bytes past the end of its buffer. Calif says it turned this into unauthenticated remote code execution against Keycloak, Jira, Confluence, JFrog Artifactory, Jenkins and PingFederate in their default setups. It is holding back its exploit code. Other labs have reproduced crashes and memory leaks but not code execution.\nAffected builds include Java 17.0.6 and later, plus Java 21, 25 and 27. ARM64 systems and standard Java 8 and 11 are not affected.\n## Is it being exploited?\nAs of Nov 18, CISA and Canada's Cyber Centre said they knew of no attacks. By Nov 19, GreyNoise, watchTowr and Cloudflare were reporting scanning and exploit attempts. GreyNoise logged more than 150 matching requests but no confirmed intrusions.\n## Fixes\n- Oracle Java SE 17.0.21.1, 21.0.13.1, 25.0.5.1 and 27.0.1.1.\n- Amazon Corretto and Azul Zulu have patched builds.\n- Red Hat was still preparing its fixes, and some other OpenJDK distributions had not yet listed fixed builds.\nApps that bundle their own Java runtime need an update from the vendor. Container images must be rebuilt.\n## Workarounds\nIf you can't patch yet, researchers say starting Java with -XX:-UseBASE64Intrinsics, or -XX:UseAVX=2 on x86 only, removes the vulnerable code path. Atlassian recommends disabling AVX-512 for its Data Center products until patches arrive.",
+  "who": "Organizations running Java 17.0.6+ or Java 21/25/27 on modern Intel or AMD x86 servers, especially Keycloak, Jira, Confluence, Jenkins, Artifactory and PingFederate.",
+  "todo": "Update Java to the November builds, restart services and rebuild images. If that isn't possible, add -XX:-UseBASE64Intrinsics and watch logs for bursts of Base64 decoder errors.",
+  "cves": [
+   "CVE-2026-114938"
+  ],
+  "sources": [
+   {
+    "name": "The Hacker News",
+    "url": "https://thehackernews.com/2026/11/java4shell-cve-2026-114938-enables-pre.html"
+   },
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/"
+   }
+  ]
+ },
+ {
+  "slug": "apache-roller-xml-rpc-rce-exploited",
+  "date": "2026-11-18",
+  "cat": "Vulnerabilities",
+  "sev": "critical",
+  "title": "Attackers exploit a critical Apache Roller flaw that needs no login",
+  "dek": "The Apache Software Foundation says a deserialization bug in Roller's XML-RPC endpoint is being actively exploited. Version 6.1.6 fixes it.",
+  "body": "The Apache Software Foundation has warned that attackers are exploiting CVE-2026-129448, a critical flaw in the Apache Roller blogging platform. The bug is rated 9.8 out of 10.\n## The flaw\nThe problem is unsafe deserialization in Roller's XML-RPC endpoint. An attacker with no account can send crafted data to that endpoint and run code on the server. Roller versions 4.0.0 through 6.1.4 are affected, and the fix is in 6.1.6.\nThe ASF warns that on older versions, switching off XML-RPC in the admin interface does not fully protect the server, so upgrading is the real fix.\n## What we know about attacks\nThe ASF says the flaw is being actively exploited, but it has not shared who is behind the attacks or who has been targeted.\nThis is the second critical Roller bug in a few months. CVE-2026-82384, also rated 9.8, was patched in September, and its advisory listed only version 6.1.5 as affected.\nThe flaw was found by a researcher using the handle n0mi1k and reported by Matt Raible.\n## Why it matters\nRoller is less common than WordPress, but it still runs blogs and internal sites at some companies and universities. Old, rarely maintained installs are easy targets, and a code execution flaw on a web server can be a foothold into the wider network.",
+  "who": "Anyone running Apache Roller 4.0.0 through 6.1.4.",
+  "todo": "Upgrade to Roller 6.1.6 now. If you can't, block outside access to the XML-RPC endpoint at the firewall or proxy, and check the server for webshells or unexpected processes.",
+  "cves": [
+   "CVE-2026-129448"
+  ],
+  "sources": [
+   {
+    "name": "The Hacker News",
+    "url": "https://thehackernews.com/2026/11/critical-apache-roller-rce-flaw-under.html"
+   }
+  ]
+ },
+ {
+  "slug": "puppet-server-rce-cve-2026-115731-exploited",
+  "date": "2026-11-17",
+  "cat": "Vulnerabilities",
+  "sev": "critical",
+  "title": "CISA warns hackers are exploiting a critical Puppet server flaw",
+  "dek": "A deserialization bug in Puppet Enterprise and Puppet Core lets any machine with a signed agent certificate run code on the Puppet Server. CISA added it to KEV.",
+  "body": "CISA added CVE-2026-115731, a critical flaw in Perforce's Puppet configuration management software, to its Known Exploited Vulnerabilities catalog on Nov 17, citing reports of active exploitation.\n## The flaw\nThe bug, rated 9.4, is a deserialization issue in how the Puppet Server processes reports sent by agents. Any client holding a valid agent certificate signed by the Puppet CA can use it to run code as the Puppet Server's service account. That matters because the Puppet Server pushes configuration to every managed machine, so taking it over can give an attacker reach across a whole fleet.\nAffected versions:\n- Puppet Enterprise 2026.0.0 before 2026.0.1, 2025.0.0 before 2025.12.1, and 2023.8.0 before 2023.8.13.\n- Puppet Core 9.0.0 before 9.1.3 and 8.x before 8.22.2.\nPerforce released fixes on Nov 3. The open-source fork OpenVox is also affected and has fixed releases.\n## A second bug\nThe same researcher, Alain Rödel of Neodyme, also reported CVE-2026-115732, rated 9.0, which lets an attacker get around authorization checks based on certificate names. Neodyme says AI helped find both bugs.\n## Attacks\nDetails of the attacks have not been published. Federal civilian agencies must patch by Dec 1.",
+  "who": "Organizations using Puppet Enterprise, Puppet Core or OpenVox to manage servers.",
+  "todo": "Upgrade the Puppet Server to the fixed release for your branch. Review which agent certificates have been signed, revoke any you don't recognize, and check the server for unexpected processes or files.",
+  "cves": [
+   "CVE-2026-115731",
+   "CVE-2026-115732"
+  ],
+  "sources": [
+   {
+    "name": "The Hacker News",
+    "url": "https://thehackernews.com/2026/11/hackers-exploiting-critical-puppet-rce.html"
+   },
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/critical-perforce-puppet-rce-exploited-in-attacks/"
+   }
+  ]
+ },
+ {
+  "slug": "microsoft-agent-framework-pypi-credential-stealer",
+  "date": "2026-11-17",
+  "cat": "Breaches",
+  "sev": "high",
+  "title": "Poisoned releases of Microsoft's Agent Framework on PyPI stole cloud credentials",
+  "dek": "Two malicious versions of the agent-framework package, which gets about 190,000 downloads a month, harvested Azure, GitHub and other secrets for under an hour.",
+  "body": "Attackers published two malicious versions of agent-framework, Microsoft's Python package for building AI agents, to the PyPI registry on Nov 17. The versions, 1.26.1 and 1.26.2, went up 33 minutes apart and have since been quarantined.\n## What the malware did\nBoth versions planted a .pth file. Python runs these automatically every time it starts, so the code ran even if the package was never imported. It collected:\n- Azure CLI tokens, Azure DevOps tokens and managed identity tokens.\n- Cloud instance metadata.\n- Credential files for npm, git and Docker, among others.\nVersion 1.26.2 also grabbed GitHub Actions OIDC tokens, which can be swapped for cloud access in CI pipelines. The stolen data was sent to a webhook.site address.\n## Exposure window\nThe malicious versions were live for about 45 minutes, roughly 8:35 to 9:20 p.m. UTC on Nov 17. The package is downloaded about 190,000 times a month, and automated builds that fetch the latest version are the most likely victims.\nIt is not yet known how the attackers got permission to publish the package, and no one has been publicly blamed.\n## Why it matters\nAI agent tooling is a growing target for supply chain attacks because it usually runs with broad cloud access. A single bad install on a build server can expose credentials for production systems.",
+  "who": "Developers and CI/CD pipelines that installed agent-framework 1.26.1 or 1.26.2 on Nov 17.",
+  "todo": "Pin agent-framework to 1.26.0, search build logs and lockfiles for 1.26.1 or 1.26.2, and if found, rotate every cloud, GitHub, npm and Docker credential the affected machine could reach.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "The Hacker News",
+    "url": "https://thehackernews.com/2026/11/attackers-compromise-microsofts-agent.html"
+   },
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/"
+   }
+  ]
+ },
+ {
+  "slug": "f5-big-ip-six-critical-tmm-buffer-overflows",
+  "date": "2026-11-18",
+  "cat": "Vulnerabilities",
+  "sev": "high",
+  "title": "F5 warns of six critical BIG-IP flaws that can crash traffic in some setups",
+  "dek": "Stack buffer overflows in BIG-IP's traffic engine can be triggered without logging in when certain iRules or APM policies are used. Only hotfixes are available.",
+  "body": "Alongside its NGINX fixes, F5 disclosed six critical vulnerabilities in the BIG-IP data plane on Nov 18. All six are stack-based buffer overflows in TMM, the engine that handles traffic, and all are rated 9.8.\n## Who is exposed\nAn unauthenticated attacker can crash TMM and interrupt traffic until it restarts, and F5 says code execution may be possible in some cases. The management interface is not involved. Each flaw only applies to a specific configuration:\n- CVE-2026-123637: APM per-request policies that use both the Client Information and Endpoint Security agents.\n- CVE-2026-121805: iRules using PEM::subscriber.\n- CVE-2026-120292: iRules using MR::message route with an HTTP profile.\n- CVE-2026-120285: iRules using PSC::ip_address with an HTTP profile.\n- CVE-2026-116953: iRules using GENERICMESSAGE::route.\n- CVE-2026-120722: iRules using DNS::scrape.\nSome also affect BIG-IP Next for Kubernetes and BIG-IP CNF.\n## Fixes\nThere is no workaround. F5 has released engineering hotfixes, which it notes have not been through full quality testing. Customers already running a custom hotfix will need a new one from F5 support.\nwatchTowr researcher Sina Kheirkhah found four of the flaws and F5 found the other two. F5 says none have been exploited. The batch also included six lower-rated BIG-IP bugs, including an iControl SOAP flaw fixed in versions 21.1.0.3, 17.5.1.10 and 17.1.3.6.",
+  "who": "BIG-IP, BIG-IP Next for Kubernetes and CNF customers whose virtual servers use the listed iRule commands or APM policy settings.",
+  "todo": "Search your iRules for the listed commands and review APM per-request policies. If any match, apply F5's engineering hotfix and restrict iControl SOAP and REST to trusted networks.",
+  "cves": [
+   "CVE-2026-123637",
+   "CVE-2026-121805",
+   "CVE-2026-120292",
+   "CVE-2026-120285",
+   "CVE-2026-116953",
+   "CVE-2026-120722"
+  ],
+  "sources": [
+   {
+    "name": "The Hacker News",
+    "url": "https://thehackernews.com/2026/11/f5-warns-6-critical-big-ip-flaws-can.html"
+   }
+  ]
+ },
+ {
+  "slug": "optimizely-supply-chain-attack-cnn-bbc-zoom",
+  "date": "2026-11-16",
+  "cat": "Breaches",
+  "sev": "critical",
+  "title": "Optimizely hack served card skimmers and crypto stealers on CNN, BBC and Zoom sites",
+  "dek": "Attackers abused a flaw in Optimizely's signup flow to inject malicious code into 178 organizations' experiment scripts for most of a day on Nov 16.",
+  "body": "For most of Nov 16, visitors to some of the world's biggest websites were served malicious JavaScript through Optimizely, a popular website testing and experimentation service.\n## What happened\nOptimizely says an unauthorized party exploited a vulnerability in its Experimentation account signup flow. The attacker used it to add code to customers' project scripts, which were then delivered from Optimizely's own CDN with a valid certificate, so browsers trusted them.\nResearcher Scott Helme and Report URI analyzed 1,611 Optimizely scripts and found 188 infected files belonging to 178 organizations. Sites that loaded the code included CNN, BBC, Zoom, GitLab, Salesforce, Fox News, KLM, Air France, Smartsheet and UNICEF USA. On the BBC, the first injected script appeared around 4:21 a.m. UTC. All infected files were clean by about 11 p.m. UTC.\n## What the code did\n- Swapped cryptocurrency wallet addresses on pages for the attacker's own.\n- Captured payment card details typed into a site's own form fields. Cards entered in hosted payment frames such as Stripe were not captured.\n- Collected cookies, page URLs and screenshots.\n- Fingerprinted iPhones and iPads and tried to load iOS exploit kits.\nNo device compromise has been confirmed. Wallets linked to the attack received about $7,000. Optimizely has not said how many visitors were exposed.\n## Response\nOptimizely closed the flaw, removed the code, revoked tokens and sessions, and notified affected customers. Salesforce disabled Optimizely scripts on its sites while it investigates. Report URI found that most affected sites had no Content Security Policy that would have stopped the script.",
+  "who": "People who visited affected sites on Nov 16, and companies that load Optimizely Web Experimentation scripts.",
+  "todo": "Visitors: update iOS, check crypto transfers and card statements from Nov 16. Site owners: review Optimizely project code, keep third-party scripts off payment and login pages, and use a strict Content Security Policy.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "BleepingComputer",
+    "url": "https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/"
+   },
+   {
+    "name": "Malwarebytes",
+    "url": "https://www.malwarebytes.com/blog/news/2026/11/cnn-bbc-zoom-and-other-sites-served-malicious-code-in-supply-chain-attack"
+   }
+  ]
+ },
+ {
+  "slug": "cold-relic-star-blizzard-impersonation-second-us-org",
+  "date": "2026-11-18",
+  "cat": "Threat actors",
+  "sev": "high",
+  "title": "Russian spies used data stolen from one U.S. group to break into another",
+  "dek": "Google says Cold Relic, also known as Star Blizzard, turned a staff directory stolen in a 2025 hack into a convincing impersonation campaign against a second U.S. organization.",
+  "body": "Google's Mandiant and Threat Intelligence Group have described how a Russia-linked espionage group reused stolen data to breach a second victim. Google tracks the group as Cold Relic. It is also known as COLDRIVER, Callisto and Star Blizzard, and the U.S. has tied it to Russia's FSB.\n## The first break-in\nIn late 2025, the group got into a U.S. organization's cloud productivity suite through a Super Admin account. It connected through a residential proxy near the victim to look local, and used MFA push fatigue until someone approved a prompt. It then registered its own device and added passkeys and MFA backup codes so it could keep coming back, even after password resets.\nOver several months it downloaded the company's cloud drive, exported employee lists and domain data, synced mailboxes to outside clients and tampered with logs and alerts.\n## The second victim\nAfter it was kicked out, the group used what it had stolen. Posing as employees of the first organization, it contacted staff at a second U.S. organization through a secure messaging app and sent phishing links that captured Microsoft Entra ID credentials. It registered a new MFA device on the victim's single sign-on and bulk-downloaded files.\nNeither victim has been named.\n## The lesson\nThe attack relied on trust between partner organizations, not on software flaws. A message that seems to come from a known contact at a partner organization carries more weight, and the group knew exactly whom to imitate.",
+  "who": "Organizations that use Google Workspace or Microsoft Entra ID, especially those working with government, defense or policy groups.",
+  "todo": "Use phishing-resistant MFA for admins, alert on new MFA devices and passkeys, and after any breach revoke all sessions, passkeys and backup codes. Verify unexpected messages from partners through a second channel.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "The Hacker News",
+    "url": "https://thehackernews.com/2026/11/russian-cold-relic-hackers-use-stolen.html"
+   },
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/russian-apt-poses-as-employee-of-hacked-firm-to-breach-another-us-organization/"
+   }
+  ]
+ },
+ {
+  "slug": "google-exploit-agent-ai-autonomous-patch-diffing",
+  "date": "2026-11-17",
+  "cat": "Threat actors",
+  "sev": "high",
+  "title": "Google finds hackers using an AI agent that turns patches into exploits on its own",
+  "dek": "Google's threat intelligence team found an 'exploit_agent' framework that compared patched and unpatched code, wrote exploits and ran them without human help.",
+  "body": "Google's Threat Intelligence Group (GTIG) says that for the first time it has seen attackers use an AI framework to both find and exploit vulnerabilities with no human in the loop.\n## What Google found\nThe framework, called exploit_agent, was sitting on an exposed staging server. It takes a web application before and after a security patch, compares the two to work out what was fixed, writes an exploit for the old bug and runs it against targets. The server also held data stolen from victims and scripts for follow-up steps such as reconnaissance and planting webshells.\nGTIG says the evidence points to interest in French media and entertainment websites and the education sector. It did not name the group behind it.\n## A wider trend\nThe report lists other AI attack frameworks seen in real intrusions:\n- Cairn, used against the U.S. aerospace sector.\n- PentAGI, used for reconnaissance and scanning in Asia.\n- Artex, which GTIG calls the most widely used, mainly by Chinese-speaking groups.\nGTIG also observed a Chinese group building its own automated attack framework, likely for spying, and state-backed groups from China, Iran and North Korea using AI models in their work. It expects less stealthy criminal groups to keep adopting these tools.\n## Why it matters\nThe gap between a patch being published and attackers using it keeps shrinking. If software can read a fix and produce a working exploit, waiting weeks to patch internet-facing systems becomes much riskier.",
+  "who": "Any organization running internet-facing web applications, especially those that patch on a monthly or slower cycle.",
+  "todo": "Shorten patch windows for exposed systems, prioritize fixes for web apps you can't hide behind authentication, and invest in automated detection and response.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/ai-framework-autonomously-weaponized-flaws-in-real-attacks-google-says/"
+   }
+  ]
+ },
+ {
+  "slug": "scattered-spider-tyler-buchanan-sentenced-six-years",
+  "date": "2026-11-18",
+  "cat": "Policy & takedowns",
+  "sev": "info",
+  "title": "Last of five U.S. Scattered Spider defendants gets six years in prison",
+  "dek": "Scottish national Tyler Buchanan was sentenced for his role in a phishing and SIM-swapping scheme that stole at least $11.6 million in cryptocurrency.",
+  "body": "A U.S. federal judge has sentenced Tyler Robert Buchanan, a 24-year-old from Dundee, Scotland, to six years in prison, the Justice Department said on Nov 18. He is the last of five defendants charged in the U.S. case against members of the Scattered Spider hacking group.\n## The scheme\nProsecutors say that between September 2021 and April 2023 the group sent hundreds of phishing text messages to employees of telecom, tech, cloud communications, gaming and cryptocurrency companies. Stolen logins were funneled to a Telegram channel that Buchanan ran with an accomplice. The group used them to get into company systems and look for cryptocurrency accounts, and got around two-factor authentication by SIM-swapping victims' phone numbers.\nThe government now says at least $11.6 million in crypto was stolen, up from the $8 million cited when Buchanan pleaded guilty in April to conspiracy to commit wire fraud and aggravated identity theft. A restitution hearing is set for Dec 11.\n## The other defendants\n- Noah Michael Urban: 10 years.\n- Ahmed Hossam Eldin Elbadawy and Evans Onyeaka Osiebo: 45 months each.\n- Joel Martin Evans: two years.\nBuchanan was arrested in Spain in May 2024 and has been in U.S. custody since April 2025. Separately, two other alleged members were sentenced in the UK earlier this year over the Transport for London attack.",
+  "who": "Telecom, tech and crypto companies targeted by SMS phishing and SIM swapping.",
+  "todo": "No action needed for most readers. Companies should move staff off SMS-based MFA and train employees to report login-page texts.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/last-of-five-defendants-sentenced-in-us-scattered-spider-hacking-case/"
+   }
+  ]
+ },
+ {
+  "slug": "tpm-lockout-bypass-windows-hello-bitlocker-pins",
+  "date": "2026-11-18",
+  "cat": "Vulnerabilities",
+  "sev": "info",
+  "title": "Flash chip attack cracks Windows Hello and BitLocker PINs in days, not years",
+  "dek": "TU Berlin researchers reset or forged firmware TPM anti-guessing counters with physical access. AMD confirmed a flaw, and longer PINs are the best defense for now.",
+  "body": "Researchers at Technische Universität Berlin have shown how someone with physical access to a PC can get around the lockout that stops PIN guessing on firmware TPMs. That lockout is what protects Windows Hello and BitLocker PINs from brute force.\n## How it works\nFirmware TPMs keep their saved state, including the count of wrong guesses, on the PC's flash chip. The researchers opened machines and either restored an older copy of that state to wipe the counter, using a small board to block counter updates on AMD PCs, or used voltage glitching to pull a signing key out of Winbond RPMC flash chips and forge counter values.\nIn the lab, they found a four-digit Hello PIN on an AMD-based HP laptop in under an hour and a six-digit BitLocker PIN on a Framework laptop with an Intel chip in about seven minutes. Their worst-case estimate for a default six-digit BitLocker PIN is 20 days instead of 19 years.\n## Vendor response\n- AMD confirmed a firmware flaw, CVE-2026-43613, and plans fixes from November 2026 to February 2027.\n- Intel said no Intel component was shown to be vulnerable. The Intel laptop fell through the Winbond chip.\n- Microsoft rated the issue moderate and plans to raise its recommended minimum Hello PIN to six digits.\nThe Winbond weakness may need a new chip design to fix.\n## What to do\nThis needs time alone with the device, so the main risk is lost or stolen laptops. Longer PINs blunt it quickly. Adding two digits multiplies the guessing time a hundredfold.",
+  "who": "Owners of Windows laptops and desktops that rely on firmware TPMs, especially AMD systems and PCs with Winbond RPMC flash.",
+  "todo": "Use Hello and BitLocker PINs of at least eight digits, or enhanced PINs with letters. Use TPM plus PIN for BitLocker, and install AMD firmware updates when your PC maker ships them.",
+  "cves": [
+   "CVE-2026-43613"
+  ],
+  "sources": [
+   {
+    "name": "The Hacker News",
+    "url": "https://thehackernews.com/2026/11/flash-chip-attack-bypasses-tpm-lockout.html"
+   }
+  ]
  }
 ]
