@@ -1870,5 +1870,251 @@
         "url": "https://securityaffairs.com/203394/hacking/norwegian-gas-giant-equinor-says-its-under-cyberattack-production-keeps-running.html"
       }
     ]
+  },
+  {
+    "slug": "amazon-ai-agents-monai-label-zero-day-university-root",
+    "date": "2026-11-20",
+    "cat": "Threat actors",
+    "sev": "critical",
+    "title": "Amazon: China-linked operator's AI agents found a medical-imaging zero-day and took root on a university server",
+    "dek": "Amazon says Cairn-driven AI agents found a path-traversal flaw in MONAI Label in about 11 minutes, then used it to get root. An exposed, passwordless control panel gave the operation away.",
+    "body": "Amazon Threat Intelligence says a suspected China-linked operator used autonomous AI agents to discover and exploit a previously unknown flaw in MONAI Label, an open-source server used to label medical images, and ended up with root access on a university server.\n## How Amazon saw it\nOn September 10 Amazon found the operator's own Cairn control panel sitting on the internet with no password. Cairn is an open-source framework that runs AI agents as automated penetration testers. The panel exposed task settings, prompts and run history, which let Amazon reconstruct a roughly 48-hour campaign that began September 8 against universities in East Asia outside mainland China.\n## What the agents did\nMost attempts failed. The agents spent about 16 hours and 148 actions trying to break a Redis server at one university, and also tried Log4Shell, an SSRF against a Qdrant instance and password sprays against PostgreSQL, SSH and a GPU server.\nAgainst MONAI Label they found a path-traversal bug in the upload code, where a file name supplied by the caller is used without checking it stays inside the storage folder. Amazon says the agents went from mapping the API to writing arbitrary files in about 11 minutes. Root came later, by planting a Python startup file and triggering a training job that loaded it. The operator then pointed the agents at a second university running the same software; Amazon believes it was compromised the same way but has not confirmed it.\n## The flaw\n- Tracked as CVE-2026-133968, rated 9.8.\n- Affects MONAI Label 0.8.5 and earlier in the default setup, which has no login.\n- A source fix was merged October 19, but at publication no fixed release was on PyPI.\n## Attribution\nAmazon links the operator to China with moderate confidence, citing Simplified Chinese prompts, China Standard Time settings and the choice of targets. No named group was given. This follows Unit 42's earlier report of a China-nexus operator using a Cairn fork.",
+    "who": "Universities, hospitals and research groups running MONAI Label, and anyone exposing AI or research tooling to the internet without authentication.",
+    "todo": "Take MONAI Label off untrusted networks, turn on authentication, run it under a low-privilege account, build from source with the October 19 fix, and look for unexpected Python startup files or unusual training jobs.",
+    "cves": [
+      "CVE-2026-133968"
+    ],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html"
+      },
+      {
+        "name": "The Register",
+        "url": "https://www.theregister.com/security/2026/11/20/china-attackers-deployed-ai-agents-that-autonomously-found-and-exploited-a-0-day-to-take-over-a-university-server/5311382"
+      },
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/amazon-china-linked-hackers-ai-agents-exploited-medical-software-zero-day/"
+      }
+    ]
+  },
+  {
+    "slug": "whatsapp-three-flaws-cve-2026-23871-scam-campaign",
+    "date": "2026-11-20",
+    "cat": "Vulnerabilities",
+    "sev": "high",
+    "title": "WhatsApp fixes three bugs, including one it believes a scammer abused",
+    "dek": "An Android flaw in Click to WhatsApp ad replies could reveal a recipient's IP address. WhatsApp found it while disrupting a scam campaign. Two other bugs show no sign of abuse.",
+    "body": "WhatsApp has disclosed fixes for three vulnerabilities, one of which it says was probably used by a scammer.\n## The bug tied to scams\nCVE-2026-23871 affects WhatsApp and WhatsApp Business for Android before version 2.26.17.4. It comes from incomplete checks on external URLs in ad-reply messages used by Click to WhatsApp ads. A crafted message could pull media from an attacker-controlled server, which would reveal the recipient's IP address.\nWhatsApp rates it low impact. Its own security team found it while disrupting a scam campaign, and the company says it believes a scammer used it to make scam messages look more credible. It did not say how widespread the activity was or whether any scams succeeded.\n## Two medium-impact bugs\n- CVE-2026-102769 is an SQL injection in WhatsApp for Android before 2.26.35.74. A malicious order-details message sent from an unofficial client could delete locally stored WhatsApp files and, through a delivery-receipt timing trick, leak a single bit about the chat database if the recipient was online. It was reported through Meta's bug bounty.\n- CVE-2026-44908 sits in the code that verifies remote attestation for Meta AI's confidential computing backend. Someone already inside Meta's infrastructure could have used a certificate not signed by the chip maker's key to get past the hardware trust check. WhatsApp says such a certificate would have had to be published to a third-party transparency ledger first, and the ledger shows no abuse. Fixes landed across iOS, Android and Mac builds from version 2.26.23.x and 2.26.24.x.\n## Why it matters\nAn IP leak sounds minor, but in a scam it can help an attacker tailor a lure to a victim's location or confirm a number is live. The fact that WhatsApp found the bug by watching scammers shows how small flaws get pulled into fraud.",
+    "who": "WhatsApp and WhatsApp Business users on Android, iOS and Mac running older builds.",
+    "todo": "Update WhatsApp and WhatsApp Business to the latest version from the official app store, and treat unexpected business or ad-reply messages with suspicion.",
+    "cves": [
+      "CVE-2026-23871",
+      "CVE-2026-102769",
+      "CVE-2026-44908"
+    ],
+    "sources": [
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/whatsapp-fixes-flaw-uncovered-while-disrupting-scam-campaign/"
+      },
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/whatsapp-patches-3-security-flaws.html"
+      }
+    ]
+  },
+  {
+    "slug": "sbc-medical-group-breach-2-million-japan-clinics",
+    "date": "2026-11-20",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "SBC Medical Group says hackers took data on more than 2 million clinic customers in Japan",
+    "dek": "The Nasdaq-listed firm told the SEC that attackers breached a platform it runs for Japanese clinics, taking customer records, passwords and staff data. A separate incident hit a booking vendor.",
+    "body": "SBC Medical Group Holdings, a California-based company listed on Nasdaq that manages cosmetic and medical clinics in Japan, has disclosed a breach affecting more than 2 million people in a filing with the U.S. Securities and Exchange Commission.\n## What was taken\nAttackers got into an online platform SBC manages and reached databases holding customer information for some of its clinics. According to the filing:\n- Basic details for about 1.62 million people, including names, addresses, phone numbers, email addresses, dates of birth, gender, patient card numbers, member IDs and survey answers.\n- Reservation request data for about 255,000 people and web inquiry form content for about 218,000.\n- Treatment descriptions and image file names for about 4,500 people, and treatment names with review text for about 15,000.\n- Customer passwords, plus card data for 14 people whose cards SBC says had expired or could not be used.\n- About 20,000 employee records with names, IDs and passwords, and banking, pension and tax details for 459 staff.\n## A second incident\nSeparately, attackers used administrator accounts at Tribeau, a third-party reservation service, to reach data on about 19,000 people, including names, phone numbers, ages and requested treatments.\n## Response\nSBC says it isolated the affected server, removed the intruders and reset passwords for all clinics it manages on Tribeau. It is still assessing the business impact. No attacker has been named and no ransomware claim has been reported.\n## Why it matters\nCosmetic and medical treatment records are highly personal, which makes them useful for targeted extortion and phishing. Stolen passwords also put people at risk wherever they reused them.",
+    "who": "Customers and staff of SBC-managed clinics in Japan, and users of the Tribeau booking service at those clinics.",
+    "todo": "Affected customers should change any password reused from clinic accounts, watch for phishing that mentions treatments or bookings, and be wary of anyone threatening to expose medical details.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/sbc-medical-group-data-breach-impacts-over-2-million/"
+      }
+    ]
+  },
+  {
+    "slug": "sonicwall-gen-6-firewalls-no-more-patches",
+    "date": "2026-11-20",
+    "cat": "Vulnerabilities",
+    "sev": "high",
+    "title": "SonicWall tells Gen 6 firewall owners to replace them now: no more patches, even for critical bugs",
+    "dek": "SonicWall says SonicOS 6.x devices are now a high-risk exposure and should come off the internet edge, pointing to faster, AI-assisted exploitation of unsupported gear.",
+    "body": "SonicWall is urging customers still running Generation 6 firewalls to retire them right away and stop exposing them on the internet edge. The company says these devices will no longer get security fixes, including for critical vulnerabilities, and that any Gen 6 unit still in service should be treated as a high-risk exposure.\n## Which devices\nThe warning covers SonicOS 6.x hardware and virtual appliances, including the TZ300 through TZ600 series, SOHO and SOHO 250 models, the NSA 2600 to 6600 and NSa 2650 to 9650 lines, NSv virtual firewalls, SuperMassive 9200 to 9800 and NSsp 12400/12800. SonicWall's recommended replacement is a Gen 8 firewall running SonicOS 8.\n## Why now\nSonicWall points to attackers using AI to find and exploit flaws in unsupported edge devices faster. The Hacker News notes that Google Mandiant's M-Trends 2026 report puts the average time to exploit at negative seven days, meaning flaws are often exploited before a fix exists, and that Cisco Talos found nearly a quarter of 2025's CVEs hit network devices. SonicWall firewalls have been a repeated target for ransomware crews and other attackers.\n## If you can't replace them yet\nSonicWall lists interim steps:\n- Turn off management over the WAN, including HTTPS, SSH and SNMP.\n- Disable SSL VPN, or limit it to known source addresses.\n- Require MFA on every remote-access and admin account and reset local passwords.\n- Shut off unused services and interfaces.\n- Watch logs for odd logins and configuration changes.\nThese reduce exposure but do not fix future bugs, so replacement should still be scheduled.",
+    "who": "Organizations and small businesses still running SonicWall Gen 6 firewalls (SonicOS 6.x), especially ones used for remote access.",
+    "todo": "Inventory Gen 6 units, replace internet-facing and VPN devices first, and until then disable WAN management, restrict or disable SSL VPN, enforce MFA and reset local passwords.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/sonicwall-warns-gen-6-firewalls-wont.html"
+      }
+    ]
+  },
+  {
+    "slug": "linux-kvm-cve-2026-99312-amd-guest-reads-host-memory",
+    "date": "2026-11-20",
+    "cat": "Vulnerabilities",
+    "sev": "high",
+    "title": "Linux KVM bug let a cloud VM read 127 GB of its AMD host's memory",
+    "dek": "CVE-2026-99312 affects AMD hosts with nested virtualization on. Fixed upstream kernels are out, but several distros have not shipped them yet. Disabling nested virtualization is the stopgap.",
+    "body": "A flaw in the Linux kernel's KVM hypervisor lets a guest virtual machine read, and in some cases write, memory belonging to its host on AMD servers with nested virtualization enabled. It is tracked as CVE-2026-99312.\n## What the researcher showed\nOren Yomtov of Terra Security found the bug and reported it through DigitalOcean's bug bounty. In a test on a DigitalOcean host he read about 127 GB of host RAM from inside a VM. On his own bare-metal server he also wrote 32 bytes into live host kernel memory. DigitalOcean confirmed the issue and rated it critical for its shared cloud.\n## Root cause\nA 2022 fix for an older bug, CVE-2022-3344, did not reset a nested page-table pointer when a virtual CPU is reinitialized. That leaves a pointer to freed memory. The faulty code dates to kernel 6.1 and was backported to 5.15.81 and 6.0.11. Intel hosts are not affected.\n## Who can exploit it\nAn attacker needs root inside a VM running on a vulnerable host. Network access alone is not enough, but that is exactly the position any customer has on a shared cloud. There is no known exploitation outside the research and no public exploit code.\n## Patch status\n- KVM maintainers were told October 21 and merged a fix November 2.\n- Fixed upstream kernels: 7.3.5, 6.18.64 and 6.12.118.\n- At publication, Debian had a fix only in unstable, Ubuntu listed no fixed package, and Red Hat said EL9 and EL10 are affected with the fix deferred. EL8 is not affected.\n- Scores differ: the kernel CNA rates it 8.8, while Red Hat treats it as denial of service and rates it 5.6.\nThe fix is in the host kernel and needs a reboot.",
+    "who": "Cloud and hosting providers, and any organization running untrusted or multi-tenant VMs on AMD hosts with KVM nested virtualization enabled.",
+    "todo": "Move hosts to a fixed kernel and reboot. Until then, check /sys/module/kvm_amd/parameters/nested and set 'options kvm_amd nested=0' if you don't need nested virtualization, then reboot.",
+    "cves": [
+      "CVE-2026-99312"
+    ],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/new-linux-kvm-flaw-cve-2026-99312-lets.html"
+      }
+    ]
+  },
+  {
+    "slug": "bazuka-android-malware-fake-screen-overlays-llm-panel",
+    "date": "2026-11-20",
+    "cat": "Threat actors",
+    "sev": "high",
+    "title": "New Bazuka Android malware hides its theft behind a fake picture of your home screen",
+    "dek": "ThreatFabric found a modular Android framework with 23 modules for overlays, 2FA and SMS theft, remote control and crypto-address swapping, plus an AI-assisted panel for picking victims.",
+    "body": "Dutch mobile security firm ThreatFabric has disclosed Bazuka, a previously unknown Android malware framework built to manage large numbers of victims. It found the malware in late October while investigating an NFC-relay banking trojan.\n## The trick\nBazuka's signature feature is an overlay that shows a screenshot of the phone's own home or lock screen. To the owner, the device looks idle, while the malware works underneath.\n## What it can do\nThe framework has a dropper or downloader, a core component and 23 modules. Among them:\n- Fake login overlays and keylogging.\n- Capture of SMS messages and two-factor codes, and USSD-based call forwarding.\n- Remote control of the device.\n- A clipper that swaps cryptocurrency wallet addresses.\n- Capture of the lock-screen PIN or pattern and interaction with NFC bank cards.\nThe core abuses accessibility services and wireless ADB debugging to grant itself permissions, switches off Google Play Protect, talks to its servers over two WebSocket channels and can delete itself.\n## AI in the panel\nThe operator panel can connect to a local or API-based large language model to help score and choose victims. It can also create accounts for traffers, the people paid to drive victims to the malware, and build droppers with chosen permissions, which ThreatFabric suggests may help them get past store review.\n## How it spreads\nDroppers seen so far pose as a premium TikTok app. ThreatFabric has not tied Bazuka to a known group. The panel mixes English and Russian.\nBazuka arrives a week after Zimperium reported ArcticRAT, another Android RAT that uses LLMs.",
+    "who": "Android users, especially those who sideload apps, and banks and crypto services whose customers use Android.",
+    "todo": "Install apps only from Google Play, never 'premium' versions of popular apps from other sites, keep Play Protect on, and be suspicious of any app asking for accessibility access or wireless debugging.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/bazuka-android-malware-uses-fake-screen.html"
+      }
+    ]
+  },
+  {
+    "slug": "romulus-clickfix-cncmachinerms-rat",
+    "date": "2026-11-20",
+    "cat": "Threat actors",
+    "sev": "info",
+    "title": "ROMULUS ClickFix service pushes a remote-access trojan that can watch through your webcam",
+    "dek": "Blackpoint Cyber says the ROMULUS delivery platform is spreading a RAT resembling CNCMachineRMS via fake MSI installers. Lures have even routed victims through ChatGPT custom GPTs.",
+    "body": "Researchers at Blackpoint Cyber say ROMULUS, a ClickFix-based malware delivery service, is distributing a previously undocumented remote-access trojan that closely resembles CNCMachineRMS.\n## What ClickFix is\nClickFix attacks trick people into copying and running a command themselves, usually by showing a fake error, CAPTCHA or verification page that tells them to paste text into the Windows Run box or a terminal. Because the victim runs the command, it can slip past some security tools.\n## The ROMULUS chain\nForescout first described ROMULUS last month as a service delivering CNCMachineRMS and the Legion Loader malware. In the sample Blackpoint studied, the victim's command uses PowerShell and msiexec to install a malicious MSI package. The installer poses as a Stardock utility and sideloads a malicious DLL that decodes and runs shellcode.\nThe resulting RAT supports remote desktop, live screen streaming, microphone and webcam capture, file management, system reconnaissance and running more payloads. It talks to its servers using DNS over HTTPS, which blends into normal encrypted web traffic.\nROMULUS lures have also used ChatGPT custom GPTs to send victims on to ClickFix pages.\n## Part of a wider wave\nThe report sits among a stream of ClickFix campaigns, including one using EtherHiding across more than 70,000 hacked websites, fake Zillow pages dropping NetSupport RAT and a fake Claude download page delivering the AMOS stealer to Mac users.\n## Why it matters\nClickFix keeps working because it turns the user into the installer. Blocking the habit, not just the malware, is the defense.",
+    "who": "Windows users and organizations whose staff can run PowerShell or the Run dialog, plus Mac users targeted by similar lures.",
+    "todo": "Teach staff that no real website asks them to paste commands, restrict PowerShell and msiexec for ordinary users, and alert on msiexec launching from PowerShell or the Run box.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/romulus-clickfix-attacks-deliver-rat.html"
+      }
+    ]
+  },
+  {
+    "slug": "1984-iceland-web-host-offline-cyberattack",
+    "date": "2026-11-20",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "Icelandic web host 1984 shuts down websites, email and DNS after a major cyberattack",
+    "dek": "The privacy-focused host took services offline on November 20, saying an attack that began the week before had escalated. CERT-IS is helping and no attacker has been identified.",
+    "body": "1984, an Icelandic web hosting company known for its focus on privacy and free speech, shut down its services on Friday, November 20, after what its managing director, Mörður Áslaugarson, described as a large and sophisticated cyberattack.\n## Impact\nThe shutdown took down website hosting, email and DNS services that thousands of customers and businesses rely on. According to Áslaugarson, as reported by Icelandic broadcaster RÚV, the attack started the previous week and grew more intense before the company pulled the plug.\n## Response\nIceland's national CERT, CERT-IS, and the Electronic Communications Office of Iceland are helping investigate. 1984 is restoring services in stages, starting with email and DNS, and says other services will come back once customer data and systems are judged safe. It has not given dates.\n## What is not known\n- Who is behind the attack. Investigators have not confirmed any group.\n- Whether customer data was stolen.\n- How the attackers got in, and whether ransomware was involved. No source has said it was.\nClaims circulating about the attackers' identity and resources have not been independently confirmed.\n## Why it matters\nWhen a host goes down, every customer's site and inbox goes with it. Organizations that run DNS and email through a single provider have no fallback when that provider is hit. 1984 also hosts sites that value its privacy stance, which can make it a target in its own right.",
+    "who": "Customers of 1984 in Iceland and abroad whose websites, email or DNS are hosted there.",
+    "todo": "1984 customers should prepare to rotate passwords and keys once services return, watch for phishing about the outage, and consider secondary DNS or email backup with another provider.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Iceland Review",
+        "url": "https://www.icelandreview.com/news/1984-cyberattack-iceland-websites-email-2026/"
+      }
+    ]
+  },
+  {
+    "slug": "oracle-november-2026-critical-patch-update",
+    "date": "2026-11-17",
+    "cat": "Vulnerabilities",
+    "sev": "high",
+    "title": "Oracle's November patch update fixes hundreds of flaws, including Java4Shell",
+    "dek": "Oracle shipped 655 patches covering about 950 CVEs. Just over 300 can be exploited remotely without logging in, and 62 fix critical bugs. None are reported as exploited.",
+    "body": "Oracle released its November 2026 Critical Patch Update on November 17 with 655 new security patches across its product line. SecurityWeek counted 948 unique CVEs in the advisory, 640 of them listed in Oracle's product risk tables; the different totals come from how bundled third-party flaws are counted.\n## The headline numbers\n- Just over 300 patches fix flaws that can be exploited over the network without credentials.\n- 62 patches address critical-severity bugs, including six rated at the maximum severity: five in Fusion Middleware and one in Analytics.\n## Where the patches landed\n- Hyperion: 267 patches, 107 of them for remote, unauthenticated bugs.\n- Supply Chain: 74, with 36 remote and unauthenticated.\n- Fusion Middleware: 71, with 53 remote and unauthenticated.\n- E-Business Suite: 71, with 19 remote and unauthenticated.\n- Communications: 31, with 21 remote and unauthenticated.\n- Java SE: 11, all remotely exploitable without login.\n- MySQL: 10 patches, plus fixes for Database Server, APEX, Enterprise Manager, REST Data Services and JD Edwards.\n## Java4Shell\nThe Java SE update includes the fix for Java4Shell (CVE-2026-114938), the memory corruption bug in Java's Base64 handling that can lead to remote code execution. The Threat Desk covered it when it was disclosed on November 18.\n## Exploitation\nOracle has not said any of these flaws are being exploited. That can change quickly. Oracle E-Business Suite and WebLogic have been prime targets for extortion groups, and attackers often reverse-engineer patches within days.",
+    "who": "Organizations running Oracle Fusion Middleware, E-Business Suite, Hyperion, Database, MySQL, Java SE or other Oracle products.",
+    "todo": "Review the November advisory, patch internet-facing Fusion Middleware, E-Business Suite and Java SE first, and keep Oracle admin interfaces off the public internet.",
+    "cves": [
+      "CVE-2026-114938"
+    ],
+    "sources": [
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/oracle-patches-640-vulnerabilities-with-november-2026-cspu/"
+      }
+    ]
+  },
+  {
+    "slug": "rakuten-securities-breach-11-million-accounts-test-environment",
+    "date": "2026-11-17",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "Rakuten Securities says data on up to 11 million accounts may have leaked from a test system",
+    "dek": "Japan's large online broker found unauthorized access to a test environment holding real customer data. Rakuten Bank shares fell 19% the next day.",
+    "body": "Rakuten Securities, one of Japan's largest online brokerages, said on November 17 that an unauthorized party had accessed a system in its test environment, putting data from millions of customer accounts at risk.\n## What may be exposed\n- Login IDs and customer codes for up to 11.25 million accounts.\n- Personal and financial details for up to 4.47 million accounts. Reported data types include names, addresses, birthdates, annual income and financial asset information.\nThe firm says login and trading passwords were not compromised. Reports differ on the exact date of the intrusion. No attacker has been named and no ransomware claim has been reported.\n## Market reaction\nInvestors reacted sharply. Rakuten Bank shares fell 19% on November 18, the steepest intraday drop since it listed in 2023, and parent Rakuten Group fell as much as 7.5%.\n## The test-data problem\nA Bloomberg Intelligence analyst questioned why identifiable customer data was sitting in a test environment at all. Test and development systems often get weaker controls than production, yet they frequently hold copies of real data. That gap is a familiar route into breaches.\n## Context\nJapanese brokerages have been hit hard. In 2025 attackers took over thousands of trading accounts across several firms and used them to manipulate share prices. Recent weeks have brought leaks at SMBC Nikko Securities and Daiwa Securities Group, and Prime Minister Sanae Takaichi has announced an emergency cybersecurity package.",
+    "who": "Rakuten Securities customers, and any company that copies production data into test or development systems.",
+    "todo": "Rakuten customers should turn on every available login protection, watch for phishing posing as Rakuten, and review account activity. Companies should mask or synthesize data used in test environments.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Star (Bloomberg)",
+        "url": "https://www.thestar.com.my/business/business-news/2026/11/18/rakuten-bank-shares-tank-as-securities-arm-faces-data-breach"
+      },
+      {
+        "name": "Beinsure",
+        "url": "https://beinsure.com/news/rakuten-securities-data-breach-may-expose-11-25-mn-customer-accounts/"
+      }
+    ]
+  },
+  {
+    "slug": "riken-fugaku-supercomputer-offline-breach-ssh-keys",
+    "date": "2026-11-17",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "Japan takes the Fugaku supercomputer offline after an intruder broke in through a status dashboard",
+    "dek": "RIKEN says an attacker used Fugaku's public status page to reach internal servers and plant malware. Data on about 4,600 users, plus SSH and access keys, may be exposed.",
+    "body": "RIKEN, Japan's national research institute, has shut down Fugaku, one of the world's most powerful supercomputers, after a security breach. It turned the system off on November 14, disabled users' login keys and said it will only bring Fugaku back when it is safe to do so.\n## How the intruder got in\nRIKEN says that between November 10 and 13 an unauthorized party exploited the public web dashboard that shows Fugaku's operating status. From there the attacker reached several internal servers and planted malware aimed at user data. RIKEN has not yet said exactly what weakness was abused.\n## What may be exposed\n- Names, email addresses and user IDs of 4,222 Fugaku users.\n- Names and email addresses of 375 users of Rikyu, a separate AI research system.\n- SSH private keys and access keys stored on users' computers, and research data files.\nThe attacker used some of those keys to try to reach other systems. RIKEN says it has found no further unauthorized access and no theft of research results so far.\n## Attribution\nRIKEN has not attributed the attack.\n## Recovery\nRIKEN plans to fix the exploited weakness, rebuild compromised servers, review its network setup and add new monitoring. Fugaku, in shared use since 2021, supports drug discovery, weather forecasting and disease spread modeling, so the outage affects researchers across Japan.\n## Why it matters\nA public status page is easy to overlook, yet here it was the way in. Stolen SSH keys from research users can also open doors at other universities and labs where the same keys are trusted.",
+    "who": "Fugaku and Rikyu users, and research institutions where those users hold accounts or reuse SSH keys.",
+    "todo": "Fugaku users should revoke and replace any SSH or access keys used with the system, check other servers that trust those keys, and watch for emails impersonating RIKEN.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "BleepingComputer",
+        "url": "https://www.bleepingcomputer.com/news/security/japan-takes-fugaku-supercomputer-offlline-after-cyberattack/"
+      }
+    ]
+  },
+  {
+    "slug": "8-digits-team-inc-lynx-affiliate-extradited-italy",
+    "date": "2026-11-16",
+    "cat": "Policy & takedowns",
+    "sev": "info",
+    "title": "Alleged INC and Lynx ransomware affiliate extradited from Italy over attacks on U.S. hospitals and schools",
+    "dek": "Kazakh national Roman Khlynovskiy appeared in court in Tennessee. Prosecutors say his '8-Digits Team' made $500 million in ransom demands and stole 70 million health records.",
+    "body": "Roman Khlynovskiy, a 43-year-old from Kazakhstan, has been extradited from Italy to the United States and made his first appearance in federal court in Knoxville, Tennessee, on November 16.\n## The allegations\nU.S. prosecutors say Khlynovskiy was part of the 8-Digits Team, a group that carried out attacks as an affiliate of the INC and Lynx ransomware operations. Its targets allegedly included hospitals, healthcare organizations, schools and companies in at least six states.\nAccording to the reporting:\n- The group's intrusions led to about $500 million in ransom demands.\n- It claimed to have stolen 50 TB of data, including more than 70 million confidential health records.\n- He faces charges including computer fraud, wire fraud, extortion, money laundering and identity theft, with a maximum of 27 years in prison.\nThese are charges, not convictions. Khlynovskiy has not been found guilty of anything.\nFBI Director Kash Patel credited Italian law enforcement for the arrest and extradition. A Justice Department official described the case as one of the largest healthcare data breaches in decades.\n## About INC and Lynx\nThe INC gang claimed a 2024 attack on McLaren Health Care in Michigan that disrupted systems and led to cancelled procedures, and has claimed attacks on Yamaha Motor, Xerox and the State Bar of Texas. Researchers at Unit 42 and Group-IB have found that INC either rebranded as Lynx or sold its code to Lynx operators.\n## Why it matters\nAffiliates do much of the hands-on hacking in ransomware schemes. Extraditions show that traveling outside safe havens carries real risk for them.",
+    "who": "Healthcare providers and schools that INC, Lynx and similar ransomware affiliates target.",
+    "todo": "Healthcare and education IT teams should review INC and Lynx indicators from CISA and vendor reports, enforce MFA on remote access, and keep offline backups of clinical systems.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Record",
+        "url": "https://therecord.media/kazakh-suspected-extradited-charges-8-digits-team-inc-lynx"
+      },
+      {
+        "name": "U.S. Department of Justice",
+        "url": "https://www.justice.gov/usao-edtn/pr/alleged-member-8-digits-team-ransomware-group-extradited-italy-role-major-data"
+      }
+    ]
   }
 ]
