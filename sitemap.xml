@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://thethreatdesk.com/</loc><lastmod>2026-11-21</lastmod></url>
-  <url><loc>https://thethreatdesk.com/archive.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://thethreatdesk.com/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/archive.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/ghostscript-cve-2026-125396-sandbox-escape-file-uploads.html</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://thethreatdesk.com/openrouter-drops-providers-dragos-ai-prompt-theft.html</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://thethreatdesk.com/gnupg-gpgme-cve-2026-129975-double-free-malicious-keys.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://thethreatdesk.com/meta-muse-ai-agent-hijack-malicious-webpage-nebusec.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://thethreatdesk.com/signal-blocks-ai-agents-screenshots-android-ios.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://thethreatdesk.com/microsoft-entra-connect-health-flaw-tenant-data-exposed.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://thethreatdesk.com/european-commission-ai-assisted-cyberattack-services-down.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thethreatdesk.com/amazon-ai-agents-monai-label-zero-day-university-root.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thethreatdesk.com/whatsapp-three-flaws-cve-2026-23871-scam-campaign.html</loc><lastmod>2026-11-20</lastmod></url>
@@ -11,6 +17,7 @@
   <url><loc>https://thethreatdesk.com/bazuka-android-malware-fake-screen-overlays-llm-panel.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thethreatdesk.com/romulus-clickfix-cncmachinerms-rat.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thethreatdesk.com/1984-iceland-web-host-offline-cyberattack.html</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://thethreatdesk.com/fbi-ncic-crime-database-breach-investigation.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thethreatdesk.com/vmware-vcenter-zero-day-cve-2026-123890-armory-castle.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://thethreatdesk.com/php-seven-critical-flaws-phpaftershell-november-2026.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://thethreatdesk.com/ruby2shell-cve-2026-132825-ruby-interpreter-fixes.html</loc><lastmod>2026-11-19</lastmod></url>
@@ -20,6 +27,7 @@
   <url><loc>https://thethreatdesk.com/jpmorgan-visa-mastercard-n0n-vendor-data-leak.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://thethreatdesk.com/ukraine-fbi-arrest-ransomware-gang-fake-it-support-40-million.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://thethreatdesk.com/nvidia-gentlemen-ransomware-claim-third-party.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://thethreatdesk.com/usda-security-incident-farmer-payment-systems-offline.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://thethreatdesk.com/nginx2root-http2-flaw-remote-code-execution.html</loc><lastmod>2026-11-18</lastmod></url>
   <url><loc>https://thethreatdesk.com/java4shell-cve-2026-114938-java-base64-rce.html</loc><lastmod>2026-11-18</lastmod></url>
   <url><loc>https://thethreatdesk.com/apache-roller-xml-rpc-rce-exploited.html</loc><lastmod>2026-11-18</lastmod></url>

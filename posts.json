@@ -2116,5 +2116,157 @@
         "url": "https://www.justice.gov/usao-edtn/pr/alleged-member-8-digits-team-ransomware-group-extradited-italy-role-major-data"
       }
     ]
+  },
+  {
+    "slug": "ghostscript-cve-2026-125396-sandbox-escape-file-uploads",
+    "date": "2026-11-22",
+    "cat": "Vulnerabilities",
+    "sev": "high",
+    "title": "Ghostscript bug turns print jobs, email attachments and upload forms into a way onto servers",
+    "dek": "Researchers at pwn.ai show a font-loading flaw in Ghostscript can switch off its -dSAFER sandbox, and that files named .png or .pdf can reach it through common image libraries.",
+    "body": "Security firm pwn.ai has shown how a memory-safety bug in Ghostscript, the widely bundled PostScript and PDF interpreter, can be reached from the network even though it is rated as a local flaw. The bug, tracked as CVE-2026-125396 and scored 8.5 in a VulnCheck advisory, is a use-after-free in font loading. A crafted document can use it to turn off the checks that the -dSAFER sandbox normally enforces.\n## How a local bug becomes remote\nMany programs hand files to Ghostscript without users realizing it. Image libraries such as ImageMagick, Pillow and libvips, and a Qt plugin, pass content along even when the file carries a .png, .jpg or .pdf name. The researchers tested about ten applications and reached the bug, running as the low-privilege rendering account, in several ways:\n- An anonymous print job sent to a shared print queue on Debian 13.\n- An email attachment opened in Roundcube webmail.\n- Public upload forms in the WordPress plugins Forminator and Essential Addons for Elementor, with no login.\n- WordPress core itself, by a user allowed to upload files (Author and above by default).\n## Fixes\nGhostscript 10.08.0, released on September 8, fixes the bug. WordPress 7.0.4 closed its own path under a separate CVE, and both updates are needed. Several Linux distributions still had fixes pending or in progress when the research was published. The public proof of concept shows only the memory technique, not a working shell, and fails on 10.08.0. There are no reports of attacks so far.\n## Why it matters\nGhostscript often hides inside containers and bundled applications, where a normal operating system update does not reach it. Teams that process untrusted documents may be running an old copy without knowing it.",
+    "who": "Anyone running print servers, webmail, CMS upload forms or image-processing pipelines that may call Ghostscript, including inside containers.",
+    "todo": "Upgrade Ghostscript to 10.08.0 or later wherever it actually renders, including bundled and container copies; update WordPress to 7.0.4; require authentication on print queues; limit which file types image processors accept; and confine renderers with AppArmor or similar.",
+    "cves": [
+      "CVE-2026-125396"
+    ],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html"
+      }
+    ]
+  },
+  {
+    "slug": "openrouter-drops-providers-dragos-ai-prompt-theft",
+    "date": "2026-11-22",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "Planted AI prompts reveal months of data theft at inference providers; OpenRouter drops three",
+    "dek": "Dragos seeded about 2 million prompts with canary links and keys. Some were stolen from providers' systems, AWS keys were tested within hours, and requests flagged for zero retention leaked too.",
+    "body": "Researchers at Dragos spent July to November seeding roughly 2 million prompts, sent through AI routing services, with trackable links and fake credentials. When those canaries were opened or used, they showed that prompts sent to several AI inference providers had been stolen, in some cases for months.\n## What the canaries showed\n- Attackers were inside three inference providers, the earliest from mid-July.\n- In one case a few hundred planted AWS keys were taken in late October. Every request in those windows was captured, including some rejected before a model ran.\n- Some stolen keys were tried within hours. The attacker listed storage buckets, searched secrets stores and tried to create new access keys and users.\n- Some marketplace sellers switched on request logging and collected prompts themselves.\n- Requests flagged for zero data retention were among those exposed, which shows such flags may only govern the first hop.\n## The response\nOpenRouter says it removed three providers, pulled 125 endpoints from zero-retention eligibility until they are validated again, and notified affected customers. It says its own systems were not breached. It has not named the providers it dropped.\nSome providers have published their own accounts. Phala says an attacker controlled one of its inference servers until November 8. Together AI says prompt samples were downloaded after an AI coding agent committed a credential to a public GitHub repository.\n## Why it matters\nBusinesses often paste secrets, customer data and source code into AI tools. When those requests pass through resellers and routers, every hop is another place they can be read, whatever the privacy settings say.",
+    "who": "Companies and developers that send sensitive data or credentials to AI models through routers, resellers or third-party inference providers.",
+    "todo": "Keep secrets out of prompts, choose upstream providers yourself or go direct to a first-party provider, check that privacy settings actually change routing, rotate any keys that may have appeared in prompts, and seed canary tokens to catch leaks.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/openrouter-drops-3-providers-after.html"
+      }
+    ]
+  },
+  {
+    "slug": "gnupg-gpgme-cve-2026-129975-double-free-malicious-keys",
+    "date": "2026-11-21",
+    "cat": "Vulnerabilities",
+    "sev": "critical",
+    "title": "GnuPG warns of a critical GPGME flaw that a booby-trapped OpenPGP key can trigger",
+    "dek": "A double free in GPGME, the library many mail clients, XMPP apps, Samba and Gpg4win use for encryption, may allow code execution. GPGME 2.3.1 and Gpg4win 5.1.2 fix it.",
+    "body": "The GnuPG project has warned about a critical flaw in GPGME, the library that many programs use to talk to GnuPG for encryption and signatures. The bug, CVE-2026-129975, was found by researcher Johan Carlsson and reported through GitLab.\n## The flaw\nIt is a double free in two functions that parse GnuPG's output. A malicious OpenPGP key with an extremely long user ID can trigger it. GnuPG says remote code execution cannot be ruled out. Its example attack sends signed data to an application, but it has not said which programs reach the bug without a user importing a key by hand.\nAffected are all GPGME versions before 2.3.0, whether used as a shared library, a Windows DLL or statically linked into an application. That covers most mail clients that support OpenPGP, many XMPP chat clients, Samba, Gpg4win and GnuPG's desktop products. No attacks have been reported.\n## Fixes\n- GPGME 2.3.1 fixes the bug. Version 2.3.0 was never released publicly.\n- Gpg4win 5.1.2 fixes it on Windows.\n- A legacy 1.24.4 release is available for systems that cannot move to 2.3.1, without a promise of future patches.\nThe project says there is no workaround short of patching. Disclosure was originally planned for November 25 but was moved earlier.\n## Why it matters\nBecause GPGME is often bundled or statically linked, updating the system library is not enough. Applications that ship their own copy need new builds from their developers.",
+    "who": "Linux distributions, developers of mail and XMPP clients that support OpenPGP, Samba administrators and Windows users of Gpg4win.",
+    "todo": "Update to GPGME 2.3.1 (or 1.24.4 on legacy systems) or Gpg4win 5.1.2, and check with vendors of applications that bundle or statically link GPGME for rebuilt releases.",
+    "cves": [
+      "CVE-2026-129975"
+    ],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/gnupg-warns-critical-gpgme-flaw-could.html"
+      }
+    ]
+  },
+  {
+    "slug": "meta-muse-ai-agent-hijack-malicious-webpage-nebusec",
+    "date": "2026-11-21",
+    "cat": "Vulnerabilities",
+    "sev": "high",
+    "title": "One malicious webpage could make Meta's Muse AI agent leak its owner's chats and memories",
+    "dek": "NebuSec says a page the agent visited could send conversation history and stored memories to an attacker without any prompt. A chained attack took over the agent's cloud computer.",
+    "body": "Researchers at NebuSec say they found a way to hijack Muse, Meta's personal AI agent, using nothing more than a webpage the agent opens while doing a task. Muse launched in September. It acts through the user's connected accounts, can make purchases and runs on its own cloud computer, with a monitoring layer called Sentinel meant to approve anything it sends out.\n## What the researchers found\n- A malicious page could make Muse send the user's conversation history and stored memories to an outside server, and change them, without asking the user.\n- The same weakness could reach stored credentials for accounts connected to the agent.\n- By chaining a flaw in Muse's built-in browser with a Linux kernel bug, they gained full control of the user's cloud machine. That exposed the credential store, saved files and Sentinel itself. They did not reach the shared server underneath or other users' machines.\n## Status\nNebuSec says the issue was fixed before it published its research. Meta had not commented, and it is not known whether anyone abused the flaw before the fix. No CVE has been assigned. This was a lab demonstration, and there are no reports of attacks.\n## Why it matters\nAI agents that browse the web on a user's behalf will read attacker-controlled content as a matter of course. When the same agent holds logins, payment access and long-term memory, a single poisoned page can be worth far more to an attacker than a normal phishing link.",
+    "who": "Muse users, and any organization rolling out AI agents that browse the web while holding account credentials.",
+    "todo": "Connect only the accounts an agent truly needs, avoid giving agents payment or admin access, review what they have stored in memory, and watch connected accounts for unexpected activity.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/a-single-malicious-webpage-let.html"
+      }
+    ]
+  },
+  {
+    "slug": "signal-blocks-ai-agents-screenshots-android-ios",
+    "date": "2026-11-21",
+    "cat": "Policy & takedowns",
+    "sev": "info",
+    "title": "Signal now blocks screenshots by default to keep phone AI agents out of chats",
+    "dek": "The messenger extends a Windows Recall defense to iOS and Android, calls AI agents built into operating systems an existential threat, and admits the protection is incomplete.",
+    "body": "Signal has started restricting screenshots of its app by default on Android and iOS. The goal is to stop AI assistants built into phone operating systems from reading users' chats off the screen.\n## What changed\nThe protection applies to the agent features in iOS 27, and to Android versions where Signal can detect an AI assistant reading the screen. It extends a setting Signal added on Windows 11 in May 2025 after Microsoft unveiled Recall, which takes regular snapshots of the screen.\nSignal Foundation president Meredith Whittaker has described agentic operating system features as an existential threat to Signal. The company also says screenshot blocking does not stop other ways agents could reach app data, such as files already stored on the device.\nUsers can turn the setting off under Settings, Privacy, App Security. Signal warns that doing so may expose their own and their contacts' messages to AI agents.\n## What Signal wants from Apple and Google\n- A documented way for apps to opt out of all AI data access, including screen reading, files, notifications and system APIs.\n- Clearer documentation of how built-in agents access and process data.\nThe move comes days after Reuters reported that Meta's Muse agent reached Signal messages by using screen-capture and accessibility tools on a Mac and notification access on Android, rather than Signal's official connector.\n## Why it matters\nEnd-to-end encryption protects messages in transit, not on a screen that an AI agent can read. As phone makers build agents into the operating system, private messaging apps are pushing for a way to keep them out.",
+    "who": "Signal users on phones with built-in AI assistants, and organizations that rely on Signal for sensitive conversations.",
+    "todo": "Update Signal and leave screen security on; review iOS Excluded Apps and Android or Gemini connected-app settings to limit which apps AI assistants can read.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/signal-blocks-ai-agents-from-reading.html"
+      }
+    ]
+  },
+  {
+    "slug": "microsoft-entra-connect-health-flaw-tenant-data-exposed",
+    "date": "2026-11-21",
+    "cat": "Vulnerabilities",
+    "sev": "high",
+    "title": "Attackers exploited an Entra Connect Health flaw to read Microsoft 365 tenant details",
+    "dek": "Microsoft says the bug exposed admin email addresses, tenant IDs and license details, but no passwords or tokens. It was introduced in July and fixed server-side on November 19.",
+    "body": "Microsoft has told customers that attackers exploited a flaw in the Entra Connect Health service to get read-only access to information about their Microsoft 365 and Entra tenants.\n## What was exposed\nAccording to Microsoft's notice, the exposed data included:\n- Email addresses of administrators and technical contacts.\n- Tenant IDs, display names, initial domains and country or region.\n- License tier and directory sync status, including the last sync time.\n- Connect Health onboarding status, and an expired certificate from a service retired in late 2024.\nMicrosoft says no passwords, password hashes, tokens, valid keys, on-premises network details or Azure subscription data were exposed. The flaw could also have allowed changes to monitoring settings, but the company says it found none.\n## Timeline\nThe bug was introduced on July 23 and discovered on November 9. Microsoft deployed a server-side fix on November 19 and notified affected customers on November 20. It has not said who carried out the attacks or how many organizations were hit. More than a dozen administrators posted notices online, and some managed service providers received notices for several tenants.\n## Why it matters\nThe data is not enough to log in, but it gives attackers a ready-made list of who runs each tenant. That is useful for targeted phishing aimed at the people with the most access.",
+    "who": "Organizations using Microsoft Entra and Entra Connect Health, and managed service providers that run multiple tenants.",
+    "todo": "No patch is needed, but warn exposed admins about targeted phishing, require phishing-resistant MFA on privileged accounts, review Connect Health settings and Entra sign-in and audit logs, and check any notice in the Microsoft 365 admin center.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "BleepingComputer",
+        "url": "https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/"
+      }
+    ]
+  },
+  {
+    "slug": "fbi-ncic-crime-database-breach-investigation",
+    "date": "2026-11-20",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "FBI investigates a breach of NCIC, the national database police check at every traffic stop",
+    "dek": "People briefed on the probe say intruders reached the National Crime Information Center. How they got in, what they saw and who they are remain unknown, and the FBI has not commented.",
+    "body": "The FBI is investigating an apparent breach of the National Crime Information Center, the database that local, state and federal police across the U.S. use every day, according to CNN and the Associated Press, citing people familiar with the investigation.\n## What NCIC holds\nNCIC contains records on wanted and missing people, arrest warrants, stolen vehicles and guns, protection orders and other criminal-justice data. Officers query it during traffic stops, investigations and background checks.\n## What is known so far\n- The intrusion was discovered in recent days, but when it began is unclear.\n- It is not known how the attackers got in, what data they viewed or took, or whether police access was affected.\n- No group has been named, and there is no known link to ShinyHunters, which claimed an earlier breach of a platform tied to the FBI's jobs site.\n- The FBI declined to comment. President Trump called the breach \"not good\" and said there was no known link to recent government technology outages.\nThe report follows other federal incidents this month, including a breach at the Department of Agriculture that forced payment systems offline.\n## Why it matters\nNCIC is one of the most sensitive databases in U.S. law enforcement. Access to it could expose informants, ongoing investigations and protection orders, or let someone check whether they are wanted. Even read-only access would be a serious intelligence prize.",
+    "who": "Police and criminal-justice agencies that use NCIC, and people whose records it holds.",
+    "todo": "Agencies should watch for FBI and CJIS advisories, review NCIC access accounts and audit logs, and enforce MFA on any system that connects to criminal-justice networks.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "SecurityWeek (AP)",
+        "url": "https://www.securityweek.com/fbi-investigating-apparent-hack-of-its-key-national-criminal-justice-database-ap-source-says/"
+      },
+      {
+        "name": "BleepingComputer",
+        "url": "https://www.bleepingcomputer.com/news/security/fbi-reportedly-hacked-again-this-time-targeting-nationwide-police-database/"
+      }
+    ]
+  },
+  {
+    "slug": "usda-security-incident-farmer-payment-systems-offline",
+    "date": "2026-11-19",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "USDA security incident knocks farmer payment and loan systems offline",
+    "dek": "After its security team found an intrusion, USDA reset database passwords across all environments, taking payment tools, loan portals and some staff VPN access down for days.",
+    "body": "The U.S. Department of Agriculture is dealing with a security incident that has knocked many of its applications offline, including systems used to send payments to farmers, Nextgov/FCW reported.\n## What happened\nUSDA's Cybersecurity and Privacy Operations Center found the incident. To contain it, the department's IT staff reset database passwords across all environments. That forced every application relying on those databases to be reset too, and many went down over several days. Affected services included:\n- Financial tools that handle payments between USDA and farmers.\n- Customer portals that show the status of loans and aid and send notifications.\n- Some staff VPN access.\nAn internal email from an acting assistant CIO at the Farm Production and Conservation Business Center described the incident, and a technical bulletin warned of intermittent outages throughout the week. Staff told reporters they had not been kept informed.\n## What is unknown\nUSDA has not said who was behind the intrusion, how they got in or whether any data was taken. USDA and CISA did not respond to requests for comment.\n## Why it matters\nFarmers depend on USDA payments and loans, so outages can delay money they are waiting on. A department-wide password reset also suggests investigators could not rule out that database credentials were exposed.",
+    "who": "Farmers, ranchers and lenders waiting on USDA payments, loans or aid, and federal IT and security teams.",
+    "todo": "Expect delays in USDA payment and loan portals, be wary of phishing emails or calls that use the outage as a lure, and contact USDA offices through known phone numbers rather than links in messages.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Nextgov/FCW",
+        "url": "https://www.nextgov.com/cybersecurity/2026/11/usda-grapples-security-breach-it-staff-take-multiple-systems-offline/417350/"
+      }
+    ]
   }
 ]
