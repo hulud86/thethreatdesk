@@ -2268,5 +2268,256 @@
         "url": "https://www.nextgov.com/cybersecurity/2026/11/usda-grapples-security-breach-it-staff-take-multiple-systems-offline/417350/"
       }
     ]
+  },
+  {
+    "slug": "peninsula-energy-wyoming-uranium-mine-cyber-incident",
+    "date": "2026-11-24",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "Peninsula Energy halts share trading after a cyber incident hits its Wyoming uranium mine",
+    "dek": "The Australian miner says an intruder breached the operating system at its Lance uranium project in Wyoming on Friday night. Its corporate systems in the U.S. and Australia were not affected.",
+    "body": "Australian uranium producer Peninsula Energy asked the Australian Securities Exchange to pause trading in its shares after a cybersecurity incident at its Lance Project in Crook County, Wyoming, SecurityWeek reported.\n## What the company said\nIn its exchange filing, Peninsula said the incident happened on Friday night and breached the project's operating system. Lance is an in situ recovery operation that produces uranium concentrate, known as yellowcake.\n- Administrative systems in the U.S. and Australia were not affected, the company said.\n- It has not said which technical systems were reached or whether production stopped.\n- A preliminary investigation is under way, along with an assessment of how long the disruption will last and what it means for the business.\nThe trading halt runs until normal trading opens on November 25, 2026, or until the company makes an announcement about the incident, whichever comes first.\n## What is unknown\nPeninsula has not named an attacker, described how the intruder got in, or said whether ransomware was involved. No group has publicly claimed the attack.\n## Why it matters\nMining has become a steady target. SecurityWeek noted that gold miner AngloGold Ashanti disclosed unauthorized activity in October, and that Dragos counted 19 ransomware attacks on mining organizations between July and September 2026. Uranium was added to the U.S. critical minerals list in 2025, which raises the stakes when an American producer's operations are disrupted.\nA breach that touches the systems running a site, rather than just office IT, is the kind of incident industrial operators plan for least and fear most.",
+    "who": "Peninsula Energy shareholders and partners, and other mining and industrial operators whose site control networks connect to corporate IT.",
+    "todo": "Industrial operators should check that operational networks are segmented from business IT, keep offline backups of control system configurations, and rehearse running or safely stopping a site without its normal systems.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/peninsula-energy-halts-trading-after-cyber-incident-hits-us-uranium-mine/"
+      }
+    ]
+  },
+  {
+    "slug": "elecbrakes-bluetooth-trailer-brake-controller-flaws",
+    "date": "2026-11-24",
+    "cat": "Vulnerabilities",
+    "sev": "high",
+    "title": "Bluetooth flaws let a nearby attacker slam on or release a trailer's brakes",
+    "dek": "Two critical bugs in Elecbrakes trailer brake controllers let anyone within about 100 metres control braking. Two models are patched; the ELBC 2000 still has no fix.",
+    "body": "Three security flaws in Elecbrakes Bluetooth trailer brake controllers could let someone nearby take control of a towed trailer's brakes, according to Australian consultancy Element Digital, which found the bugs with AI assistance. SecurityWeek covered the research, and CISA published advisory ICSA-26-323-02 on the issues last week.\n## What is affected\nThe EB2, VM1 and ELBC 2000 controllers are affected. They are sold mainly in Australia and New Zealand and pair with a phone app or wireless remote.\n- Two critical flaws, a missing authentication check and weak protection against replayed commands, let an attacker within roughly 100 metres engage or release the brakes or change braking force. The driver does not have to do anything.\n- A medium-severity flaw in the firmware update process could in theory allow unauthorized firmware. The researchers did not demonstrate it.\n## Fixes\nElecbrakes was told in mid-May and shipped firmware updates for the EB2 and VM1 in early July. Once updated, an attacker would need physical access to pair with the controller first. The company told iTnews it alerted nearly 40,000 app users and that 60 to 70% of the controllers that connect daily have the update.\nThe ELBC 2000 has no patch yet. Elecbrakes advises keeping it connected to the app or remote whenever the trailer is in use, so a stranger cannot connect to it.\n## Why it matters\nThere is no sign that anyone has abused the bugs. But unexpected braking on a loaded trailer at highway speed is dangerous, and the researchers criticized how long disclosure took and the vendor's initial failure to list the ELBC 2000 as affected.",
+    "who": "Owners of caravans, horse floats, boat trailers and other trailers fitted with Elecbrakes EB2, VM1 or ELBC 2000 controllers.",
+    "todo": "Update EB2 and VM1 controllers through the Elecbrakes app; ELBC 2000 owners should keep the unit paired with their app or remote while towing and watch for a firmware release.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/elecbrakes-bluetooth-vulnerabilities-expose-trailers-to-forced-braking/"
+      }
+    ]
+  },
+  {
+    "slug": "azure-api-management-flaw-exploited-secrets-norway-energy",
+    "date": "2026-11-23",
+    "cat": "Vulnerabilities",
+    "sev": "critical",
+    "title": "Azure API Management flaw was exploited to grab secrets at Equinor and other firms",
+    "dek": "Attackers used a flaw in Azure API Management Classic tiers to reach stored secrets and keys. Microsoft closed the hole, but Norway's NSM says customers should treat those secrets as stolen.",
+    "body": "A flaw in Microsoft's Azure API Management (APIM) service was abused to go after stored secrets, and it is linked to recent incidents at Norwegian energy companies Equinor and Skagerak Energi, SecurityWeek and BleepingComputer reported.\n## What happened\nMicrosoft found the issue on November 18 and closed the access path the next day, according to a customer notice. The exposure affects APIM Classic tiers that were not set up according to Microsoft's documented security guidance. The newer v2 tiers are not affected.\nData that could be reached included:\n- Secrets stored as named values.\n- Client secrets for identity providers.\n- Subscription keys.\n- Tokens for APIM's direct management APIs.\nNorway's National Security Authority (NSM) said on November 20 that an unknown threat actor went after this data and that organizations in several sectors, in Norway and abroad, are affected. How widely the flaw was exploited is not clear, and no CVE has been published.\n## The Norwegian incidents\nEquinor disclosed an attack on its IT systems on November 17 and said it found no evidence that data was stolen or changed. Skagerak Energi disclosed an incident on November 18 and reported no operational impact.\n## Why it matters\nAPI gateways often hold the keys to many back-end systems at once. Even though Microsoft has fixed the service, any secret that sat in an exposed instance may already be in an attacker's hands, and closing the hole does nothing to revoke it.",
+    "who": "Organizations using Azure API Management Classic tiers (Developer, Basic, Standard, Premium), especially those storing secrets as named values.",
+    "todo": "Follow NSM's advice: treat APIM named values, identity-provider client secrets, subscription keys and management tokens as compromised and rotate them; confirm your instance has Microsoft's fix; map which back-end data those secrets could reach and review its logs; and plan a move to v2 tiers.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/azure-flaw-exploited-to-target-secrets-at-norwegian-energy-firms/"
+      },
+      {
+        "name": "BleepingComputer",
+        "url": "https://www.bleepingcomputer.com/news/security/microsoft-azure-flaw-exploited-to-steal-customers-api-credentials/"
+      }
+    ]
+  },
+  {
+    "slug": "gl-inet-goodcloud-compromise-routers-kvms-malware",
+    "date": "2026-11-23",
+    "cat": "Vulnerabilities",
+    "sev": "critical",
+    "title": "GL.iNet's cloud management service was abused to push malware to its routers and KVMs",
+    "dek": "An attacker used a flaw in GL.iNet's GoodCloud service to run code on travel routers and Comet KVMs. The cloud is fixed, but infected devices need a separate security firmware.",
+    "body": "Router and KVM maker GL.iNet has warned that a threat actor exploited a flaw in GoodCloud, its cloud remote management service, to deliver malware to some of its routers and Comet KVM devices, Help Net Security and SecurityWeek reported.\n## What happened\nGL.iNet found the problem on November 20 and has fixed the cloud service. Fixing the cloud does not clean devices that were already infected. GL.iNet has not named the attacker, said how many devices were hit, or confirmed whether computers plugged into compromised KVMs were reached.\nIndependent analysis from RemoteToHome Consulting, a GL.iNet services partner, suggests the damage is broad. Of 199 routers it could reach, 166 showed signs of the November 20 attack, an older backdoor, or both:\n- 93 had an attacker command run as root.\n- 24 had a root remote shell installed.\n- 49 were running an older backdoor dating to September 2025, whose installation method is unknown.\nRemoteToHome says the GoodCloud client ran commands from cloud messages without checking them and published an analysis of a suspected command injection. GL.iNet has not confirmed that explanation.\n## Cleanup is not simple\nGL.iNet has released a security firmware that removes the known malware without a factory reset and wants it installed on every device, infected or not. Its quick check looks for a process running as \"crond -i /tmp/.log\", but the company admits there are other signs those checks miss and that no tool can guarantee a device is clean. RemoteToHome adds that cleaning a router does not undo stolen keys and passwords, which must be changed on the systems they protect.",
+    "who": "Owners of GL.iNet travel routers and Comet KVMs, particularly devices bound to GoodCloud, and businesses that use them for remote access.",
+    "todo": "Install GL.iNet's latest security firmware on every device; unbind GoodCloud if you don't need it; on KVM-attached computers look for unfamiliar programs, accounts, browser extensions, startup items and scheduled tasks; and rotate VPN keys, Wi-Fi and admin passwords and any credentials the devices held.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Help Net Security",
+        "url": "https://www.helpnetsecurity.com/2026/11/23/gl-inet-cloud-compromise-malware-backdoors/"
+      },
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/gl-inet-routers-kvms-compromised-via-remote-management-service-flaw/"
+      }
+    ]
+  },
+  {
+    "slug": "screenconnect-cve-2026-84869-exploited-msp-technicians",
+    "date": "2026-11-23",
+    "cat": "Vulnerabilities",
+    "sev": "critical",
+    "title": "ScreenConnect flaw let malicious 'customers' run files on MSP technicians' PCs",
+    "dek": "Huntress saw attackers abuse CVE-2026-84869 to push files that a technician's ScreenConnect client ran with no prompt. Version 26.6.5 fixes it.",
+    "body": "Attackers have been exploiting a critical flaw in ConnectWise ScreenConnect that flips remote support around: instead of the technician controlling the customer's machine, a malicious guest can get the technician's computer to run a file, The Hacker News reported, citing Huntress.\n## The flaw\nCVE-2026-84869, rated 9.9, lets a guest in a support session push a file that the technician's own host client executes without asking. ConnectWise has patched it in technician host client version 26.6.5.\n## What Huntress saw\nHuntress researcher John Hammond described activity between October 20 and November 16, 2026:\n- At least 688,000 guest \"run file\" requests from 29 IP addresses against 42 ScreenConnect servers.\n- One technician workstation compromised on November 12. A rogue ScreenConnect client was set up on it in about nine seconds.\n- The payload checked in with a Telegram bot and installed a rogue ScreenConnect client that connected to an attacker-controlled relay.\nHuntress also tracked a separate cluster of guest sessions named after fake cryptocurrency exchanges, with 2,408 unauthorized sessions across at least 118 servers since November 3. It saw no follow-on activity from that cluster. No named threat actor has been tied to the attacks.\n## Why it matters\nManaged service providers' technician machines are a prize: one compromised workstation can hold access to dozens of client networks. Because the attack starts from the guest side, anyone who can open a support session could try it.",
+    "who": "Managed service providers, IT help desks and any organization whose technicians use ConnectWise ScreenConnect.",
+    "todo": "Update every technician host client to ScreenConnect 26.6.5 or later; if you can't yet, remove the TransferFiles permission from roles and session groups; review session logs for bursts of guest run-file requests and unexpected ScreenConnect clients or relays on technician PCs.",
+    "cves": [
+      "CVE-2026-84869"
+    ],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/hackers-exploit-critical-screenconnect.html"
+      }
+    ]
+  },
+  {
+    "slug": "idunno-anticsrf-asp-net-cve-2026-131914-exploited-no-patch",
+    "date": "2026-11-23",
+    "cat": "Vulnerabilities",
+    "sev": "critical",
+    "title": "Attackers exploit a flaw in an abandoned ASP.NET anti-CSRF library that will never be patched",
+    "dek": "Mandiant says CVE-2026-131914 in the Idunno.AntiCsrf module gives unauthenticated code execution with a single request. The project has been dead since 2008, so the only fix is removal.",
+    "body": "Google's Mandiant has warned that attackers are exploiting a critical bug in Idunno.AntiCsrf, a third-party ASP.NET module meant to protect web apps from cross-site request forgery, The Hacker News reported. The library has not been maintained since December 2008, so no patch is coming.\n## The flaw\nCVE-2026-131914, rated 9.3, is an insecure deserialization bug in the library's AntiCsrfModule. It lets an unauthenticated attacker run code on the server. Mandiant rates exploitability as high because one HTTP POST request is enough. Versions 0.9.1.0 and 0.9.1 Beta are affected.\nMandiant says it has seen active exploitation in the wild. The flaw was credited to researchers from Google Cloud and Mandiant Incident Response. No attacker has been named, and Google had nothing further to share.\n## Why it matters\nOld ASP.NET Web Forms applications often carry dependencies that nobody has looked at in years. A security component written to stop one kind of attack now opens the door to a far worse one, and since the project is defunct, every site still using it stays exposed until someone removes it.\n## How to replace it\nMandiant suggests moving to a maintained protection:\n- System.Web.Helpers.AntiForgery for classic ASP.NET.\n- ViewStateUserKey with MAC-protected ViewState for Web Forms.\n- IAntiforgery in ASP.NET Core.",
+    "who": "Organizations running legacy ASP.NET or Web Forms applications, including old internal and vendor-built apps that may bundle Idunno.AntiCsrf.",
+    "todo": "Search Web.config files and bin folders for Idunno.AntiCsrf references and remove the module; switch to a maintained anti-forgery mechanism; review IIS logs for unusual POST requests; and if you suspect exploitation, rotate the machineKey and other application secrets.",
+    "cves": [
+      "CVE-2026-131914"
+    ],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/hackers-exploit-critical-aspnet-anti.html"
+      }
+    ]
+  },
+  {
+    "slug": "n-able-mail-assure-ssrf-cve-2026-134624-patched",
+    "date": "2026-11-23",
+    "cat": "Vulnerabilities",
+    "sev": "high",
+    "title": "N-able patches a critical Mail Assure flaw found while investigating its breach",
+    "dek": "CVE-2026-134624, an SSRF in the LDAP sync check, could let a privileged API user reach internal systems. N-able restored Mail Assure and SpamExperts access on November 21.",
+    "body": "N-able has fixed a critical server-side request forgery (SSRF) flaw in Mail Assure and SpamExperts Hosted Cloud that it discovered while investigating the recent intrusion into those services, SecurityWeek reported. This is a follow-up to our earlier coverage of the breach.\n## The flaw\nCVE-2026-134624, rated 9.3, sits in the LDAP synchronization connection check used when a relay is configured. The check did not limit where it would connect, so an API user with enough privileges could make the server reach arbitrary internal hosts and ports and send crafted data to internal services. It is fixed in Mail Assure and SpamExperts version 20261121.1943.\nN-able has not said whether attackers used this specific flaw in the intrusion.\n## The breach so far\n- On November 16, N-able disabled the portal and API and suspended related services. Email delivery kept working.\n- Attackers reached a web server and likely accessed stored credentials.\n- N-able changed credentials and revoked API and OAuth tokens.\n- Portal and API access came back on November 21.\nThe company says the exploitation was confined to one N-able-hosted server and has promised a root cause analysis within two weeks. It has not named an attacker.\n## Why it matters\nHosted email security platforms hold relay settings, directory sync credentials and API tokens for many customers. Even with the service restored, customers who connected their own systems to it carry some of the risk.",
+    "who": "MSPs and organizations using N-able Mail Assure or SpamExperts Hosted Cloud, particularly with LDAP sync or API integrations.",
+    "todo": "Rotate any LDAP bind passwords, relay credentials and API keys you configured in Mail Assure or SpamExperts; re-authorize integrations that used revoked OAuth tokens; review directory and mail server logs for unexpected connections from N-able infrastructure; and watch for N-able's root cause report.",
+    "cves": [
+      "CVE-2026-134624"
+    ],
+    "sources": [
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/n-able-patches-critical-flaw-disclosed-after-mail-assure-cyberattack/"
+      }
+    ]
+  },
+  {
+    "slug": "cleverbridge-breach-card-numbers-cvv-copied",
+    "date": "2026-11-23",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "Cleverbridge says hackers copied card numbers and security codes from its payment platform",
+    "dek": "The software checkout provider found intruders on November 4 who copied card numbers, expiry dates and CVVs. It has not said how many shoppers are affected.",
+    "body": "Cleverbridge, which runs e-commerce checkout and subscription billing for software companies, is notifying customers that an outsider copied payment card data stored on its platform, Help Net Security reported, citing a notice obtained by BleepingComputer.\n## What was taken\nThe company detected unauthorized activity on November 4, 2026. According to its letter, the copied data included:\n- Card numbers.\n- Expiry dates.\n- CVV/CVC security codes.\nCleverbridge says names, contact details and billing addresses were not copied. That makes the data a little harder to use, but a full card number with its expiry date and security code is often enough for online fraud.\nAffected systems were briefly taken offline and restored the same day. Cleverbridge says this was not ransomware and nothing was encrypted.\n## What is unknown\nThe company has not said how the attacker got in or how many cardholders are affected. Its website lists clients such as Red Hat, Sony, SUSE, Veeam, Tenable and Jamf, but it has not said whether customers of any particular vendor were involved. Notification letters, sent through TransUnion's Cyberscout, began going out on November 20.\n## Why it matters\nStoring security codes after a purchase is generally not allowed under card industry rules, and it is what makes this breach serious. Shoppers who bought software through a Cleverbridge checkout page may not recognize the company's name on a letter, which makes phishing that mimics the notice more likely to work.",
+    "who": "People who bought software or subscriptions through Cleverbridge-powered checkout pages, and the software vendors that use Cleverbridge.",
+    "todo": "If you receive a notice, ask your card issuer for a replacement card, watch statements for unfamiliar charges and dispute them quickly, and be suspicious of emails or calls about the breach that ask for card details.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Help Net Security",
+        "url": "https://www.helpnetsecurity.com/2026/11/23/cleverbridge-data-breach-card-numbers-cvv/"
+      }
+    ]
+  },
+  {
+    "slug": "laliga-fan-platform-breach-personal-data",
+    "date": "2026-11-23",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "LaLiga confirms a hacker stole personal data of fans registered for its digital services",
+    "dek": "Spain's top football league says an intruder had access to a fan-services platform from November 14 to 16 and took data on users of LaLiga and some clubs' services.",
+    "body": "LaLiga, the organizer of Spain's top men's football league, has confirmed a data breach affecting fans who signed up for its digital services, BleepingComputer reported.\n## What happened\nA cybercriminal had unauthorized access to one of LaLiga's fan-services technology platforms between November 14 and 16, the league said. During that time the attacker extracted personal data belonging to users registered for LaLiga's digital services and for some clubs' services. LaLiga's security team identified the source and blocked the attack on November 16.\nLaLiga says the systems that support its competitions were not affected.\n## What is unknown\n- How many fans are affected.\n- Exactly what types of personal data were taken.\n- Which clubs' services were involved. LaLiga did not answer BleepingComputer's questions on this.\n- Who was behind it. No ransomware or extortion group has claimed the attack.\n## The response\nLaLiga reported the breach to Spain's data protection authority, the AEPD, and filed a complaint with the National Police's Central Cybercrime Unit. It has notified the affected clubs and is coordinating notices to fans.\n## Why it matters\nSports leagues and clubs run large fan databases, ticketing and streaming accounts, and their supporters are an easy audience for phishing. Messages about tickets, refunds or the breach itself are likely lures in the coming weeks.",
+    "who": "Fans registered for LaLiga apps, websites or fan programs, and supporters of clubs whose services run on LaLiga's platform.",
+    "todo": "Change your LaLiga account password and any account that reuses it, turn on multi-factor authentication where offered, and treat unexpected emails or texts about tickets, prizes or the breach with suspicion.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "BleepingComputer",
+        "url": "https://www.bleepingcomputer.com/news/security/spanish-laliga-confirms-hackers-stole-soccer-fans-personal-data/"
+      }
+    ]
+  },
+  {
+    "slug": "badbox-3-0-android-tv-box-ad-fraud-disrupted",
+    "date": "2026-11-23",
+    "cat": "Policy & takedowns",
+    "sev": "high",
+    "title": "Human Security disrupts BadBox 3.0, a TV-box botnet behind 40 billion fake ad requests a day",
+    "dek": "Cheap, backdoored Android TV boxes were used for hidden-video ad fraud and rented out as residential proxies. Human ties the operation to Chinese manufacturer TXCZ.",
+    "body": "Human Security's Satori threat intelligence team says it has disrupted BadBox 3.0, the latest version of a botnet built from cheap Android set-top and TV boxes that come with backdoors, SecurityWeek reported.\n## How it worked\nThe devices are low-cost, uncertified boxes running the open-source version of Android. Once online, they loaded two kinds of payloads:\n- Hidden-video ad fraud modules that posed as legitimate streaming apps to collect ad money through server-side ad insertion.\n- Proxyjacking modules that enrolled the boxes in 11 residential proxy networks, including PXYEDGE, a rebrand of IpMoYu. That lets strangers route their traffic through the owner's home internet connection.\nAt its peak, BadBox 3.0 generated about 40 billion ad bid requests a day, more than 4% of the connected-TV traffic Human sees and roughly three times the volume of the earlier VastFlux scheme.\n## Who is behind it\nHuman links the operation to Chinese manufacturer TXCZ, based on build-property checks, a payload domain and launcher software repositories. It says the same operators ran BadBox and BadBox 2.0, which infected more than 10 million devices. Part of the command infrastructure ran on domains that went down when Google took apart a 1.3 million-device TV box botnet earlier this month.\nHuman did not estimate how many devices are in BadBox 3.0.\n## Why it matters\nPeople buying bargain streaming boxes rarely know they are also buying someone else's proxy server. Criminals who rent residential proxies use them to hide fraud, account takeovers and attacks behind ordinary home IP addresses, which can put the box owner's connection under suspicion.",
+    "who": "Owners of cheap, off-brand Android TV and streaming boxes, advertisers buying connected-TV inventory, and networks that see traffic from residential proxies.",
+    "todo": "Replace uncertified Android TV boxes with Play Protect-certified devices from known brands; isolate any you keep on a guest network; advertisers should ask partners how they filter BadBox-style CTV traffic.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/badbox-3-0-ad-fraud-operation-generating-40-billion-daily-bid-requests-disrupted/"
+      }
+    ]
+  },
+  {
+    "slug": "spain-arrests-noname05716-physical-cell-burgos",
+    "date": "2026-11-23",
+    "cat": "Policy & takedowns",
+    "sev": "info",
+    "title": "Spain arrests alleged organizer of a NoName057(16) physical cell and seizes guns",
+    "dek": "Police in Burgos detained a man accused of building the pro-Russian hacktivist group's first physical cell in Spain, seizing a rifle, shotguns and over 5,000 rounds of ammunition.",
+    "body": "Spain's National Police have arrested a man in Burgos who they say was the main organizer of a planned first physical cell of NoName057(16) in the country, Security Affairs reported. NoName057(16) is a pro-Russian hacktivist group best known for distributed denial-of-service attacks on government and corporate websites.\n## The arrest\nThe suspect was charged with belonging to a cyberterrorist organization and promoting terrorism. Police say he handled propaganda and recruitment and posted calls to attack state institutions, but did not take part directly in cyberattacks. Officers seized:\n- A semi-automatic rifle, carbines and shotguns.\n- More than 5,000 rounds of ammunition.\n- Homemade clubs.\n- Three physical cryptocurrency wallets.\nA court released him under conditions while the investigation continues.\n## Context\nPolice link the group to at least 447 attacks against Spanish targets. On November 16, the EU Council added NoName057(16) to its cyberattack sanctions list.\n## Why it matters\nHacktivist DDoS groups have mostly been treated as online nuisances. An alleged effort to build an armed, in-person cell suggests authorities see a risk of the movement spilling into the physical world, and it explains the terrorism charges rather than ordinary computer crime charges.",
+    "who": "Spanish and European public institutions targeted by NoName057(16), and security teams tracking pro-Russian hacktivism.",
+    "todo": "Keep DDoS protection and incident runbooks current for public-facing sites, and report recruitment or attack calls by hacktivist channels to national authorities.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Security Affairs",
+        "url": "https://securityaffairs.com/203756/hacktivism/spain-stops-noname05716-from-getting-a-physical-foothold.html"
+      }
+    ]
+  },
+  {
+    "slug": "sap-netweaver-cve-2025-42884-cisa-kev-exploited",
+    "date": "2026-11-20",
+    "cat": "Vulnerabilities",
+    "sev": "high",
+    "title": "CISA says attackers are exploiting a year-old SAP NetWeaver JNDI flaw",
+    "dek": "CVE-2025-42884, patched by SAP in November 2025, lets unauthenticated attackers leak or change server information. CISA added it to its exploited list alongside a Cisco Expressway bug.",
+    "body": "CISA warned on November 20 that attackers are exploiting CVE-2025-42884, a flaw in SAP NetWeaver, and added it to its Known Exploited Vulnerabilities catalog, SecurityWeek reported. There appear to have been no public reports of exploitation before CISA's alert.\n## The flaw\nThe bug, rated 6.5 (medium), is a JNDI injection issue. An unauthenticated attacker can inject JNDI environment properties, or a URL used in a JNDI lookup, to leak or modify information on the server. SAP fixed it in its November 2025 security updates, so systems patched in the past year are protected.\nCISA has not shared who is exploiting it or what they are doing with it.\n## Also added\nOn the same day CISA listed CVE-2026-76466, the critical Cisco Expressway flaw in clustered deployments that attackers began using soon after a public exploit appeared. We covered that attack earlier. Federal agencies were given three days to patch the Expressway bug.\n## Why it matters\nA medium score can hide real risk. SAP systems run payroll, finance and supply chains, and attackers regularly return to older SAP bugs because many companies delay ERP updates for fear of breaking critical business processes. A flaw that needs no login and can change server information is worth closing even if its rating looks modest.",
+    "who": "Companies running SAP NetWeaver application servers that have not applied SAP's November 2025 security notes.",
+    "todo": "Apply SAP's November 2025 patches for CVE-2025-42884; keep SAP systems off the open internet; review application logs for unusual JNDI lookups; and patch Cisco Expressway clusters to X15.5.20.",
+    "cves": [
+      "CVE-2025-42884",
+      "CVE-2026-76466"
+    ],
+    "sources": [
+      {
+        "name": "SecurityWeek",
+        "url": "https://www.securityweek.com/sap-netweaver-cisco-expressway-flaws-exploited-in-attacks/"
+      }
+    ]
+  },
+  {
+    "slug": "bulgaria-government-breach-five-years-130gb-stolen",
+    "date": "2026-11-18",
+    "cat": "Threat actors",
+    "sev": "high",
+    "title": "Bulgaria finds hackers spent five years inside government systems and took 130 GB",
+    "dek": "Intruders in Bulgarian government networks since 2021 downloaded about 62 million pages of cabinet documents and inter-agency communications before a new monitoring system caught them.",
+    "body": "Bulgaria's Ministry of Innovation and Digital Transformation has said hackers had access to government systems since 2021 and downloaded more than 130 GB of documents, about 62 million pages, from government databases, according to Reuters reporting cited by Security Affairs.\n## What was taken\nThe stolen material reportedly includes cabinet documents, reports and communications between ministries and agencies. Minister Ivan Vassilev said there is no evidence so far that citizens' personal data was compromised.\n## How it was found\nA new national cybersecurity monitoring system flagged suspicious activity in August 2026. Intelligence services, the defense ministry, police, outside experts and the EU's cybersecurity agency then joined the investigation. Affected systems were isolated, the attackers' access was cut off and malware was removed. Prosecutors have been notified.\n## Who is behind it\nInvestigators have not linked the operation to any country or state. Officials say several international hacker groups may have been involved.\nVassilev wants the inquiry to examine whether agencies should have spotted the intrusion earlier.\n## Why it matters\nThe scale dwarfs Bulgaria's 2019 National Revenue Agency breach, which involved about 11 GB. A five-year stay inside government networks, focused on internal documents rather than citizen records, looks like long-term intelligence gathering. It also shows how much can go unseen until a country invests in monitoring.",
+    "who": "Bulgarian government agencies and their partners, including EU and NATO bodies that exchange documents with them.",
+    "todo": "Government IT teams should hunt for long-lived intrusions rather than assume quiet networks are clean: centralize logs, monitor for bulk data transfers out of document systems, and review dormant accounts and remote access paths.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Security Affairs",
+        "url": "https://securityaffairs.com/203794/intelligence/bulgaria-discovers-massive-government-breach-after-five-years-of-undetected-spying.html"
+      }
+    ]
   }
 ]

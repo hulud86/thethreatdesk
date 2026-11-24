@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://thethreatdesk.com/</loc><lastmod>2026-11-23</lastmod></url>
-  <url><loc>https://thethreatdesk.com/archive.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/archive.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/peninsula-energy-wyoming-uranium-mine-cyber-incident.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/elecbrakes-bluetooth-trailer-brake-controller-flaws.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/azure-api-management-flaw-exploited-secrets-norway-energy.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/gl-inet-goodcloud-compromise-routers-kvms-malware.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/screenconnect-cve-2026-84869-exploited-msp-technicians.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/idunno-anticsrf-asp-net-cve-2026-131914-exploited-no-patch.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/n-able-mail-assure-ssrf-cve-2026-134624-patched.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/cleverbridge-breach-card-numbers-cvv-copied.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/laliga-fan-platform-breach-personal-data.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/badbox-3-0-android-tv-box-ad-fraud-disrupted.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/spain-arrests-noname05716-physical-cell-burgos.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thethreatdesk.com/ghostscript-cve-2026-125396-sandbox-escape-file-uploads.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://thethreatdesk.com/openrouter-drops-providers-dragos-ai-prompt-theft.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://thethreatdesk.com/gnupg-gpgme-cve-2026-129975-double-free-malicious-keys.html</loc><lastmod>2026-11-21</lastmod></url>
@@ -18,6 +29,7 @@
   <url><loc>https://thethreatdesk.com/romulus-clickfix-cncmachinerms-rat.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thethreatdesk.com/1984-iceland-web-host-offline-cyberattack.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thethreatdesk.com/fbi-ncic-crime-database-breach-investigation.html</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://thethreatdesk.com/sap-netweaver-cve-2025-42884-cisa-kev-exploited.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thethreatdesk.com/vmware-vcenter-zero-day-cve-2026-123890-armory-castle.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://thethreatdesk.com/php-seven-critical-flaws-phpaftershell-november-2026.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://thethreatdesk.com/ruby2shell-cve-2026-132825-ruby-interpreter-fixes.html</loc><lastmod>2026-11-19</lastmod></url>
@@ -37,6 +49,7 @@
   <url><loc>https://thethreatdesk.com/tpm-lockout-bypass-windows-hello-bitlocker-pins.html</loc><lastmod>2026-11-18</lastmod></url>
   <url><loc>https://thethreatdesk.com/cisa-kev-apache-axis-redcap-litellm-synology-dsm.html</loc><lastmod>2026-11-18</lastmod></url>
   <url><loc>https://thethreatdesk.com/n-able-mail-assure-spamexperts-server-breach.html</loc><lastmod>2026-11-18</lastmod></url>
+  <url><loc>https://thethreatdesk.com/bulgaria-government-breach-five-years-130gb-stolen.html</loc><lastmod>2026-11-18</lastmod></url>
   <url><loc>https://thethreatdesk.com/puppet-server-rce-cve-2026-115731-exploited.html</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://thethreatdesk.com/microsoft-agent-framework-pypi-credential-stealer.html</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://thethreatdesk.com/google-exploit-agent-ai-autonomous-patch-diffing.html</loc><lastmod>2026-11-17</lastmod></url>
