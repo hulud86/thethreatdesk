@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://thethreatdesk.com/</loc><lastmod>2026-11-24</lastmod></url>
-  <url><loc>https://thethreatdesk.com/archive.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://thethreatdesk.com/archive.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://thethreatdesk.com/commercial-ships-suspected-cyberattacks-50-vessels-fortigate.html</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://thethreatdesk.com/peninsula-energy-wyoming-uranium-mine-cyber-incident.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thethreatdesk.com/elecbrakes-bluetooth-trailer-brake-controller-flaws.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/gt13-ai-assisted-campaign-check-point-management-servers.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/palo-alto-pan-os-fragnesia-cve-2026-46300-patched.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/vmware-vmsa-2026-0011-vcenter-cve-2026-123903-esx-critical.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/cia-unclassified-osint-system-breached.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/kepco-data-breach-1-5-million-customers-suppliers.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/okta-o-unc-053-vishing-inception-leak-site-shinyhunters.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/volant-manticore-kuboshell-ipfs-backdoor-iran.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thethreatdesk.com/azure-api-management-flaw-exploited-secrets-norway-energy.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thethreatdesk.com/gl-inet-goodcloud-compromise-routers-kvms-malware.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thethreatdesk.com/screenconnect-cve-2026-84869-exploited-msp-technicians.html</loc><lastmod>2026-11-23</lastmod></url>
@@ -13,6 +21,10 @@
   <url><loc>https://thethreatdesk.com/laliga-fan-platform-breach-personal-data.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thethreatdesk.com/badbox-3-0-android-tv-box-ad-fraud-disrupted.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thethreatdesk.com/spain-arrests-noname05716-physical-cell-burgos.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/european-commission-eu-academy-data-breach-names-emails.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/whmcs-sql-injection-cve-2026-82981-customer-data-admin-hashes.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/dotnet-single-bit-bypass-windows-code-integrity-virtualbox.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thethreatdesk.com/webworm-modified-softether-vpn-bridge-ntmonitor.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thethreatdesk.com/ghostscript-cve-2026-125396-sandbox-escape-file-uploads.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://thethreatdesk.com/openrouter-drops-providers-dragos-ai-prompt-theft.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://thethreatdesk.com/gnupg-gpgme-cve-2026-129975-double-free-malicious-keys.html</loc><lastmod>2026-11-21</lastmod></url>
