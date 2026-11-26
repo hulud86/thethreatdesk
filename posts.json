@@ -2767,5 +2767,243 @@
     "url": "https://securityaffairs.com/203918/intelligence/maritime-industry-faces-growing-cyber-threats-as-50-ships-targeted.html"
    }
   ]
+ },
+ {
+  "slug": "1password-breach-github-account-source-code-customer-records",
+  "date": "2026-11-25",
+  "cat": "Breaches",
+  "sev": "critical",
+  "title": "1Password says a hijacked employee GitHub account led to stolen customer records and source code",
+  "dek": "The attacker pushed malicious code to backend services, copied account data and private repositories, and reached CI/CD. 1Password says encrypted vaults were not touched.",
+  "body": "Password manager 1Password disclosed on November 25 that an attacker stole customer account records and proprietary source code after taking over a corporate GitHub account belonging to one of its employees. The company began investigating on November 19 when it suspected the account had been compromised.\n## What the attacker did\nUsing that account, the intruder deployed malicious code to 1Password backend services and used it to pull customer records out. The attacker also copied code from private repositories, got into the company's CI/CD system and may have exposed infrastructure credentials.\n## What was taken\nAccording to 1Password, the stolen records include:\n- Names, email addresses and account identifiers.\n- Public cryptographic keys and authentication parameters, including Secure Remote Password verifiers.\n- Account activity timestamps and other non-secret metadata.\n- Tokens from account invitation, provisioning and recovery emails.\n1Password has notified the small number of users who were going through provisioning or recovery when the tokens were taken. It says those tokens cannot be abused on their own and that it has seen no account takeovers.\n## Why the vaults should be safe\n1Password's design means the SRP verifiers alone are not enough to brute-force a master password: an attacker would also need each user's Secret Key, which the company never stores. A company representative said there is no evidence encrypted vaults were downloaded or accessed. Client apps, browser extensions and recovery keys were not affected.\n## Response\nThe company disabled the GitHub account, revoked a stolen token, rotated potentially exposed infrastructure credentials and restored clean versions of the affected services. An investigation with outside experts continues. 1Password has not said how many customers were affected or how the GitHub account was compromised.",
+  "who": "1Password individual, family and business customers, especially those who were mid-provisioning or account recovery.",
+  "todo": "No password change is required by 1Password, but expect targeted phishing that uses this incident; never enter your Secret Key or master password from an email link, and make sure two-factor authentication is on for your account.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/1password-breach-exposes-customer-data-internal-source-code/"
+   }
+  ]
+ },
+ {
+  "slug": "fincen-cyber-incident-systems-offline-deadlines-extended",
+  "date": "2026-11-25",
+  "cat": "Breaches",
+  "sev": "high",
+  "title": "Treasury's FinCEN takes systems offline after unauthorized access and extends filing deadlines",
+  "dek": "The money-laundering watchdog says an intruder reached a limited subset of its systems. It says there is no evidence the Bank Secrecy Act or beneficial ownership databases were breached.",
+  "body": "The Financial Crimes Enforcement Network (FinCEN), the US Treasury unit that collects suspicious activity reports and other anti-money-laundering filings, says it is investigating a cybersecurity incident that gave an unauthorized party access to a limited subset of its systems. The notice appeared on the BSA E-Filing website on the evening of November 24.\n## What FinCEN has said\nAs a precaution, the agency took some systems offline. The E-Filing site is up, but some services may be unavailable while FinCEN works to restore normal operations. A spokesperson told The Record that the FBI and CISA are involved, and that investigators currently see no evidence that the Bank Secrecy Act or beneficial ownership databases were breached.\nFinCEN has not said which systems were reached, how the intruder got in, or whether any data was taken. No group has claimed the attack.\n## Relief for filers\nA November 24 FinCEN order grants temporary, limited relief to filers hit by the disruption. Help Net Security reports that filings or updates due between November 18 and December 29 can be submitted until December 30, and infers from the order that the Secure Data Transfer Mode channel and beneficial ownership filings appear to be affected. FinCEN also asked institutions that need to get urgent suspicious activity information to law enforcement to use its hotline.\n## A pattern of federal intrusions\nThe disclosure lands amid a run of incidents at US agencies, including the recently reported breach of an unclassified CIA and ODNI open-source intelligence system, an FBI investigation into the NCIC crime database, and a USDA incident that took farmer payment systems offline. There is no public link between the FinCEN incident and any of them.",
+  "who": "Banks, money services businesses, casinos and other institutions that file Bank Secrecy Act reports, and companies filing beneficial ownership information.",
+  "todo": "Check whether your filings fall within the November 18 to December 29 window covered by FinCEN's order, keep records of failed submissions, and use FinCEN's hotline for time-sensitive suspicious activity that law enforcement needs to see.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "The Record",
+    "url": "https://therecord.media/treasury-fincen-takes-systems-offline-after-cyber-incident"
+   },
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/us-treasurys-fincen-disconnects-systems-following-cyber-incident/"
+   },
+   {
+    "name": "Help Net Security",
+    "url": "https://www.helpnetsecurity.com/2026/11/26/fincen-breach-systems-offline/"
+   }
+  ]
+ },
+ {
+  "slug": "drupal-cve-2026-136716-installer-fix-gap-exploited",
+  "date": "2026-11-25",
+  "cat": "Vulnerabilities",
+  "sev": "critical",
+  "title": "Drupal's installer fix left a gap, and attackers are exploiting the new flaw too",
+  "dek": "CVE-2026-136716 lets attackers take over sites stuck in unusual install states despite last week's patch. The original installer bug has been exploited since November 19.",
+  "body": "Drupal has issued a second fix for its core installer after finding that the November 18 patch for CVE-2026-132165 did not protect every site. The new flaw, CVE-2026-136716, was disclosed on November 25 and Drupal says it is already being exploited in the wild.\n## The first bug\nCVE-2026-132165, found by Anthropic's OSS Scanner, sits in install.php. Under certain conditions it lets an unauthenticated attacker reinstall Drupal on top of a running site, leading to takeover or code execution. Drupal later updated its advisory to say attackers were using it on live sites from November 19. CISA added it to its Known Exploited Vulnerabilities catalog on November 24, and Searchlight Cyber researchers published a write-up showing it works against stock configurations.\n## The gap\nAccording to the new advisory, sites left in unusual or incomplete install states, including some production sites, stayed exposed to takeover even after the first update. Drupal rates CVE-2026-136716 as an access bypass scoring 21 out of 25 on its scale. It has not described the attacks or said who is behind them.\n## Fixed versions\n- Drupal 11.4.14, 11.3.23 and 10.6.23 fix the new flaw.\n- After upgrading, affected production sites must run the database update hook.\n- Sites whose installer was properly secured are not affected.\nDrupal 11.2.x, 10.5.x and older branches, including Drupal 8 and 9, are end of life and get no fixes.\n## Assume compromise if the installer was open\nDrupal warns that any site that left its installer reachable from the internet after the first advisory may already have been compromised. Patching alone will not remove an attacker who got in first.",
+  "who": "Anyone running Drupal 10 or 11, especially sites where /core/install.php is reachable from the internet, and hosts managing many Drupal installs.",
+  "todo": "Upgrade to 11.4.14, 11.3.23 or 10.6.23 and run the update hook; block /core/install.php at the web server until patched; review admin accounts, settings.php and logs for signs of a reinstall; migrate off end-of-life branches.",
+  "cves": [
+   "CVE-2026-136716",
+   "CVE-2026-132165"
+  ],
+  "sources": [
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/drupal-installer-patch-left-a-gap-attackers-are-already-exploiting/"
+   },
+   {
+    "name": "Help Net Security",
+    "url": "https://www.helpnetsecurity.com/2026/11/25/drupal-installer-rce-cve-2026-132165-exploited/"
+   }
+  ]
+ },
+ {
+  "slug": "geoserver-cve-2026-120705-cve-2026-129243-exploitation-probes",
+  "date": "2026-11-25",
+  "cat": "Vulnerabilities",
+  "sev": "high",
+  "title": "Attackers probe GeoServer for two newly disclosed flaws that chain into remote code execution",
+  "dek": "watchTowr sees exploit probes for CVE-2026-120705 and CVE-2026-129243 weeks after patches shipped. Public proof-of-concept code exists and over 3,000 instances are online.",
+  "body": "watchTowr says attackers have started testing internet-facing GeoServer instances for two recently disclosed high-severity vulnerabilities that can be chained with other bugs to run code without logging in.\n## The flaws\n- CVE-2026-120705 is an XML injection bug that can expose sensitive files or be used for server-side request forgery.\n- CVE-2026-129243 lets an attacker bypass access controls and carry out administrator-level operations.\nBoth belong to a chain of five bugs that Rapid7 researcher Jonah Burgess reported to the GeoServer project in early August. The other three, CVE-2026-129242, CVE-2026-129244 and CVE-2026-129245, allow admin access and arbitrary command execution. Burgess published technical details and proof-of-concept code the week the advisories went out.\nSeparately, Eye Security showed unauthenticated code execution on both Linux and Windows by chaining CVE-2026-120705 with CVE-2026-129245 and CVE-2026-120704. It counts more than 3,000 GeoServer servers reachable from the internet.\n## What the attackers are doing\nThe traffic watchTowr observed consists of error-based probes that create and call stored queries to see whether a server responds as a vulnerable one would. That looks like reconnaissance aimed at building target lists. watchTowr has not reported a successful code execution, and no other exploitation reports had surfaced at the time of SecurityWeek's report. Nobody has been named as responsible.\n## Why it matters\nGeoServer, an open-source server for sharing map data, has a track record here: a GeoServer bug was exploited as a zero-day in August 2026, and a US government agency was breached through one in 2025. With patches available for weeks and exploit code public, unpatched servers are an easy next step for whoever is scanning.",
+  "who": "Organizations running GeoServer, common in government, utilities, mapping and environmental data portals.",
+  "todo": "Upgrade to GeoServer 3.0.2, 2.28.6 or 2.27.7, keep the admin interface off the internet, and check logs for unexpected stored-query creation or WFS requests that return errors.",
+  "cves": [
+   "CVE-2026-120705",
+   "CVE-2026-129243",
+   "CVE-2026-129242",
+   "CVE-2026-129244",
+   "CVE-2026-129245",
+   "CVE-2026-120704"
+  ],
+  "sources": [
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/two-newly-disclosed-geoserver-vulnerabilities-under-attack/"
+   }
+  ]
+ },
+ {
+  "slug": "microsoft-salt-typhoon-crystal-typhoon-artex-ai-intrusion-platform",
+  "date": "2026-11-25",
+  "cat": "Threat actors",
+  "sev": "high",
+  "title": "Microsoft says Salt Typhoon and other state hackers have built Artex into their toolkits",
+  "dek": "The AI-driven intrusion platform can move from reconnaissance to privileged access in minutes. Microsoft says Chinese and North Korean groups have adopted it since July.",
+  "body": "Microsoft says Chinese state-backed groups Salt Typhoon and Crystal Typhoon have folded Artex, an AI-powered intrusion platform, into their operations, using it for network reconnaissance, credential attacks and web application exploitation. The Record reported Microsoft's findings on November 25.\n## What Artex is\nArtex automates several stages of an intrusion at machine speed. Microsoft says it can take an operator from initial reconnaissance to persistent, privileged access within minutes. It was released in July, and Microsoft says multiple North Korean and Chinese groups, along with financially motivated criminals, have steadily added it to their tooling since.\nIts Chinese developer removed the source code from GitHub last month, but copies are still circulating and at least one Chinese company sells commercial access to it.\n## Where it has shown up\n- The FBI issued an advisory on Artex roughly two weeks ago.\n- CrowdStrike and The Wall Street Journal have linked Artex to attacks on financial institutions in South Korea and Japan.\n- Microsoft previously said Chinese state-backed actors used it in a supply-chain attack on ConnectWise.\n- The New York Times and NextGov reported that it was allegedly used in intrusions affecting the CIA, the National Geospatial-Intelligence Agency and the ODNI. Those reports have not been officially confirmed.\nSalt Typhoon is the group US agencies believe broke into at least nine American telecom companies in 2024.\n## How to spot it\nMicrosoft advises against relying on network indicators such as source IP addresses or user agents, which Artex operators can change at will. Instead, it recommends behavioral detection: look for bursts of activity at machine speed and unusually large volumes of anomalous traffic from a single source in a short window.",
+  "who": "Telecoms, government agencies, financial institutions, managed service providers and any organization with internet-facing web applications.",
+  "todo": "Tune detections for high-speed, high-volume activity from single sources rather than static IOCs, enforce phishing-resistant MFA to blunt credential attacks, rate-limit and monitor web app endpoints, and patch internet-facing services quickly.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "The Record",
+    "url": "https://therecord.media/microsoft-china-salt-typhoon-using-artex-ai-tool"
+   }
+  ]
+ },
+ {
+  "slug": "fifa-confirms-breach-handsome-boy-hacking-club-leak",
+  "date": "2026-11-25",
+  "cat": "Breaches",
+  "sev": "high",
+  "title": "FIFA confirms hackers reached personal and business data after a new group leaked files",
+  "dek": "The Handsome Boy Hacking Club says it took more than 12 GB from FIFA's Microsoft environment and published it after a failed extortion attempt.",
+  "body": "FIFA has confirmed that hackers got into its systems and accessed what it called a limited set of personal and business information. The soccer governing body, based in Zurich, said it is working with authorities including law enforcement and condemned the theft and publication of the data. It did not answer questions about how the intrusion happened.\n## The claim\nA group calling itself the Handsome Boy Hacking Club (HBHC) claimed last week that it had stolen more than 12 GB from FIFA and tried to extort the organization. According to The Record, that attempt failed and the group posted the data on a cybercrime forum, saying it had access to FIFA's Microsoft environment.\nThe group says the leak includes identity and immigration documents, financial records, legal papers and governance material. None of that has been verified, and FIFA has not said whose data was affected or how many people are involved. HBHC only surfaced last week, and little is known about who is behind it.\n## Part of a wider trend in football\nThe incident follows several others in the sport. LaLiga said this week that a hacker stole personal data of fans registered for its digital services. Dutch police made an arrest in May over a breach at Ajax, and the French Football Federation disclosed a cyberattack in 2025. FIFA ran the 2026 World Cup this summer, which made it a high-profile target with large volumes of sensitive documents from players, officials and partners.",
+  "who": "FIFA staff, officials, players, member associations and business partners whose documents may have been held in FIFA's Microsoft 365 environment.",
+  "todo": "If you have dealt with FIFA, watch for phishing or fraud that uses leaked documents; organizations should review Microsoft 365 sign-in logs, OAuth app consents and external sharing for signs of bulk data access.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "The Record",
+    "url": "https://therecord.media/fifa-data-breach-limited"
+   }
+  ]
+ },
+ {
+  "slug": "ransomware-recovery-firm-cofounder-indicted-secretly-paying-ransoms",
+  "date": "2026-11-25",
+  "cat": "Policy & takedowns",
+  "sev": "info",
+  "title": "Florida ransomware recovery firm co-founder indicted for secretly paying hackers",
+  "dek": "Prosecutors say he told victims he had decryption tools, then paid the ransom and marked it up. An FBI sting posing as a gang and a victim caught him.",
+  "body": "A federal grand jury has indicted Juan Ricardo Palacio Escobar, a 52-year-old Colombian national, on three counts of wire fraud. Each count carries a maximum of 60 years in prison. Prosecutors say he co-founded a Florida company that sold data recovery services to ransomware victims, which 404 Media and KrebsOnSecurity identified as Ransomwarehelp.com.\n## The alleged scheme\nAccording to the indictment, Palacio told clients his firm had decryption tools that would restore their files without negotiating with or paying the attackers. Instead, prosecutors say, he quietly paid the ransom himself and charged customers enough to turn a profit.\n## The sting\nIn June, the FBI ran an undercover operation in which agents played both the ransomware gang and the victim company. Palacio allegedly paid about $6,000 in Bitcoin to the undercover \"gang\" for a decryption key and billed the undercover \"victim\" roughly $13,260.\nHe was arrested in Las Vegas on October 22, transferred to Rhode Island and released on pretrial bond on November 20. Assistant Attorney General A. Tysen Duva confirmed the operation on Wednesday. A first assistant US attorney said victims should not be victimized again by the people they turn to for help.\n## Not the first case\nThe Justice Department charged the owner of another Florida ransomware recovery business last month, and two ransomware negotiators were sentenced to four years each in May. The cases show prosecutors are looking closely at intermediaries who stand between victims and extortion gangs.",
+  "who": "Ransomware victims, cyber insurers and incident response buyers who hire third-party recovery or negotiation firms.",
+  "todo": "Before hiring a recovery firm, ask exactly how decryption will be achieved, require transparency about any payments to attackers, involve counsel and your insurer, and report the attack to the FBI or CISA.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "The Record",
+    "url": "https://therecord.media/ransomware-doj-indictment-recovery"
+   }
+  ]
+ },
+ {
+  "slug": "turnitin-unauthorized-activity-customer-facing-systems",
+  "date": "2026-11-25",
+  "cat": "Breaches",
+  "sev": "info",
+  "title": "Turnitin investigates unauthorized activity on customer-facing systems",
+  "dek": "The plagiarism checker says its services are running and the affected systems don't hold government IDs or institutional financial data. It hasn't said whether data was taken.",
+  "body": "Turnitin, the plagiarism-detection service used by schools and universities worldwide, says it recently found unauthorized activity involving some of its customer-facing systems. CEO Chris Caren disclosed the incident in a letter to customers dated November 23.\n## What Turnitin has said\nThe company activated its incident response plan, notified authorities and brought in outside cybersecurity experts. It says its systems are fully operational and safe to use, and that the customer-facing systems involved do not collect government identification or institutional financial information.\nThose customer-facing systems include the student submission portal, instructor grading tools, integration APIs used by institutions, and reporting dashboards. Turnitin has not said which of them were involved, whether any data was accessed or taken, or how many customers are affected. Its investigation is ongoing.\n## Schools respond\nThe University of Colorado Boulder said it was in contact with Turnitin, had no indication that student, instructor or assignment data was exposed, and had added monitoring to Canvas, the learning platform through which most of its users reach Turnitin.\nTurnitin is owned by Advance Publications. No attacker has been named, and the company has not described the incident as ransomware.\n## Why it matters\nTurnitin holds enormous numbers of student papers and is wired into learning platforms through API integrations. Even without ID numbers or financial data, names, emails and coursework tied to students would be valuable for phishing, and integration tokens can offer a path into connected systems.",
+  "who": "Universities, schools, instructors and students that use Turnitin, especially through LMS integrations such as Canvas, Moodle or Blackboard.",
+  "todo": "Watch Turnitin's customer updates, review and rotate LMS integration keys if Turnitin advises it, monitor LMS logs for unusual API activity, and warn students and staff about phishing that mentions Turnitin.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "SecurityWeek",
+    "url": "https://www.securityweek.com/plagiarism-checker-turnitin-investigating-cyberattack/"
+   }
+  ]
+ },
+ {
+  "slug": "mycolorado-app-cyberattack-150000-data-stolen",
+  "date": "2026-11-24",
+  "cat": "Breaches",
+  "sev": "high",
+  "title": "Colorado shuts down its myColorado ID app after a cyberattack that likely stole data on 150,000 people",
+  "dek": "The state app, used for digital IDs and government services by 2.1 million people, has been offline since the November 18 intrusion. Residents are told to carry physical IDs.",
+  "body": "Colorado's Governor's Office of Information Technology (OIT) says hackers broke into the myColorado app, which residents use for digital identification, document storage and access to state services. The intrusion was discovered on the evening of November 18, and OIT took the app offline to investigate. It was still down on November 24.\n## What is known\nThe app has about 2.1 million users. The state says the attackers likely stole data tied to nearly 150,000 of them. Investigators have not said what kinds of data were taken, how the attackers got in, or who is responsible. The state has not described the incident as ransomware.\nOIT's executive director said protecting user data is the top priority and that the app will come back once its security has been restored. There is no restoration date.\n## What residents should do now\nWith the Thanksgiving travel week underway, Colorado urged residents to carry physical driver's licenses and IDs rather than relying on the digital versions in the app. State services remain available through individual agency websites.\n## Context\nMobile ID and government super-apps concentrate sensitive identity documents in one place, which makes them attractive targets. Colorado has dealt with other incidents, including a breach at its Department of Higher Education and ransomware attacks on small towns. Several other public bodies have disclosed attacks in recent days, from the Queens Public Library to the West Virginia Legislature.",
+  "who": "Colorado residents who use the myColorado app for digital IDs, documents or state services.",
+  "todo": "Carry a physical ID while the app is offline, watch for notification letters from the state, be wary of calls, texts or emails claiming to be from myColorado, and consider a credit freeze if notified that your data was taken.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "The Record",
+    "url": "https://therecord.media/mycolorado-app-down-data-breach"
+   }
+  ]
+ },
+ {
+  "slug": "guadeloupe-university-hospital-suspected-ransomware-cancer-treatment",
+  "date": "2026-11-25",
+  "cat": "Ransomware",
+  "sev": "critical",
+  "title": "Suspected ransomware attack halts radiotherapy and surgeries at Guadeloupe's main hospital",
+  "dek": "France's ANSSI says the attack on the University Hospital of Guadeloupe appears to involve ransomware. Databases were encrypted and staff are working on paper.",
+  "body": "France's national cybersecurity agency, ANSSI, is investigating a suspected ransomware attack on the University Hospital of Guadeloupe, the largest hospital on the French Caribbean island, serving about 380,000 residents.\n## What happened\nStaff noticed computer and telephone outages on the evening of Saturday, November 21. The hospital later said its databases had been encrypted, and ANSSI said on Tuesday that the incident appeared to involve ransomware. Paris prosecutors have opened a criminal investigation.\nInvestigators are examining whether the attackers entered through an IT supplier that was reportedly compromised several months ago. The supplier has not been named.\nThe hospital says it has received no ransom demand and will not pay. It remains unclear who was behind the attack, and nobody has claimed it.\n## Impact on patients\n- Surgeries, consultations and imaging were canceled through at least Friday.\n- Radiation therapy was suspended over safety concerns, and Monday's chemotherapy sessions were canceled.\n- Emergency care, dialysis and urgent cardiac procedures are continuing.\nElectronic medical records were still unavailable on Tuesday. Staff are using paper, with couriers carrying records between departments. The hospital will check its systems for malware before bringing them back.\n## A difficult week for French healthcare\nBordeaux University Hospital and France's National Cancer Institute also disclosed cyberattacks the same week. A group called Scarlettgroup claimed the Bordeaux breach, which the hospital has not confirmed. There is no indication the incidents are linked. Health Minister Stephanie Rist said the government plans long-term healthcare cybersecurity funding in the 2027 social security budget.",
+  "who": "Patients and staff of the University Hospital of Guadeloupe, and hospitals that share IT suppliers or remote-access arrangements with third parties.",
+  "todo": "Patients should bring paper copies of prescriptions and test results and beware of calls or emails impersonating hospital staff; hospitals should audit supplier remote access, keep offline backups and rehearse paper-based downtime procedures.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "The Record",
+    "url": "https://therecord.media/guadeloupe-ransomware-hospital-cyber"
+   }
+  ]
+ },
+ {
+  "slug": "europol-57-illegal-iptv-services-disrupted-26-million-crypto",
+  "date": "2026-11-25",
+  "cat": "Policy & takedowns",
+  "sev": "info",
+  "title": "Police in 11 countries disrupt 57 illegal IPTV services and trace €26 million in crypto",
+  "dek": "A Europol-coordinated operation in Seville also identified 321 pirate websites with more than 7.3 million visits a year. No arrests have been announced yet.",
+  "body": "Police from 11 countries have disrupted 57 illegal IPTV services and identified 321 pirate streaming websites that together draw more than 7.3 million visits a year, Europol said. The five-day operation was run from Seville, Spain.\n## How it worked\nThe action was coordinated by Europol's Intellectual Property Crime Coordinated Coalition (IPC3), which provided analysis, live cross-checks against intelligence databases and secure channels for sharing information. Investigators followed suspicious blockchain transactions to connect services, wallets and the people controlling them, and traced more than €26 million in cryptocurrency.\nPartners included the EU Intellectual Property Office, INTERPOL, the Audio-visual Anti-Piracy Alliance (AAPA), crypto exchanges Binance and Coinbase, and blockchain analytics firm Chainalysis.\nNo arrests have been announced. Europol says the intelligence gathered will feed national investigations aimed at identifying suspects, shutting down services and seizing assets, and transaction analysis is still under way.\n## Why IPTV piracy is a security story\nEuropol describes illegal IPTV as an organized criminal business: cheap subscriptions, frequently paid in cryptocurrency, generating large profits. Citing AAPA figures, Help Net Security reports that around 60 million people in Europe use unauthorized IPTV, costing legitimate providers an estimated €4.83 billion a year and governments €1.08 billion in lost taxes.\nPirate streaming apps and set-top boxes are also a common way malware reaches home networks, as recent Android TV box botnet takedowns have shown. Taking down a service does not always stop its operators, who can rebrand and relaunch, which is why investigators are focusing on following the money.",
+  "who": "Consumers using unofficial IPTV subscriptions or streaming boxes, broadcasters and rights holders, and crypto platforms used to pay for illicit services.",
+  "todo": "Avoid unofficial IPTV apps and boxes, which often carry malware and expose payment details; rights holders and exchanges should keep sharing transaction intelligence with Europol and national police.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "Help Net Security",
+    "url": "https://www.helpnetsecurity.com/2026/11/25/illegal-iptv-disrupted-europol-crypto/"
+   }
+  ]
+ },
+ {
+  "slug": "mcdonalds-japan-app-database-breach-purchase-location-data",
+  "date": "2026-11-24",
+  "cat": "Breaches",
+  "sev": "info",
+  "title": "McDonald's Japan says intruder accessed app database with purchase histories and location data",
+  "dek": "Purchase histories, IP addresses, internal IDs and device location data were exposed. The company says names, contact details and card numbers were not affected.",
+  "body": "McDonald's Japan has disclosed that an unauthorized third party accessed a database connected to its official mobile app.\n## What was exposed\nAccording to the company, the database held:\n- Customer purchase histories.\n- IP addresses.\n- Internal customer identification numbers.\n- Location data from the mobile devices used to reach its services.\nMcDonald's Japan says the internal ID numbers cannot identify a person on their own, and that names, email addresses, phone numbers, home addresses and credit card details were not affected.\n## What is still unknown\nThe company has not said how many customers were affected, when the intrusion took place or who was behind it. It says the attacker used authentication credentials, which it is now invalidating, but it has not explained how those credentials were obtained.\nMcDonald's Japan has reported the incident to Japan's data protection regulator and is investigating the affected systems. It says it has found no unauthorized use of the app or related services and that customers do not need to change passwords or take other steps.\n## Why location data matters\nEven without names attached, purchase histories combined with device locations and IP addresses can reveal routines, home and work areas, and can sometimes be re-identified when matched with other data sets. The breach is one of several recent incidents at Japanese consumer brands. The Record notes there is no sign it is connected to the July 2026 attack on cold-chain logistics firm Nichirei, which disrupted several Japanese restaurant chains.",
+  "who": "Customers of the McDonald's Japan mobile app.",
+  "todo": "No action is required by the company, but app users can review location permissions for the app and stay alert to messages claiming to be from McDonald's; companies should avoid long-lived database credentials and monitor for their reuse.",
+  "cves": [],
+  "sources": [
+   {
+    "name": "The Record",
+    "url": "https://therecord.media/japan-mcdonalds-cyberattack-breach"
+   }
+  ]
  }
 ]
