@@ -3239,5 +3239,228 @@
         "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-removes-wsus-server-role-in-windows-server-2028/"
       }
     ]
+  },
+  {
+    "slug": "air-force-cloud-one-breach-control-plane",
+    "date": "2026-11-27",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "Hackers reportedly broke into the US Air Force's Cloud One platform through its control plane",
+    "dek": "Reuters sources say intruders used a software flaw to reach Cloud One's management layer, prompting the Air Force to pause migrations and freeze app updates.",
+    "body": "Attackers reportedly gained access to Cloud One, the US Air Force's main cloud hosting platform, according to a Reuters report citing three people familiar with the matter. The Air Force has not confirmed the breach, saying it does not discuss the security or status of specific systems.\n## What is known\nCloud One launched in 2017 and runs on commercial cloud infrastructure from Microsoft, Amazon, Oracle and Google. It hosts a range of back-office and operational software, including personnel, payroll, maintenance and logistics applications.\nTwo of the sources said the intrusion was discovered during upgrade work within roughly the past month. One said the attackers exploited a software vulnerability to reach the platform's control plane, the administrative layer used to manage the environment. Reuters could not identify the flaw, and no CVE has been published.\n## Reported impact\n- The Air Force has paused moving more back-office applications onto Cloud One.\n- Updates to applications already running on the platform have been blocked.\n- Some users reportedly lost administrator access.\n- One source said US Cyber Command was brought in to help.\n## What remains unclear\nIt is not known who was behind the intrusion, how far the attackers got, or whether any data was viewed, changed or copied. Reuters did not confirm that the intruders reached any specific hosted system.\nThe report is separate from the Pentagon personnel data breach disclosed in September. It adds to a run of incidents affecting US federal agencies this autumn, including recent intrusions at FinCEN and the CIA's unclassified open-source intelligence system.\n## Why it matters\nA compromise of a cloud management layer is more serious than a breach of a single application, because the control plane governs identities, configurations and deployments for everything hosted on it. Freezing updates is a common containment step, but it also delays routine patching of the hosted apps.",
+    "who": "US Air Force units and contractors whose applications run on Cloud One, and organizations operating large multi-tenant government cloud platforms.",
+    "todo": "Defense contractors connected to Cloud One should watch for official guidance and review any credentials or integrations shared with the platform; cloud operators should audit control-plane access, admin accounts and management-interface patching.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Cyber Security News",
+        "url": "https://cybersecuritynews.com/hackers-break-u-s-air-force-cloud/"
+      }
+    ]
+  },
+  {
+    "slug": "nfs2root-linux-nfs-server-cve-2026-99362",
+    "date": "2026-11-27",
+    "cat": "Vulnerabilities",
+    "sev": "critical",
+    "title": "NFS2ROOT: a 12-year-old Linux NFS server bug can give remote attackers root without logging in",
+    "dek": "CVE-2026-99362 is a heap overflow in the kernel's NFSv4.1/4.2 session reply cache. Researchers demoed root code execution; fixed kernels are out.",
+    "body": "A critical flaw in the Linux kernel's built-in NFS server, nicknamed NFS2ROOT and tracked as CVE-2026-99362, can let an unauthenticated attacker who can reach TCP port 2049 run code as root, according to research firm OpenSec Intelligence, which rates it 9.8.\n## The bug\nThe problem sits in how the kernel's nfsd caches replies for NFSv4.1 and NFSv4.2 sessions. An incomplete reply can be treated as successful and written into a buffer that is too small, producing a heap overflow. The vulnerable code dates back to Linux 3.16, released in 2014, so it has shipped in kernels for about 12 years.\nOnly systems acting as NFS servers with NFSv4.1 or 4.2 enabled are affected. Machines that merely mount NFS shares as clients are not.\n## Disclosure and exploitation\nAccording to OpenSec, a fix was submitted upstream in August by an ANSSI researcher, and the firm's automated analysis tool independently found the bug and built a working exploit. OpenSec released a video on November 25 showing a remote machine triggering root command execution on a test server. It has not published the exploit code, and there are no reports of attacks in the wild so far.\n## Fixed versions\nPatched upstream stable kernels include:\n- 5.10.275, 5.15.226 and 6.1.193\n- 6.6.163, 6.12.117 and 6.18.61\n- 7.3.2 and 7.4-rc1\nDistributions and storage appliance vendors may ship backported fixes under different version numbers, so their own advisories are the reliable reference.\n## Detection hints\nOpenSec suggests watching for kernel warnings that mention nfsd4_check_resp_size, unexpected shells spawned by kernel worker threads, and bursts of very short NFSv4.1 sessions from a single address. None of these prove compromise on their own.\nWith a public demonstration and fixes visible in the kernel tree, the gap before others build an exploit may be short.",
+    "who": "Linux servers and NAS or storage appliances that run the in-kernel NFS server with NFSv4.1 or NFSv4.2 enabled and expose port 2049.",
+    "todo": "Install your distribution's patched kernel and reboot, then confirm the running version; until then, block TCP 2049 from untrusted networks and consider disabling NFSv4.1/4.2 if clients don't need them.",
+    "cves": [
+      "CVE-2026-99362"
+    ],
+    "sources": [
+      {
+        "name": "Cyber Security News",
+        "url": "https://cybersecuritynews.com/nfs2root-linux-vulnerability/"
+      }
+    ]
+  },
+  {
+    "slug": "erlang-otp-tls-client-cve-2026-124286-server-impersonation",
+    "date": "2026-11-24",
+    "cat": "Vulnerabilities",
+    "sev": "critical",
+    "title": "Erlang/OTP TLS 1.2 client flaw lets attackers impersonate servers and tamper with traffic",
+    "dek": "CVE-2026-124286 (CVSS 9.1) lets some TLS 1.2 handshakes finish without a server certificate. Fixes are in OTP 29.0.3, 28.5.0.9 and 27.3.4.14.",
+    "body": "The Erlang/OTP project has fixed a critical bug in its ssl application that can let an attacker pose as a trusted TLS server to Erlang-based clients, then read or modify the traffic. The flaw, CVE-2026-124286, carries a CVSS score of 9.1 and was disclosed on November 24.\n## What goes wrong\nUnder certain TLS 1.2 handshakes, an Erlang/OTP client can complete the connection without ever receiving a server certificate, even when it is configured to verify the server's identity. That defeats the main protection TLS offers against man-in-the-middle attacks.\nKey limits:\n- Only the client side is affected. Erlang/OTP acting as a TLS server is not vulnerable.\n- TLS 1.3 connections are not affected.\n- The attacker must be positioned on the network path of a new connection. Previously recorded traffic cannot be decrypted.\nServer applications are not off the hook, though. Many Erlang and Elixir services that accept inbound traffic also make outbound TLS calls to APIs, databases, payment processors or partner systems, and those outbound connections are the exposed part.\n## Versions\nThe advisory traces the bug back to OTP 17.0. Fixed releases are OTP 29.0.3, 28.5.0.9 and 27.3.4.14, which carry ssl 11.7.3, 11.6.0.8 and 11.2.12.10 respectively. The maintainers said an earlier hardening change had already closed the hole on the 29 and 27 branches, but it was accidentally left out of the 28 branch.\nThere are no reports of exploitation so far. The issue was found and privately reported by researcher Philip Calvin.\n## Practical steps\nErlang runtimes often hide inside container images and vendor products, including RabbitMQ, ejabberd and Elixir applications, so an inventory is the first job. Keep peer verification turned on, but note that it does not protect an unpatched client by itself. If patching has to wait, forcing affected clients to TLS 1.3 is the cleaner stopgap.",
+    "who": "Teams running Erlang or Elixir applications, and products built on Erlang/OTP, that make outbound TLS 1.2 client connections.",
+    "todo": "Upgrade to OTP 29.0.3, 28.5.0.9 or 27.3.4.14 (or vendor builds containing them), confirm services run the patched runtime, and restrict clients to TLS 1.3 until you can patch.",
+    "cves": [
+      "CVE-2026-124286"
+    ],
+    "sources": [
+      {
+        "name": "Cyber Security News",
+        "url": "https://cybersecuritynews.com/critical-erlang-otp-flaw/"
+      }
+    ]
+  },
+  {
+    "slug": "kenya-ecitizen-breach-32-million-identity-records-leaked",
+    "date": "2026-11-28",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "Hackers begin leaking identity records from Kenya's eCitizen portal, with data on 32 million people reportedly accessed",
+    "dek": "A group calling itself ByteToBreach claims 740 GB from Kenya's government services portal, including ID numbers, passport copies and fingerprints.",
+    "body": "Identity records taken from eCitizen, the Kenyan government's main online portal for public services, have reportedly started appearing on the dark web. A review of the leaked files by Kenyan newspaper Nation found that data on more than 32 million Kenyans had been accessed, though authorities have not confirmed that total.\n## What was reportedly exposed\nThe records are said to include:\n- National ID numbers and dates of birth.\n- Copies of passports.\n- Fingerprint data.\n- KRA tax PINs.\n- Social Health Authority digital health IDs. Nation said it found no sign that medical records were taken.\nA threat actor calling itself ByteToBreach has claimed responsibility and says it took about 740 GB, split between ID documents, database contents and source code. It also claims to have had access to single sign-on systems. These figures and claims come from the attacker and have not been verified.\n## Government response\nThe State Department for Immigration and Citizen Services acknowledged reports of unauthorized access on November 24 and said it was investigating. The eCitizen platform stayed online. The Interior Ministry urged users to change their eCitizen passwords, be suspicious of unexpected calls, texts and emails, and never share one-time codes or M-PESA PINs.\nNation reported no evidence that systems at the Social Health Authority, the Directorate of Criminal Investigations or the National Police Service were breached.\nUnder Kenya's Data Protection Act, organizations must tell the Data Commissioner within 72 hours of learning of a breach that poses a real risk of harm.\n## Why it matters\nIf the scale is confirmed, this would be one of the largest government identity leaks in Africa, covering most of Kenya's adult population. Unlike passwords, fingerprints and ID numbers cannot be changed, so the records could fuel SIM-swap fraud, loan fraud and impersonation for years.",
+    "who": "Kenyan citizens and residents with eCitizen accounts, and Kenyan banks, telecoms and lenders that verify identity using national ID data.",
+    "todo": "Change your eCitizen password, never share OTPs or M-PESA PINs, and watch for loans or SIM changes you didn't request; businesses should strengthen identity checks beyond ID numbers.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Cyber Security News",
+        "url": "https://cybersecuritynews.com/kenya-ecitizen-data-breach/"
+      }
+    ]
+  },
+  {
+    "slug": "slovenia-meat-plant-freezer-setpoint-100c-cyberattack",
+    "date": "2026-11-27",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "Intruders set a Slovenian meat plant's freezer to 100°C and locked the technician out",
+    "dek": "Staff at a Tolmin cooperative caught the change before goods spoiled. The incident follows similar attacks on refrigeration in other European countries.",
+    "body": "Someone broke into the refrigeration controls at Salamerija Alpija, a meat processing plant in Tolmin, Slovenia, and changed a freezer chamber's target temperature to 100°C, the facility's operator says. Staff noticed before the temperature climbed far, and no spoilage was reported.\n## What happened\nThe plant is run by the Tolmin Agricultural Cooperative. Director Nikola Šavle told Slovenian broadcaster 24ur that when a service technician tried to sign in to the cooling control system to fix the setting, he was locked out. His screen instead showed a photo of Italian politician Matteo Salvini with a mocking caption. The image does not establish who was responsible or why.\nStaff also found a problem at the slaughterhouse and a shop refrigerator set to 20°C rather than the usual 2–3°C. The cooperative estimated that about €250,000 worth of stock was at risk.\nThe plant's alarm watched room temperature rather than the configured setpoint, so the change did not trigger a warning. The cooperative has disconnected its cooling equipment from the network, is running temperatures manually, and has added in-person checks every few hours. It said it would report the incident to SI-CERT, Slovenia's national computer emergency team.\n## The bigger pattern\nThis is the latest in a series of attacks on internet-connected refrigeration in Europe. Earlier this month, supermarkets in Sweden and Belgium reported freezers overheating after suspected cyberattacks. On November 24, CISA published an advisory on flaws in Danfoss commercial refrigeration controllers, though there is no public evidence linking that advisory to the Slovenian case. The controller maker and the entry method have not been disclosed.\n## Lessons\nRefrigeration controllers are often installed with remote web access for service companies and then forgotten. Alarms that only watch measured temperature can miss a malicious setpoint change until damage is under way.",
+    "who": "Food processors, retailers, cold-storage and pharmacy operators that use internet-connected refrigeration or building controllers.",
+    "todo": "Take refrigeration and building controllers off the open internet, put remote service access behind VPN with MFA, alarm on setpoint changes as well as temperatures, and practise running cooling manually.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Cyber Security News",
+        "url": "https://cybersecuritynews.com/freezer-control-cyberattack/"
+      }
+    ]
+  },
+  {
+    "slug": "flight-centre-breach-third-party-accommodation-booking-system",
+    "date": "2026-11-26",
+    "cat": "Breaches",
+    "sev": "high",
+    "title": "Flight Centre says a third-party hotel booking system breach may have exposed a large number of customer records",
+    "dek": "Mostly names and trip details, but a small share may include passport data, birth dates, or health and mobility notes. Payment data was not accessed, FLT says.",
+    "body": "Flight Centre Travel Group (FLT) has told the Australian Securities Exchange that it is investigating unusual activity in a third-party accommodation booking system and that unknown people may have accessed a significant number of customer records.\n## Who is affected\nThe incident involves hotel and accommodation bookings made through Flight Centre, Travel Associates, Cruiseabout and some independent agents. FLT says flight bookings and its corporate travel business are not affected. It has not said how many records were taken, or how many were actually copied rather than just viewed.\n## What the records contain\nAccording to the company:\n- Most records hold only a name, sometimes with basic travel details.\n- A very small share may include limited passport details, email addresses, phone numbers or dates of birth.\n- In rare cases, records may include health or mobility information, such as accessibility needs noted for a booking.\n- FLT says it has seen no access to credit card, payment or bank account details.\n## Response\nFLT is working with the booking system's vendor and with Google's Mandiant incident response team. It says it has rotated authentication keys and credentials, increased monitoring, and is notifying the relevant authorities. The vendor has not been named, and no threat actor has claimed the attack.\n## Context\nHospitality booking platforms have been a recurring target this year. Booking.com warned customers about suspicious activity in April, and hotel software provider RMS Cloud, used by more than 6,000 properties, disclosed a phishing-related breach in late October. There is no indication those incidents are connected to Flight Centre's.\nStolen booking data is especially useful for convincing scams, because criminals can reference a real trip, hotel and dates when contacting a victim.",
+    "who": "Customers who booked accommodation through Flight Centre, Travel Associates, Cruiseabout or affiliated independent agents in Australia.",
+    "todo": "Be wary of unexpected calls, emails or texts about your bookings, confirm any request through Flight Centre's official channels, and never share payment or passport details in response to an unsolicited message.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Help Net Security",
+        "url": "https://www.helpnetsecurity.com/2026/11/27/flight-centre-travel-group-data-breach-booking-system/"
+      }
+    ]
+  },
+  {
+    "slug": "japan-mext-procurement-system-breach-164000-records",
+    "date": "2026-11-27",
+    "cat": "Breaches",
+    "sev": "info",
+    "title": "Japan's education ministry discloses a breach of its procurement system two months after detecting it",
+    "dek": "MEXT says about 164,000 business records and 1,700 email addresses for companies eligible to bid on contracts may have been exposed.",
+    "body": "Japan's Ministry of Education, Culture, Sports, Science and Technology (MEXT) has disclosed that attackers broke into a system it uses to publish tenders, contracts and procurement opportunities, The Record reports.\n## What was exposed\nThe ministry detected the intrusion on October 1 but only went public about two months later. It says the potentially exposed data includes:\n- Close to 1,700 email addresses.\n- About 164,000 records containing company names, employee names and other business information related to firms eligible to bid on ministry contracts.\nMEXT says it has found no evidence that the data has been published or misused.\n## Response\nThe ministry cut the affected system off from both internal and external networks, reported the incident to Japan's data protection authority, and is continuing to investigate with other government agencies. It has not said who was responsible or how the attackers got in.\n## Part of a busy year in Japan\nThe disclosure adds to a long list of Japanese organizations hit by cyberattacks in 2026, including railway operator Keio, McDonald's Japan, the City of Osaka, KDDI, Aflac Japan, Nidec and Sapporo Holdings. There is no indication the MEXT incident is connected to any of these.\n## Why it matters\nProcurement data is valuable for targeted phishing and business email compromise. Attackers who know which companies are bidding on which government contracts, and who the contact people are, can craft convincing fake tender notices, contract updates or invoice requests.",
+    "who": "Companies registered to bid on Japanese education ministry contracts and their staff listed in procurement records.",
+    "todo": "Treat unexpected tender, contract or payment-change messages that appear to come from MEXT with caution and verify them through known contacts.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Record",
+        "url": "https://therecord.media/japan-education-ministry-cyberattack"
+      }
+    ]
+  },
+  {
+    "slug": "switzerland-ncsc-ai-agent-attacks-critical-infrastructure",
+    "date": "2026-11-27",
+    "cat": "Threat actors",
+    "sev": "high",
+    "title": "Switzerland confirms AI agents were used in five cyberattacks, including breaches at critical infrastructure operators",
+    "dek": "The Swiss NCSC says four of five confirmed AI-agent attacks succeeded, two against critical infrastructure, and urges patching exposed systems within 24 hours.",
+    "body": "Switzerland's National Cyber Security Centre (NCSC) has confirmed the country's first known cyberattacks carried out with AI agents. Florian Schütz, the agency's director, told broadcaster SRF that five such attacks have been confirmed and four of them succeeded.\n## The cases\n- Three of the five targeted operators of critical infrastructure, and two of those intrusions succeeded.\n- No major disruption has been reported.\n- Small and medium-sized businesses were among the victims, and several came forward voluntarily.\nThe NCSC has not named the victims or identified the attackers. An advisory the agency published earlier in the week said every known case had resulted in compromise, and it is not clear why the count changed in the interview.\n## Agentic attack tools\nThe NCSC describes the tools involved as agentic offensive frameworks, software that can scan, exploit and move through networks with little human direction. It cited ARTEX and CyberStrikeAI as examples of such agents found exposed online, but did not say which tools were used in the Swiss cases. The agency says the number of freely available AI attack tools has nearly doubled since October.\nOther European agencies are reporting the same trend. Italy's CSIRT has described mass compromise campaigns that breached many systems within hours, and the UK's NCSC says it has seen a sharp rise in AI-assisted attacks since September, mostly exploiting old weaknesses. Microsoft said this week that Chinese and North Korean state groups have added ARTEX to their toolkits.\n## The advice: speed\nBecause automated attackers can find and exploit a newly published flaw almost immediately, the NCSC now recommends:\n- Patching internet-facing systems within 24 hours, starting with actively exploited flaws.\n- Isolating systems that cannot be patched quickly.\n- Limiting exposure with allow lists, geo-blocking and authentication.\n- Requiring MFA or passkeys and least-privilege access.\n- Watching for unusual behavior, such as machine-speed command sequences and large data transfers, and using honeytokens.",
+    "who": "Critical infrastructure operators and any organization with internet-facing systems, especially small and mid-sized firms with slow patch cycles.",
+    "todo": "Aim to patch exposed systems within 24 hours, isolate anything you can't patch, enforce MFA, and alert on machine-speed command activity and unusual data volumes.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/switzerland-confirms-ai-assisted.html"
+      }
+    ]
+  },
+  {
+    "slug": "weavelotus-vietnam-linked-espionage-thailand-philippines",
+    "date": "2026-11-27",
+    "cat": "Threat actors",
+    "sev": "high",
+    "title": "Suspected Vietnam-linked WeaveLotus group spied on Thai and Philippine government targets via exposed open-source apps",
+    "dek": "SOCRadar says the newly named cluster used GeoServer, JasperReports, osTicket and Laravel weaknesses, plus default passwords, to steal government data.",
+    "body": "Threat intelligence firm SOCRadar has documented a previously unknown espionage cluster it calls WeaveLotus, which it suspects is linked to Vietnam. The group carried out five intrusions against government, military and legislative organizations in Thailand and the Philippines, and scanned Indonesian government bodies, between August and September 2026.\n## How they got in\nWeaveLotus relied on known flaws and weak setups in widely used open-source software rather than custom exploits:\n- A Thai military target was likely breached through CVE-2024-36401, a critical GeoServer flaw, followed by a SOCKS proxy and reverse SSH tunnel. The attackers also pulled data from an unauthenticated CMS API.\n- At the Thai legislature, a JasperReports server still used its default admin password. The attackers used a malicious report to run SQL Server commands and open a tunnel over port 443, then stole directory records, audit logs and thousands of archives.\n- At a Thai government agency, they gained root SSH access to an old Keycloak identity server, dumped its credential database and cracked password hashes offline, then pulled almost 350,000 records from a connected application.\n- In the Philippines, one organization was hit through CVE-2021-42235, an osTicket SQL injection, and another had a Laravel app with debug mode left on.\nThe Indonesian activity did not go beyond reconnaissance.\n## Attribution\nSOCRadar points to Vietnamese-language code comments, working hours matching UTC+7, the choice of targets and its custom scripts. It says the evidence supports tracking WeaveLotus as a distinct cluster but does not conclusively prove state sponsorship. The campaign's targets align with disputes in the South China Sea.\n## Takeaway\nNone of the entry points required a zero-day. Old, internet-facing open-source tools with default passwords, debug modes or years-old bugs were enough to reach sensitive government data.",
+    "who": "Government, military and legislative bodies in Southeast Asia, and any organization exposing GeoServer, JasperReports, osTicket, Keycloak or Laravel apps.",
+    "todo": "Patch GeoServer and osTicket, change default JasperReports credentials, turn off Laravel debug mode in production, upgrade old Keycloak versions, and watch for reverse SSH tunnels over port 443.",
+    "cves": [
+      "CVE-2024-36401",
+      "CVE-2021-42235"
+    ],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/suspected-vietnam-linked-hackers-target.html"
+      }
+    ]
+  },
+  {
+    "slug": "polinrider-north-korea-7600-github-repositories-poisoned",
+    "date": "2026-11-26",
+    "cat": "Threat actors",
+    "sev": "high",
+    "title": "North Korea-linked PolinRider has slipped malware into more than 7,600 GitHub repositories",
+    "dek": "The worm rewrites commits under real developers' names and uses Ethereum transactions to hide its command servers. Opening a folder in VS Code can trigger it.",
+    "body": "A malware campaign researchers link to North Korean hackers has compromised more than 7,600 GitHub repositories belonging to about 2,330 accounts, according to application security firm Apiiro. Most of the affected accounts are personal accounts more than a year old, meaning the victims are largely real developers rather than throwaway fakes.\n## How it spreads\nPolinRider behaves like a worm. Once it infects a developer's machine, it rewrites commits in their repositories to insert a loader, preserving the original author name, commit message and date so the change is hard to spot. Apiiro says the loader was pushed to more than 2,000 repositories between October 27 and November 6 alone. In the newest wave, simply opening an infected project folder in VS Code is enough to run it.\nSafeDep found a Python version of the loader in 375 repositories, hidden in a small utils package or a conftest.py file that runs on import. There is no sign the malware was published through PyPI or npm directly, though an earlier wave in May 2025 hit a family of npm packages.\n## Hiding the command servers\nThe loader reads the most recent transaction from an Ethereum wallet, decodes it as JavaScript and runs it with Node.js. This lets the operators point infected machines at a new server by sending a single blockchain transaction. The follow-on payload appears to be a remote access tool that avoids CI systems and plants itself in VS Code, Cursor, Discord and GitHub Desktop.\n## Initial lures\nVictims were first reached through tactics common to North Korean developer-targeting operations: fake job offers and technical tests, sideloaded Chrome extensions, ClickFix-style commands and a fake onboarding curl command. Researchers describe PolinRider as a sub-cluster operating alongside the Contagious Interview campaign. Named victims include the Neutralinojs project, InstaWP Connect and fxhash.",
+    "who": "Developers who have cloned, forked or contributed to GitHub projects, especially in the crypto and web3 space, and anyone who ran a recruiter's coding test.",
+    "todo": "Review recent commits for unexpected utils packages or conftest.py changes, search code for Ethereum RPC calls in loaders, enable signed commits and branch protection, and don't open untrusted repos in an IDE with auto-run tasks enabled.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/north-korea-linked-polinrider-poisons.html"
+      }
+    ]
+  },
+  {
+    "slug": "softwareok-q-dir-desktopok-trojanized-downloads-python-rat",
+    "date": "2026-11-27",
+    "cat": "Threat actors",
+    "sev": "high",
+    "title": "Official Q-Dir and DesktopOK downloads were swapped for installers that drop a Python remote access trojan",
+    "dek": "AhnLab says SoftwareOK's own website and in-app updates served tampered versions of the popular Windows utilities. Reinstalling is not enough to clean up.",
+    "body": "Attackers replaced installers for two popular free Windows utilities, the Q-Dir file manager and the DesktopOK icon-layout tool, on their developer SoftwareOK's official website, according to South Korean security firm AhnLab. Both direct downloads and the update process built into installed copies delivered the tampered files.\n## Affected versions\nAhnLab confirmed malicious builds of:\n- Q-Dir 12.85.0.0, 12.84.0.0 and 12.83.0.0.\n- DesktopOK 12.85.0.0 and 12.82.0.0.\nThe tampered files were identified by hash mismatches with the genuine releases and by added code. How the attackers got the files onto SoftwareOK's site is not yet known.\n## What the malware does\nThe installer launches the real program so nothing looks wrong, while quietly downloading a portable Python environment and a remote access trojan from an attacker-controlled server. It then creates a scheduled task disguised as a Microsoft Edge component so the RAT starts automatically.\nThe RAT can:\n- Run shell commands and Python code.\n- Upload and download files.\n- Take screenshots and collect system information.\n- Check running processes against a list of security products, including AhnLab, CrowdStrike, SentinelOne and Kaspersky, and report what it finds.\nNo threat actor has been named. AhnLab noted Chinese-language comments in the code but did not attribute the attack.\n## Why it matters\nThis is a classic software supply chain attack: users did everything right by downloading from the official source, and the trusted update channel became the delivery route. Small freeware publishers rarely sign releases or publish hashes, which makes tampering harder to spot.",
+    "who": "Windows users and administrators who downloaded or auto-updated Q-Dir or DesktopOK recently, particularly the listed versions.",
+    "todo": "Check installed versions and installer hashes, look for unexpected Python environments and Edge-named scheduled tasks, block the published C2 indicators, and treat infected machines as compromised rather than just reinstalling.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/hackers-trojanize-official-q-dir-and.html"
+      }
+    ]
+  },
+  {
+    "slug": "doj-largest-scam-crackdown-800-defendants-17-billion-seized",
+    "date": "2026-11-27",
+    "cat": "Policy & takedowns",
+    "sev": "info",
+    "title": "US announces its largest scam crackdown, with 800 alleged scammers charged and $17 billion seized",
+    "dek": "The DOJ says more than 400 cases in 85 districts, plus an FBI operation that dismantled 29 scam compounds and brought home 2,200 trafficked workers.",
+    "body": "The US Justice Department has announced what it describes as its largest-ever crackdown on scams, involving more than 800 alleged scammers across more than 400 cases in 85 federal districts. Thirty defendants have been extradited to the US, and joint raids were carried out with police in more than ten countries.\n## The headline numbers\n- The FBI's Operation Blackout seized about $17 billion in illicit funds, dismantled more than 29 scam compounds, and helped bring home over 2,200 trafficked workers forced to run scams. The FBI also warned more than 11,000 Americans they were being targeted and estimates it prevented over $690 million in losses.\n- The State Department helped freeze more than $1 billion in stolen cryptocurrency and take down over 1.4 million fraudulent websites and accounts.\n- The Federal Trade Commission has returned almost $3 billion to consumers.\n## Prison phone schemes\nOne strand focused on scams run from inside prisons using smuggled phones. In Georgia, 14 people were charged in federal and state indictments, and 17 more were charged in state court with smuggling phones into prisons. Separately, the FCC approved a rule on November 19 that lets prisons use jamming technology against contraband phones.\n## Background\nThe effort follows an executive order signed in March 2026 directing agencies to step up action against fraud networks, many of which operate from compounds in Southeast Asia using trafficked labor. Americans lost an estimated $68 billion to scams in 2025, and Gallup found about one in ten US adults had a scam experience in the past year.\n## Why it matters\nPig-butchering investment fraud, fake tech support and impersonation scams are now an industrial operation. Seizures and compound raids raise the cost for operators, but the networks have repeatedly relocated after past crackdowns, so the long-term effect remains to be seen.",
+    "who": "Consumers targeted by investment, romance and impersonation scams, and banks, crypto exchanges and telecoms that handle scam proceeds.",
+    "todo": "If you lost money to a scam, report it to the FBI's IC3 and your bank; financial institutions should review alerts tied to newly frozen wallets and seized domains.",
+    "cves": [],
+    "sources": [
+      {
+        "name": "Help Net Security",
+        "url": "https://www.helpnetsecurity.com/2026/11/27/doj-scam-crackdown-800-scammers/"
+      }
+    ]
   }
 ]

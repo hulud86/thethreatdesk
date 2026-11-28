@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://thethreatdesk.com/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://thethreatdesk.com/archive.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://thethreatdesk.com/</loc><lastmod>2026-11-28</lastmod></url>
+  <url><loc>https://thethreatdesk.com/archive.html</loc><lastmod>2026-11-28</lastmod></url>
+  <url><loc>https://thethreatdesk.com/kenya-ecitizen-breach-32-million-identity-records-leaked.html</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://thethreatdesk.com/sap-github-security-incident-source-code-tokens.html</loc><lastmod>2026-11-27</lastmod></url>
   <url><loc>https://thethreatdesk.com/hex-pm-breach-cve-2026-129514-elixir-package-manager.html</loc><lastmod>2026-11-27</lastmod></url>
   <url><loc>https://thethreatdesk.com/uk-dwp-cyber-incident-online-services-offline.html</loc><lastmod>2026-11-27</lastmod></url>
   <url><loc>https://thethreatdesk.com/windows-server-2028-removes-wsus-server-role.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://thethreatdesk.com/air-force-cloud-one-breach-control-plane.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://thethreatdesk.com/nfs2root-linux-nfs-server-cve-2026-99362.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://thethreatdesk.com/slovenia-meat-plant-freezer-setpoint-100c-cyberattack.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://thethreatdesk.com/japan-mext-procurement-system-breach-164000-records.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://thethreatdesk.com/switzerland-ncsc-ai-agent-attacks-critical-infrastructure.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://thethreatdesk.com/weavelotus-vietnam-linked-espionage-thailand-philippines.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://thethreatdesk.com/softwareok-q-dir-desktopok-trojanized-downloads-python-rat.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://thethreatdesk.com/doj-largest-scam-crackdown-800-defendants-17-billion-seized.html</loc><lastmod>2026-11-27</lastmod></url>
   <url><loc>https://thethreatdesk.com/cacti-4http2root-zero-day-guest-access-sql-injection.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://thethreatdesk.com/mitel-micollab-zero-days-exploited-ai-assisted-data-theft.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://thethreatdesk.com/cisa-kev-juniper-session-smart-xen-orchestra-danfoss-exploited.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://thethreatdesk.com/usa-today-n0n-ransomware-claims-166-million-records.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://thethreatdesk.com/flight-centre-breach-third-party-accommodation-booking-system.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://thethreatdesk.com/polinrider-north-korea-7600-github-repositories-poisoned.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://thethreatdesk.com/commercial-ships-suspected-cyberattacks-50-vessels-fortigate.html</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://thethreatdesk.com/1password-breach-github-account-source-code-customer-records.html</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://thethreatdesk.com/fincen-cyber-incident-systems-offline-deadlines-extended.html</loc><lastmod>2026-11-25</lastmod></url>
@@ -35,6 +46,7 @@
   <url><loc>https://thethreatdesk.com/mycolorado-app-cyberattack-150000-data-stolen.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thethreatdesk.com/mcdonalds-japan-app-database-breach-purchase-location-data.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thethreatdesk.com/radware-breach-cloud-waf-api-customer-log-export-keys.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://thethreatdesk.com/erlang-otp-tls-client-cve-2026-124286-server-impersonation.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thethreatdesk.com/azure-api-management-flaw-exploited-secrets-norway-energy.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thethreatdesk.com/gl-inet-goodcloud-compromise-routers-kvms-malware.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thethreatdesk.com/screenconnect-cve-2026-84869-exploited-msp-technicians.html</loc><lastmod>2026-11-23</lastmod></url>
